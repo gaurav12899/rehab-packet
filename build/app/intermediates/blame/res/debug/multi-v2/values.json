@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\MyFlutterApps\\Rehab-Packet-master\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values\\values.xml",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "D:\\MyFlutterApps\\Rehab-Packet-master\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -56,25 +56,6 @@
                         "startOffsets": "7730,7874,7981,8063,8167,8276,8396,8492",
                         "endColumns": "143,106,81,103,108,119,95,72",
                         "endOffsets": "7869,7976,8058,8162,8271,8391,8487,8560"
-                    }
-                },
-                {
-                    "source": "D:\\MyFlutterApps\\Rehab-Packet-master\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "134,777",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "426,937"
-                    },
-                    "to": {
-                        "startLines": "113,118",
-                        "startColumns": "4,4",
-                        "startOffsets": "8636,8933",
-                        "endLines": "117,120",
-                        "endColumns": "12,12",
-                        "endOffsets": "8928,9093"
                     }
                 },
                 {
@@ -92,6 +73,25 @@
                         "startOffsets": "5259,6437",
                         "endColumns": "67,166",
                         "endOffsets": "5322,6599"
+                    }
+                },
+                {
+                    "source": "D:\\MyFlutterApps\\RehabPocket\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "134,777",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "426,937"
+                    },
+                    "to": {
+                        "startLines": "113,118",
+                        "startColumns": "4,4",
+                        "startOffsets": "8636,8933",
+                        "endLines": "117,120",
+                        "endColumns": "12,12",
+                        "endOffsets": "8928,9093"
                     }
                 }
             ]

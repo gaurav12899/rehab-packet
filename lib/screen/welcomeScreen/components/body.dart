@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/components.dart/rounded_button.dart';
 import 'package:project/constants.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'background.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Body extends StatelessWidget {
   @override

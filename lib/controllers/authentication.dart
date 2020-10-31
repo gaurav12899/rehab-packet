@@ -25,15 +25,16 @@ showErrDialog(BuildContext context, String err) {
   );
 }
 
-signUp() async {
+signUp(String email, String password) async {
   try {
-    UserCredential userCredential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-            email: "gjain8369@gmail.com", password: "gaurav750@");
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
 
     User user = FirebaseAuth.instance.currentUser;
     if (!user.emailVerified) {
-      await user.sendEmailVerification();
+      await user.sendEmailVerification().whenComplete(() {
+        print("verification Email Sent to your email");
+      });
     }
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
@@ -43,6 +44,21 @@ signUp() async {
     }
   } catch (e) {
     print(e);
+  }
+}
+
+Future<UserCredential> loginWithEmail(String email, String password) async {
+  final auth = FirebaseAuth.instance;
+  UserCredential result = await auth
+      .signInWithEmailAndPassword(email: email, password: password)
+      .catchError((onError) {
+    return null;
+  });
+  if (!result.user.emailVerified) {
+    print("User is not verified");
+    return Future.value(" ");
+  } else {
+    return Future.value(result);
   }
 }
 

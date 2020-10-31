@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AuthenticationBackground extends CustomPainter {
-  final bool isKeyboardVisible;
-  AuthenticationBackground({@required this.isKeyboardVisible});
-
   @override
   void paint(Canvas canvas, Size size) {
     var sh = size.height;
