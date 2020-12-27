@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
-import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/widgets/authentication_background.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signupScreen';
@@ -14,7 +14,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   bool _obscureText1 = true;
   bool _obscureText2 = true;
-
+  var _userType;
   final credential = {'email': '', 'password': ''};
   bool isLoading = false;
   final _passwordFocusNode = FocusNode();
@@ -49,14 +49,23 @@ class _SignupState extends State<Signup> {
           isLoading = true;
         });
 
-        signUp(credential['email'], credential['password']).then((value) {
-          if (value == null) {
-            setState(() {
-              isLoading = false;
-            });
-          } else {
-            return;
-          }
+        signUp(
+          credential['email'],
+          credential['password'],
+        ).then((value) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: (value == 'signUpSuccessful')
+                  ? Text('Varification link sent to your Email')
+                  : Text(value),
+              backgroundColor:
+                  (value == 'signUpSuccessful') ? Colors.green : Colors.red,
+            ),
+          );
+        });
+
+        setState(() {
+          isLoading = false;
         });
       }
     }
@@ -218,8 +227,45 @@ class _SignupState extends State<Signup> {
                               ],
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Student",
+                                style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Radio(
+                                value: "student",
+                                groupValue: _userType,
+                                activeColor: Colors.blue,
+                                onChanged: (val) {
+                                  setState(() {
+                                    _userType = val;
+                                    print(_userType);
+                                  });
+                                },
+                              ),
+                              Text(
+                                "Professional",
+                                style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Radio(
+                                value: "professional",
+                                groupValue: _userType,
+                                activeColor: Colors.blue,
+                                onChanged: (val) {
+                                  setState(() {
+                                    _userType = val;
+                                    print(_userType);
+                                  });
+                                },
+                              )
+                            ],
+                          ),
                           SizedBox(
-                            height: 40,
+                            height: 20,
                           ),
                           (isLoading)
                               ? Center(
@@ -257,7 +303,7 @@ class _SignupState extends State<Signup> {
               onTap: () => Navigator.of(context).pushNamed(Login.routeName),
               child: RichText(
                 text: TextSpan(
-                    text: "Already have a acount? ",
+                    text: "Already have a account? ",
                     style: GoogleFonts.lato(color: Colors.black, fontSize: 15),
                     children: [
                       TextSpan(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
+import 'package:project/screen/profile/profile.dart';
 import '../loginScreen/login.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -40,7 +41,7 @@ class AppDrawer extends StatelessWidget {
                             GoogleFonts.lato(color: Colors.white, fontSize: 15),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushReplacementNamed('/');
+                        Navigator.of(context).pushNamed(Profile.routeName);
                       }),
 
                   ListTile(

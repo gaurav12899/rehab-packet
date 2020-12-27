@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
@@ -80,12 +84,28 @@
         "source": "D:\\MyFlutterApps\\RehabPocket\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_full_open_on_phone.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-hdpi-v4\\common_full_open_on_phone.png"
+    },
+    {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -94,6 +114,10 @@
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_lines_media.xml"
     },
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -192,6 +216,10 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
@@ -202,6 +230,10 @@
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_dark.xml.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\color\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
+        "source": "D:\\MyFlutterApps\\RehabPocket\\build\\open_file\\intermediates\\packaged_res\\debug\\xml\\filepaths.xml"
     },
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark.xml.flat",
@@ -248,6 +280,10 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
     },
@@ -280,6 +316,10 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\1c09cccc4703b46919e29819e887f461\\media-1.0.0\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\googleg_disabled_color_18.png"
     },
@@ -308,11 +348,11 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
     },
     {
-        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
-    },
-    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     }
 ]

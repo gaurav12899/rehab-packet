@@ -1,66 +1,67 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'dart:ui' as ui;
 
 FirebaseAuth auth = FirebaseAuth.instance;
 final gSignIn = GoogleSignIn();
 
-showErrDialog(BuildContext context, String err) {
-  // to hide the keyboard, if it is still p
-  FocusScope.of(context).requestFocus(new FocusNode());
-  return showDialog(
-    context: context,
-    child: AlertDialog(
-      title: Text("Error"),
-      content: Text(err),
-      actions: <Widget>[
-        OutlineButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("Ok"),
-        ),
-      ],
-    ),
-  );
-}
-
-signUp(String email, String password) async {
+Future<String> signUp(String email, String password) async {
   try {
-    await FirebaseAuth.instance
+    final result = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-
+    final re = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(result.user.uid)
+        .set(({"email": email}));
     User user = FirebaseAuth.instance.currentUser;
     if (!user.emailVerified) {
-      await user.sendEmailVerification().whenComplete(() {
-        print("verification Email Sent to your email");
-      });
+      await user.sendEmailVerification();
+
+      return ("signUpSuccessful");
     }
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
+      return ('The password provided is too weak.');
     } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
+      return ('The account already exists for that email.');
     }
   } catch (e) {
     print(e);
+    return ("Something went wrong!!");
   }
 }
 
-Future<UserCredential> loginWithEmail(String email, String password) async {
+Future<String> loginWithEmail(String email, String password) async {
   final auth = FirebaseAuth.instance;
-  UserCredential result = await auth
-      .signInWithEmailAndPassword(email: email, password: password)
-      .catchError((onError) {
-    return null;
-  });
-  if (!result.user.emailVerified) {
-    print("User is not verified");
-    return Future.value(" ");
-  } else {
-    return Future.value(result);
+  try {
+    UserCredential result =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    if (!result.user.emailVerified) {
+      print("User is not verified");
+      await result.user.sendEmailVerification();
+      return "User not Verified,verification link sent to your email.";
+    } else {
+      return "signInSuccessful";
+    }
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      return ('No user found for that email.');
+    } else if (e.code == 'wrong-password') {
+      return ('Wrong password provided for that user.');
+    }
+  } catch (e) {
+    return "Something went wrong";
   }
 }
+// if (!result.user.emailVerified) {
+//   print("User is not verified");
+//   return Future.value(" ");
+// } else {
+//   return Future.value(result);
+// }
 
 Future<bool> googleSignIn() async {
   GoogleSignInAccount googleSignInAccount =

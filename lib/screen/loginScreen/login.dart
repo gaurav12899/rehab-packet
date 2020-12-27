@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/screen/forgetPassword/forget-password.dart';
 import 'package:project/screen/homeScreen/home_screen.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/widgets/authentication_background.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,22 +46,21 @@ class _LoginState extends State<Login> {
 
         loginWithEmail(credential['email'], credential['password'])
             .then((value) {
-          if (value == null) {
+          if (value == 'signInSuccessful') {
+            Navigator.of(context)
+                .pushReplacementNamed(NewOrOldPatient.routeName);
+          } else {
             setState(() {
               isLoading = false;
             });
             Scaffold.of(context).showSnackBar(
               SnackBar(
-                content: Text("something went wrong"),
+                content: Text(value),
                 backgroundColor: Colors.red,
               ),
             );
-          } else {
-            Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           }
         });
-      } else {
-        return;
       }
     }
 
@@ -210,6 +210,9 @@ class _LoginState extends State<Login> {
                                     ),
                                   ),
                                 ),
+                          SizedBox(
+                            height: 40,
+                          ),
                           if (!_keyboardIsVisible())
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -243,17 +246,18 @@ class _LoginState extends State<Login> {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 onPressed: () {
+                                  print("initialized");
                                   googleSignIn().then((value) {
                                     if (value == null) {
                                       print("some error occured");
                                     } else {
                                       User user =
                                           FirebaseAuth.instance.currentUser;
-
+                                      print("err");
                                       Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              HomeScreen(uid: user.uid),
+                                              NewOrOldPatient(),
                                         ),
                                       );
                                     }
