@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project/screen/forgetPassword/forget-password.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
+import 'package:project/screen/forms/Afo/afoB.dart';
+import 'package:project/screen/forms/Afo/afoC.dart';
 import 'package:project/screen/forms/cosmetic.dart';
 import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
@@ -13,6 +15,7 @@ import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
 import 'constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,10 +36,11 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       title: "Rehab Pocket",
-      home: AfoA(),
-      // FirebaseAuth.instance.currentUser == null
-      //     ? Login()
-      //     : NewOrOldPatient(),
+      home:
+          //  AfoA(),
+          FirebaseAuth.instance.currentUser == null
+              ? Login()
+              : NewOrOldPatient(),
       routes: {
         Signup.routeName: (ctx) => Signup(),
         Login.routeName: (ctx) => Login(),
@@ -48,6 +52,9 @@ class MyApp extends StatelessWidget {
         Prosthetic.routeName: (ctxt) => Prosthetic(),
         Cosmetic.routeName: (ctxt) => Cosmetic(),
         Orthotic.routeName: (ctxt) => Orthotic(),
+        AfoA.routeName: (ctxt) => AfoA(),
+        AfoB.routeName: (ctxt) => AfoB(),
+        AfoC.routeName: (ctxt) => AfoC(),
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screen/forms/Afo/afoA.dart';
 
 class Prosthetic extends StatelessWidget {
   static const routeName = 'prosthetic';
@@ -38,106 +39,8 @@ class Prosthetic extends StatelessWidget {
                   )),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Partial Hand",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Below Elbow Prosthesis",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Silicon Fingers",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          // SizedBox(
-          //   height: 30,
-          // ),
+          FormName(name: "Below Elbow Pro", path: AfoA.routeName),
+          FormName(name: "Above Elbow Pro", path: AfoA.routeName),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -166,70 +69,8 @@ class Prosthetic extends StatelessWidget {
                   )),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(0))),
-            width: double.infinity,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Partial Foot",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Silicon Figers",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
+          FormName(name: "Below Knee Pro", path: AfoA.routeName),
+          FormName(name: "Above Knee Pro", path: AfoA.routeName),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
@@ -256,97 +97,63 @@ class Prosthetic extends StatelessWidget {
                   )),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(0))),
-            width: double.infinity,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                //
-
-                title: Text(
-                  "Silicon Fingers",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Silicon Nose",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(80))),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 60,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(80))),
-              child: ListTile(
-                // elevation: 5,
-                // trailing: Image.asset(
-                //   "assets/images/arrow.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                // leading: Image.asset(
-                //   "assets/images/star.png",
-                //   height: 30,
-                //   width: 30,
-                // ),
-                title: Text(
-                  "Silicon Ears",
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
-          ),
+          // FormName(name: "Foot Osthesis", path: AfoA.routeName),
+          // FormName(name: "Ankle Foot Osthesis", path: AfoA.routeName),
+          // FormName(name: "Knee Ankle Foot Osthesis", path: AfoA.routeName),
+          // FormName(name: "Knee Osthesis", path: AfoA.routeName),
+          // FormName(name: "Hip Knee-Ankle Foot Osthesis", path: AfoA.routeName),
         ]),
+      ),
+    );
+  }
+}
+
+class FormName extends StatelessWidget {
+  final String name;
+  final String path;
+  const FormName({
+    @required this.name,
+    @required this.path,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(80))),
+      width: double.infinity,
+      // color: Colors.red,
+      height: 60,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).popAndPushNamed(path);
+        },
+        child: Card(
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(80))),
+          child: ListTile(
+            // elevation: 5,
+            // trailing: Image.asset(
+            //   "assets/images/arrow.png",
+            //   height: 30,
+            //   width: 30,
+            // ),
+            leading: Image.asset(
+              "assets/images/star.png",
+              height: 30,
+              width: 30,
+            ),
+            title: Text(
+              name,
+              style: TextStyle(fontSize: 22),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:image_pixels/image_pixels.dart';
 import 'package:pdf/pdf.dart';
 import 'package:project/screen/forms/knee_form.dart';
+import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -245,8 +246,9 @@ class _DemographicFormState extends State<DemographicForm> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 onPressed: () {
-                  _printPngBytes();
+                  // _printPngBytes();
                   _saveForm(form);
+                  Navigator.of(context).pushNamed(HomeScreen.routeName);
                 },
               ),
             )
