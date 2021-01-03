@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:image_pixels/image_pixels.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pdf/pdf.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
@@ -44,17 +45,17 @@ class _AfoCState extends State<AfoC> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(List args) async {
+  void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
     print(pngBytes);
-    args.add(pngBytes);
+    args['bytelist'].add(pngBytes);
 
-    print(args);
-    for (int i = 0; i < args.length; i++) {
+    print(args['bytelist'].length);
+    for (int i = 0; i < args['bytelist'].length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args[i],
+        bytes: args['bytelist'][i],
       );
       doc.addPage(
         pw.Page(
@@ -76,12 +77,26 @@ class _AfoCState extends State<AfoC> {
 
     file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
 
-    await FirebaseStorage.instance
-        .ref("Img_${DateTime.now().day}.pdf")
-        .putFile(file)
-        .whenComplete(() => this.setState(() {
-              loading = false;
-            }));
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("Img_${DateTime.now().microsecond}.pdf");
+    await ref.putFile(file).whenComplete(() => this.setState(() {
+          loading = false;
+        }));
+    print(FirebaseAuth.instance.currentUser);
+    final url = await ref.getDownloadURL();
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc("${FirebaseAuth.instance.currentUser.uid}")
+        .collection("username")
+        .doc(args["username"])
+        .collection("formname")
+        .doc("AFO")
+        .set({"form": url});
+    Navigator.of(context).pushNamed('/');
+    // .doc("usernamex")
+    // .set({"FormName": url});
+
     // print(bs64);
   }
 
@@ -98,8 +113,9 @@ class _AfoCState extends State<AfoC> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    List args = ModalRoute.of(context).settings.arguments;
-    print(args);
+    var args = ModalRoute.of(context).settings.arguments as Map<String, Object>;
+    print("from c${args["username"]}");
+    // print("------------>>>>>>${args["bytelist"]}");
 
     return Scaffold(
       appBar: AppBar(

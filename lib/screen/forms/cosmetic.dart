@@ -5,6 +5,8 @@ class Cosmetic extends StatelessWidget {
   static const routeName = '/cosmetic';
   @override
   Widget build(BuildContext context) {
+    final String username = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Cosmetic Restoration Forms"),
@@ -39,9 +41,16 @@ class Cosmetic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Partial Hand", path: AfoA.routeName),
-          FormName(name: "Below Elbow Prothesis", path: AfoA.routeName),
-          FormName(name: "Silicon Fingers", path: AfoA.routeName),
+          FormName(
+              name: "Partial Hand", path: AfoA.routeName, username: username),
+          FormName(
+              name: "Below Elbow Prothesis",
+              path: AfoA.routeName,
+              username: username),
+          FormName(
+              name: "Silicon Fingers",
+              path: AfoA.routeName,
+              username: username),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -70,8 +79,12 @@ class Cosmetic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Partial Foot Prosthesis", path: AfoA.routeName),
-          FormName(name: "Silicon Toes", path: AfoA.routeName),
+          FormName(
+              name: "Partial Foot Prosthesis",
+              path: AfoA.routeName,
+              username: username),
+          FormName(
+              name: "Silicon Toes", path: AfoA.routeName, username: username),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
@@ -98,10 +111,26 @@ class Cosmetic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Silicon Prosthesis", path: AfoA.routeName),
-          FormName(name: "Silicon Noes", path: AfoA.routeName),
-          FormName(name: "Silicon Ear", path: AfoA.routeName),
-          FormName(name: "Facial", path: AfoA.routeName),
+          FormName(
+            name: "Silicon Prosthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Silicon Noes",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Silicon Ear",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Facial",
+            path: AfoA.routeName,
+            username: username,
+          ),
         ]),
       ),
     );
@@ -111,9 +140,11 @@ class Cosmetic extends StatelessWidget {
 class FormName extends StatelessWidget {
   final String name;
   final String path;
+  final String username;
   const FormName({
     @required this.name,
     @required this.path,
+    @required this.username,
     Key key,
   }) : super(key: key);
 

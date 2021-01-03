@@ -81,9 +81,9 @@ class _DemographicFormState extends State<DemographicForm> {
 
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .collection('userData')
-        .doc('profile')
+        .doc(FirebaseAuth.instance.currentUser.uid.toString())
+        .collection('username')
+        .doc('${form['name']}')
         .set({
       'name': form['name'],
       'age': form['age'],
@@ -248,7 +248,9 @@ class _DemographicFormState extends State<DemographicForm> {
                 onPressed: () {
                   // _printPngBytes();
                   _saveForm(form);
-                  Navigator.of(context).pushNamed(HomeScreen.routeName);
+                  print("from demo${form["name"]}");
+                  Navigator.of(context)
+                      .pushNamed(HomeScreen.routeName, arguments: form['name']);
                 },
               ),
             )

@@ -15,6 +15,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final String username = ModalRoute.of(context).settings.arguments;
+
+    print("From demo to home$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
@@ -166,13 +169,14 @@ class HomeScreen extends StatelessWidget {
                             await FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
-                                .collection('userData')
-                                .doc('profile')
+                                .collection('username')
+                                .doc(username)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context)
-                                      .pushNamed(Prosthetic.routeName)
+                                  ? Navigator.of(context).pushNamed(
+                                      Prosthetic.routeName,
+                                      arguments: username)
                                   : showDialog(
                                       context: context,
                                       builder: (context) {
@@ -271,13 +275,14 @@ class HomeScreen extends StatelessWidget {
                             await FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
-                                .collection('userData')
-                                .doc('profile')
+                                .collection('username')
+                                .doc(username)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context)
-                                      .pushNamed(Orthotic.routeName)
+                                  ? Navigator.of(context).pushNamed(
+                                      Orthotic.routeName,
+                                      arguments: username)
                                   : showDialog(
                                       context: context,
                                       builder: (context) {
@@ -365,13 +370,14 @@ class HomeScreen extends StatelessWidget {
                             await FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
-                                .collection('userData')
-                                .doc('profile')
+                                .collection('username')
+                                .doc(username)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context)
-                                      .pushNamed(Cosmetic.routeName)
+                                  ? Navigator.of(context).pushNamed(
+                                      Cosmetic.routeName,
+                                      arguments: username)
                                   : showDialog(
                                       context: context,
                                       builder: (context) {

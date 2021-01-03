@@ -3,8 +3,11 @@ import 'package:project/screen/forms/Afo/afoA.dart';
 
 class Prosthetic extends StatelessWidget {
   static const routeName = 'prosthetic';
+
   @override
   Widget build(BuildContext context) {
+    final String username = ModalRoute.of(context).settings.arguments;
+    print("from pros $username");
     return Scaffold(
       appBar: AppBar(
         title: Text("Prosthetic Forms"),
@@ -39,8 +42,16 @@ class Prosthetic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Below Elbow Pro", path: AfoA.routeName),
-          FormName(name: "Above Elbow Pro", path: AfoA.routeName),
+          FormName(
+            name: "Below Elbow Pro",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Above Elbow Pro",
+            path: AfoA.routeName,
+            username: username,
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -69,8 +80,16 @@ class Prosthetic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Below Knee Pro", path: AfoA.routeName),
-          FormName(name: "Above Knee Pro", path: AfoA.routeName),
+          FormName(
+            name: "Below Knee Pro",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Above Knee Pro",
+            path: AfoA.routeName,
+            username: username,
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
@@ -111,9 +130,11 @@ class Prosthetic extends StatelessWidget {
 class FormName extends StatelessWidget {
   final String name;
   final String path;
+  final String username;
   const FormName({
     @required this.name,
     @required this.path,
+    @required this.username,
     Key key,
   }) : super(key: key);
 
@@ -129,7 +150,7 @@ class FormName extends StatelessWidget {
       height: 60,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).popAndPushNamed(path);
+          Navigator.of(context).popAndPushNamed(path, arguments: username);
         },
         child: Card(
           elevation: 5,

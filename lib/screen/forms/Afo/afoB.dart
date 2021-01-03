@@ -1,17 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screen/forms/Afo/afoB.dart';
 import 'dart:typed_data';
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:image_pixels/image_pixels.dart';
-import 'package:pdf/pdf.dart';
 import 'package:project/screen/forms/Afo/afoC.dart';
-import 'package:project/screen/forms/knee_form.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
 
@@ -51,21 +43,30 @@ class _AfoBState extends State<AfoB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(List args) async {
+  void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
     print(pngBytes);
-    args.add(pngBytes);
-    print(args);
-    Navigator.of(context).pushNamed(AfoC.routeName, arguments: args);
+    args['bytelist'].add(pngBytes);
+    print("------------------------------------------------------------");
+    print(args["bytelist"]);
+    print(args["username"]);
+    print("------------------------------------------------------------");
+
+    Navigator.of(context).pushNamed(AfoC.routeName, arguments: {
+      "bytelist": args["bytelist"],
+      "username": args["username"]
+    });
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    List args = ModalRoute.of(context).settings.arguments;
-
+    var args = ModalRoute.of(context).settings.arguments as Map<String, Object>;
+    // args.values.toList()
+    print("From afoB,${args['bytelist']}");
+    print("From afoB,${args['username']}");
     return Scaffold(
       appBar: AppBar(
         title: Text("AFO"),

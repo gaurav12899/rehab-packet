@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
 import 'package:project/screen/profile/profile.dart';
+import 'package:project/view_pdf/pdf_list.dart';
 import '../loginScreen/login.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -51,11 +53,14 @@ class AppDrawer extends StatelessWidget {
                       ),
                       title: Text(
                         'My Forms',
-                        style:
-                            GoogleFonts.lato(color: Colors.white, fontSize: 15),
+                        style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushReplacementNamed('/');
+                        print(FirebaseAuth.instance.currentUser.uid.toString());
+                        Navigator.of(context).pushNamed(PdfList.routeName);
                       }),
                   // Divider(color: Colors.grey,),
                   ListTile(

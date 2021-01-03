@@ -37,10 +37,8 @@ class _AfoAState extends State<AfoA> {
   GlobalKey _containerKey = GlobalKey();
   List bytList = [];
   Future<Uint8List> _capturePng() async {
-    print("---------->1");
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
-    print("---------->2");
 
     if (boundary.debugNeedsPaint) {
       print("Waiting for boundary to be painted.");
@@ -53,19 +51,23 @@ class _AfoAState extends State<AfoA> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes() async {
+  void _printPngBytes(String username) async {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
     print(pngBytes);
     bytList.add(pngBytes);
     print(bytList);
-    Navigator.of(context).pushNamed(AfoB.routeName, arguments: bytList);
+    print("bbk$username");
+    Navigator.of(context).pushNamed(AfoB.routeName,
+        arguments: {"bytelist": bytList, "username": username});
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
+    final String username = ModalRoute.of(context).settings.arguments;
+    print("afoA$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("AFO"),
@@ -73,7 +75,7 @@ class _AfoAState extends State<AfoA> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes();
+                _printPngBytes(username);
               })
         ],
       ),

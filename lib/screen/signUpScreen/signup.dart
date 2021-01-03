@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/widgets/authentication_background.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signupScreen';

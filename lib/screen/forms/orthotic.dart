@@ -5,6 +5,7 @@ class Orthotic extends StatelessWidget {
   static const routeName = '/orthotic';
   @override
   Widget build(BuildContext context) {
+    final String username = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text("Orthotic Forms"),
@@ -39,11 +40,31 @@ class Orthotic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Shoulder Orthosis", path: AfoA.routeName),
-          FormName(name: " Elbow Orthosis", path: AfoA.routeName),
-          FormName(name: "Wrist Osthesis", path: AfoA.routeName),
-          FormName(name: "Hand Osthesis", path: AfoA.routeName),
-          FormName(name: "Weist-Hand Osthesis", path: AfoA.routeName),
+          FormName(
+            name: "Shoulder Orthosis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: " Elbow Orthosis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Wrist Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Hand Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Weist-Hand Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -72,11 +93,31 @@ class Orthotic extends StatelessWidget {
                   )),
             ),
           ),
-          FormName(name: "Foot Osthesis", path: AfoA.routeName),
-          FormName(name: "Ankle Foot Osthesis", path: AfoA.routeName),
-          FormName(name: "Knee Ankle Foot Osthesis", path: AfoA.routeName),
-          FormName(name: "Knee Osthesis", path: AfoA.routeName),
-          FormName(name: "Hip Knee-Ankle Foot Osthesis", path: AfoA.routeName),
+          FormName(
+            name: "Foot Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Ankle Foot Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Knee Ankle Foot Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Knee Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Hip Knee-Ankle Foot Osthesis",
+            path: AfoA.routeName,
+            username: username,
+          ),
         ]),
       ),
     );
@@ -86,9 +127,11 @@ class Orthotic extends StatelessWidget {
 class FormName extends StatelessWidget {
   final String name;
   final String path;
+  final String username;
   const FormName({
     @required this.name,
     @required this.path,
+    @required this.username,
     Key key,
   }) : super(key: key);
 

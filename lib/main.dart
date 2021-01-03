@@ -14,6 +14,9 @@ import 'package:project/screen/profile/profile.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
+import 'package:project/view_pdf/pdf_list.dart';
+import 'package:project/view_pdf/select_form.dart';
+import 'package:project/view_pdf/viewPdf.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -36,11 +39,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       title: "Rehab Pocket",
-      home:
-          //  AfoA(),
-          FirebaseAuth.instance.currentUser == null
-              ? Login()
-              : NewOrOldPatient(),
+      home: FirebaseAuth.instance.currentUser == null
+          ? Login()
+          : NewOrOldPatient(),
       routes: {
         Signup.routeName: (ctx) => Signup(),
         Login.routeName: (ctx) => Login(),
@@ -56,6 +57,10 @@ class MyApp extends StatelessWidget {
         AfoB.routeName: (ctxt) => AfoB(),
         AfoC.routeName: (ctxt) => AfoC(),
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
+        PdfList.routeName: (ctx) => PdfList(),
+        SelectForm.routeName: (ctx) => SelectForm(),
+        // PdfScreen.routeName: (ctx) => PdfScreen(
+        // "https://firebasestorage.googleapis.com/v0/b/raheb-pocket.appspot.com/o/Img_469.pdf?alt=media&token=e8e72f37-6b9d-46b5-a331-96c8f373d001"),
       },
     );
   }

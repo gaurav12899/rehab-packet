@@ -6,11 +6,14 @@ INJECTED from D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.
 INJECTED from D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from [:google_sign_in] D:\MyFlutterApps\RehabPocket\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:advance_pdf_viewer] D:\MyFlutterApps\RehabPocket\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:hexcolor] D:\MyFlutterApps\RehabPocket\build\hexcolor\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] D:\MyFlutterApps\RehabPocket\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-24:12
 MERGED from [:path_provider] D:\MyFlutterApps\RehabPocket\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:image_gallery_saver] D:\MyFlutterApps\RehabPocket\build\image_gallery_saver\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
@@ -21,6 +24,7 @@ MERGED from [com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.g
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\6b1a8244d4efc667b03df702f0babcd2\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\492cbb4ad153d1a4c5795aee7a733ff8\play-services-auth-api-phone-17.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e0a8854cd1ed42fa490768a04494f323\play-services-auth-base-17.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:2:1-10:12
@@ -94,6 +98,8 @@ MERGED from [:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermedia
 MERGED from [:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-22:19
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -110,6 +116,8 @@ MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:29:5-37:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\9abf1704e28fe6b2ac45e4d2cd63fbf3\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
@@ -200,16 +208,22 @@ INJECTED from D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.
 INJECTED from D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml
 MERGED from [:google_sign_in] D:\MyFlutterApps\RehabPocket\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_sign_in] D:\MyFlutterApps\RehabPocket\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:advance_pdf_viewer] D:\MyFlutterApps\RehabPocket\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:advance_pdf_viewer] D:\MyFlutterApps\RehabPocket\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:hexcolor] D:\MyFlutterApps\RehabPocket\build\hexcolor\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:hexcolor] D:\MyFlutterApps\RehabPocket\build\hexcolor\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] D:\MyFlutterApps\RehabPocket\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] D:\MyFlutterApps\RehabPocket\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:path_provider] D:\MyFlutterApps\RehabPocket\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\MyFlutterApps\RehabPocket\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_gallery_saver] D:\MyFlutterApps\RehabPocket\build\image_gallery_saver\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_gallery_saver] D:\MyFlutterApps\RehabPocket\build\image_gallery_saver\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -230,6 +244,8 @@ MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\492cbb4ad153d1a4c5795aee7a733ff8\play-services-auth-api-phone-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\492cbb4ad153d1a4c5795aee7a733ff8\play-services-auth-api-phone-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e0a8854cd1ed42fa490768a04494f323\play-services-auth-base-17.0.0\AndroidManifest.xml:5:5-44
@@ -342,6 +358,8 @@ MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:27:5-67
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:14:5-67
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:11:5-67
@@ -358,6 +376,8 @@ service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
@@ -368,6 +388,8 @@ MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:30:9-36:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:29:9-35:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:27:9-33:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:27:9-33:19
 MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:14:9-20:19
@@ -420,6 +442,12 @@ ADDED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore
 		ADDED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-134
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-127
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
 ADDED from [:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -478,6 +506,8 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
@@ -504,6 +534,12 @@ ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradl
 		ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:22:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:21:17-111
+meta-data#com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar
+ADDED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:33:17-109
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
 	android:exported

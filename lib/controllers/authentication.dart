@@ -1,20 +1,20 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'dart:ui' as ui;
+// import 'dart:ui' as ui;
 
 FirebaseAuth auth = FirebaseAuth.instance;
 final gSignIn = GoogleSignIn();
 
 Future<String> signUp(String email, String password) async {
   try {
-    final result = await FirebaseAuth.instance
+    await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    final re = await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("users")
-        .doc(result.user.uid)
+        .doc(FirebaseAuth.instance.currentUser.uid.toString())
         .set(({"email": email}));
     User user = FirebaseAuth.instance.currentUser;
     if (!user.emailVerified) {
