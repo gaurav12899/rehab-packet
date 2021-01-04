@@ -20,9 +20,9 @@ class HomeScreen extends StatelessWidget {
     print("From demo to home$username");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Form Type"),
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: ListView(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         // crossAxisAlignment: CrossAxisAlignment.center,

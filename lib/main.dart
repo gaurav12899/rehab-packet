@@ -11,6 +11,7 @@ import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/screen/profile/profile.dart';
+import 'package:project/screen/sharePdf/sharePdf.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
@@ -59,8 +60,6 @@ class MyApp extends StatelessWidget {
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
         PdfList.routeName: (ctx) => PdfList(),
         SelectForm.routeName: (ctx) => SelectForm(),
-        // PdfScreen.routeName: (ctx) => PdfScreen(
-        // "https://firebasestorage.googleapis.com/v0/b/raheb-pocket.appspot.com/o/Img_469.pdf?alt=media&token=e8e72f37-6b9d-46b5-a331-96c8f373d001"),
       },
     );
   }

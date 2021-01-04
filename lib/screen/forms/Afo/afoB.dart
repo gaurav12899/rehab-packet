@@ -45,14 +45,7 @@ class _AfoBState extends State<AfoB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
-    // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
-    args['bytelist'].add(pngBytes);
-    print("------------------------------------------------------------");
-    print(args["bytelist"]);
-    print(args["username"]);
-    print("------------------------------------------------------------");
-
+    await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(AfoC.routeName, arguments: {
       "bytelist": args["bytelist"],
       "username": args["username"]
@@ -63,10 +56,12 @@ class _AfoBState extends State<AfoB> {
 
   @override
   Widget build(BuildContext context) {
-    var args = ModalRoute.of(context).settings.arguments as Map<String, Object>;
+    var args =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     // args.values.toList()
-    print("From afoB,${args['bytelist']}");
-    print("From afoB,${args['username']}");
     return Scaffold(
       appBar: AppBar(
         title: Text("AFO"),

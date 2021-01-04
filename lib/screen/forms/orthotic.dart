@@ -6,6 +6,7 @@ class Orthotic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
+    print("ort$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("Orthotic Forms"),
@@ -147,7 +148,7 @@ class FormName extends StatelessWidget {
       height: 60,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).popAndPushNamed(path);
+          Navigator.of(context).popAndPushNamed(path, arguments: username);
         },
         child: Card(
           elevation: 5,

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 // import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:project/screen/sharePdf/sharePdf.dart';
 
 class PdfScreen extends StatefulWidget {
   PdfScreen(this.link);
@@ -49,20 +51,28 @@ class _PdfScreenState extends State<PdfScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("f");
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('FlutterPluginPDFViewer'),
-        ),
-        body: Center(
-          child: _isLoading
-              ? Center(child: CircularProgressIndicator())
-              : PDFViewer(
-                  document: document,
-                  zoomSteps: 1,
-                ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('FlutterPluginPDFViewer'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.share),
+              onPressed: () async {
+                await Share.share(
+                  widget.link,
+                );
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => (SharePdf(widget.link))));
+              })
+        ],
+      ),
+      body: Center(
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : PDFViewer(
+                document: document,
+                zoomSteps: 1,
+              ),
       ),
     );
   }

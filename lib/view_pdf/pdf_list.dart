@@ -28,8 +28,6 @@ class PdfList extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                print("hello=======>>>");
-                print(FirebaseAuth.instance.currentUser.uid.toString());
                 final forms = snapshot.data.documents;
                 print(forms.length);
                 return Container(

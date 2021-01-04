@@ -104,160 +104,159 @@ class _DemographicFormState extends State<DemographicForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: RepaintBoundary(
-        key: _containerKey,
-        child: Column(
-          children: [
-            Text(
-              "Demographic Data",
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-            ),
-            Expanded(
-              child: Form(
-                key: _formKey,
-                child: ListView(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Name: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['name'] = val;
-                          },
-                        )),
-                        Text(
-                          "Age: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['age'] = val;
-                          },
-                        )),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Address: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['address'] = val;
-                          },
-                        )),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "State: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['state'] = val;
-                          },
-                        )),
-                        Text(
-                          "Pincode: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['pincode'] = val;
-                          },
-                        )),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Contact: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['contact'] = val;
-                          },
-                        )),
-                        Text(
-                          "E-mail: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['email'] = val;
-                          },
-                        )),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Occupation: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['occupation'] = val;
-                          },
-                        )),
-                        Text(
-                          "Height: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['height'] = val;
-                          },
-                        )),
-                        Text(
-                          "Weight: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(child: TextFormField(
-                          onChanged: (val) {
-                            form['weight'] = val;
-                          },
-                        )),
-                      ],
-                    ),
-                    LivingCondition(
-                        livingCondition2: _livingCondition,
-                        form: form,
-                        livingCondition: livingCondition),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              child: FlatButton(
-                color: Colors.blue,
-                child: Text(
-                  "Submit",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                onPressed: () {
-                  // _printPngBytes();
-                  _saveForm(form);
-                  print("from demo${form["name"]}");
-                  Navigator.of(context)
-                      .pushNamed(HomeScreen.routeName, arguments: form['name']);
-                },
-              ),
-            )
-          ],
+        appBar: AppBar(
+          title: Text("Demographic Form"),
         ),
-      ),
-    ));
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RepaintBoundary(
+            key: _containerKey,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Form(
+                    key: _formKey,
+                    child: ListView(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Name: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['name'] = val;
+                              },
+                            )),
+                            Text(
+                              "Age: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['age'] = val;
+                              },
+                            )),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Address: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['address'] = val;
+                              },
+                            )),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "State: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['state'] = val;
+                              },
+                            )),
+                            Text(
+                              "Pincode: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['pincode'] = val;
+                              },
+                            )),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Contact: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['contact'] = val;
+                              },
+                            )),
+                            Text(
+                              "E-mail: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['email'] = val;
+                              },
+                            )),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Occupation: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['occupation'] = val;
+                              },
+                            )),
+                            Text(
+                              "Height: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['height'] = val;
+                              },
+                            )),
+                            Text(
+                              "Weight: ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Expanded(child: TextFormField(
+                              onChanged: (val) {
+                                form['weight'] = val;
+                              },
+                            )),
+                          ],
+                        ),
+                        LivingCondition(
+                            livingCondition2: _livingCondition,
+                            form: form,
+                            livingCondition: livingCondition),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: FlatButton(
+                    color: Colors.blue,
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    onPressed: () {
+                      // _printPngBytes();
+                      _saveForm(form);
+                      print("from demo${form["name"]}");
+                      Navigator.of(context).pushNamed(HomeScreen.routeName,
+                          arguments: form['name']);
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
 
