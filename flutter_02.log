@@ -1,0 +1,59 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run --machine --target lib\main.dart -d emulator-5554 --dart-define=flutter.inspector.structuredErrors=true --start-paused --web-server-debug-protocol ws --web-server-debug-backend-protocol ws --web-allow-expose-url
+
+## exception
+
+StateError: Bad state: No element
+
+```
+#0      ListMixin.firstWhere (dart:collection/list.dart:167:5)
+#1      DartDevelopmentService.startDartDevelopmentService (package:flutter_tools/src/base/dds.dart:63:32)
+<asynchronous suspension>
+#2      FlutterDevice.connect.<anonymous closure> (package:flutter_tools/src/resident_runner.dart:249:11)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel master, 1.25.0-9.0.pre.42, on Microsoft Windows [Version 10.0.18363.1256], locale en-IN)
+    • Flutter version 1.25.0-9.0.pre.42 at D:\flutter
+    • Framework revision a76bb1a08e (3 weeks ago), 2020-12-12 00:17:51 -0700
+    • Engine revision 4797b06652
+    • Dart version 2.12.0 (build 2.12.0-141.0.dev)
+
+[!] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+    • Android SDK at C:\Users\gaura\AppData\Local\Android\sdk
+    • Platform android-30, build-tools 30.0.2
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+    ✗ Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/docs/get-started/install/windows#android-setup for more details.
+
+[✓] Chrome - develop for the web
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[✓] Android Studio (version 4.1.0)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+
+[✓] VS Code (version 1.52.1)
+    • VS Code at C:\Users\gaura\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.18.0
+
+[✓] Connected device (3 available)
+    • Android SDK built for x86 (mobile) • emulator-5554 • android-x86    • Android 8.1.0 (API 27) (emulator)
+    • Chrome (web)                       • chrome        • web-javascript • Google Chrome 87.0.4280.88
+    • Edge (web)                         • edge          • web-javascript • Microsoft Edge 87.0.664.66
+
+! Doctor found issues in 1 category.
+```

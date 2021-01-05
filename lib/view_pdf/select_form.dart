@@ -1,19 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/view_pdf/viewPdf.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SelectForm extends StatelessWidget {
   static const routeName = '/selectForm';
+  final String patientId;
+  SelectForm(this.patientId);
 
   @override
   Widget build(BuildContext context) {
-    final patientId = ModalRoute.of(context).settings.arguments;
+    // final patientId = ModalRoute.of(context).settings.arguments;
 
     return MaterialApp(
       title: 'Patient Forms',
       home: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.add_circle_rounded),
+                onPressed: () async {
+                  // .get();
+                  // print(username);
+                  Navigator.of(context)
+                      .pushNamed(HomeScreen.routeName, arguments: patientId);
+                })
+          ],
           title: Text('Patient Forms'),
         ),
         body: Center(
@@ -43,15 +63,43 @@ class SelectForm extends StatelessWidget {
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             // Navigator.of(context).pushNamed(routeName);
                             print(forms[index].get('form').toString());
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    PdfScreen(forms[index]['form'])));
+                            final url = forms[index]['form'].toString();
+                            // if (await canLaunch(url)) {
+                            //   await launch(
+                            //     url,
+                            //   );
+                            // }
+
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => PdfScreen(url),
+                              ),
+                            );
                           },
-                          child: Card(
-                            child: Text(forms[index].documentID),
+                          child: Container(
+                            height: 60,
+                            child: Card(
+                              child: ListTile(
+                                // tileColor: Colors.blue.shade200,
+                                leading: Container(
+                                  child: SvgPicture.asset(
+                                    'assets/images/file.svg',
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                ),
+                                title: Text(
+                                    "${index + 1}. ${forms[index].documentID.toUpperCase()}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    )),
+                              ),
+                            ),
                           ),
                         );
                       },

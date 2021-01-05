@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/screen/homeScreen/home_screen.dart';
+// import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class Profile extends StatefulWidget {
   static const routeName = "/profile";
@@ -69,7 +70,7 @@ class _ProfileState extends State<Profile> {
             color: Colors.white,
           ),
           onPressed: () =>
-              Navigator.of(context).pushNamed(HomeScreen.routeName),
+              Navigator.of(context).pushNamed(NewOrOldPatient.routeName),
         ),
         actions: [
           if (_readOnly)

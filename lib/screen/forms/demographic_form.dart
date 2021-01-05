@@ -2,18 +2,14 @@ import 'dart:typed_data';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:image_pixels/image_pixels.dart';
-import 'package:pdf/pdf.dart';
 import 'package:project/screen/forms/knee_form.dart';
 import 'package:project/screen/homeScreen/home_screen.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 class DemographicForm extends StatefulWidget {
   static const routeName = '/DemographicForm';
@@ -25,6 +21,9 @@ class DemographicForm extends StatefulWidget {
 class _DemographicFormState extends State<DemographicForm> {
   var _livingCondition;
   List livingCondition = ['assistance', 'no-assistance', 'with family'];
+  var _activityLevel;
+  List activityLevel = ['K1', 'K2', 'K3', 'K4'];
+
   Map form = {
     'name': '',
     'age': '',
@@ -70,7 +69,7 @@ class _DemographicFormState extends State<DemographicForm> {
     // print(bs64);
   }
 
-  Future _saveForm(var form) async {
+  Future _saveForm(var form, String docId) async {
     final pdf = pw.Document();
 
     Directory directory = await getExternalStorageDirectory();
@@ -78,12 +77,11 @@ class _DemographicFormState extends State<DemographicForm> {
     final file = File('$docpath/${FirebaseAuth.instance.currentUser.uid}.pdf');
     file.writeAsBytesSync(pdf.save());
     print("saved");
-
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser.uid.toString())
         .collection('username')
-        .doc('${form['name']}')
+        .doc(docId)
         .set({
       'name': form['name'],
       'age': form['age'],
@@ -96,7 +94,10 @@ class _DemographicFormState extends State<DemographicForm> {
       'height': form['height'],
       'weight': form['weight'],
       'livingCondition': form['livingCondition'],
+      'date': DateTime.now().toUtc(),
+      'activityLevel': form['activityLevel'],
     });
+    return docId;
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -107,153 +108,320 @@ class _DemographicFormState extends State<DemographicForm> {
         appBar: AppBar(
           title: Text("Demographic Form"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RepaintBoundary(
-            key: _containerKey,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Form(
-                    key: _formKey,
-                    child: ListView(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Name: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['name'] = val;
-                              },
-                            )),
-                            Text(
-                              "Age: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['age'] = val;
-                              },
-                            )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Address: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['address'] = val;
-                              },
-                            )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "State: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['state'] = val;
-                              },
-                            )),
-                            Text(
-                              "Pincode: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['pincode'] = val;
-                              },
-                            )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Contact: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['contact'] = val;
-                              },
-                            )),
-                            Text(
-                              "E-mail: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['email'] = val;
-                              },
-                            )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Occupation: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['occupation'] = val;
-                              },
-                            )),
-                            Text(
-                              "Height: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['height'] = val;
-                              },
-                            )),
-                            Text(
-                              "Weight: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextFormField(
-                              onChanged: (val) {
-                                form['weight'] = val;
-                              },
-                            )),
-                          ],
-                        ),
-                        LivingCondition(
-                            livingCondition2: _livingCondition,
-                            form: form,
-                            livingCondition: livingCondition),
-                      ],
+        body: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentscope = FocusScope.of(context);
+            if (!currentscope.hasPrimaryFocus) {
+              currentscope.unfocus();
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RepaintBoundary(
+              key: _containerKey,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Form(
+                      key: _formKey,
+                      child: ListView(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Name: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['name'] = val;
+                                },
+                              )),
+                              Text(
+                                "Age: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['age'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Address: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['address'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "State: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['state'] = val;
+                                },
+                              )),
+                              Text(
+                                "Pincode: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['pincode'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Contact: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['contact'] = val;
+                                },
+                              )),
+                              Text(
+                                "E-mail: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['email'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Occupation: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['occupation'] = val;
+                                },
+                              )),
+                              Text(
+                                "Height: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['height'] = val;
+                                },
+                              )),
+                              Text(
+                                "Weight: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['weight'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          LivingCondition(
+                              livingCondition2: _livingCondition,
+                              form: form,
+                              livingCondition: livingCondition),
+                          ActivityLevel(
+                              activityLevel2: _activityLevel,
+                              form: form,
+                              activityLevel: activityLevel),
+                          Row(
+                            children: [
+                              Text(
+                                "Diagnosis: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['diagnosis'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Description: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(child: TextFormField(
+                                onChanged: (val) {
+                                  form['description'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Past History: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                  child: TextFormField(
+                                minLines: 3,
+                                maxLines: 3,
+                                onChanged: (val) {
+                                  form['pastHistory'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Occupation\nHistory: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                  child: TextFormField(
+                                minLines: 3,
+                                maxLines: 3,
+                                onChanged: (val) {
+                                  form['Occupationistory'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Current\nSituation: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                  child: TextFormField(
+                                minLines: 3,
+                                maxLines: 3,
+                                onChanged: (val) {
+                                  form['currentSituation'] = val;
+                                },
+                              )),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                              "Have you had or do you have any of the following:",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("Heart Problem"),
+                            value: timeDilation != 1.0,
+                            onChanged: (newValue) {
+                              setState(() {
+                                setState(() {
+                                  timeDilation = newValue ? 2.0 : 1.0;
+                                });
+                              });
+                            },
+                          ),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("HyperTension/High BP"),
+                            value: timeDilation != 1.0,
+                            onChanged: (newValue) {
+                              setState(() {
+                                setState(() {
+                                  timeDilation = newValue ? 2.0 : 1.0;
+                                });
+                              });
+                            },
+                          ),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("Neurological Problem"),
+                            value: timeDilation != 1.0,
+                            onChanged: (newValue) {
+                              setState(() {
+                                setState(() {
+                                  timeDilation = newValue ? 2.0 : 1.0;
+                                });
+                              });
+                            },
+                          ),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("Vascular Diseases"),
+                            value: timeDilation != 1.0,
+                            onChanged: (newValue) {
+                              setState(() {
+                                setState(() {
+                                  timeDilation = newValue ? 2.0 : 1.0;
+                                });
+                              });
+                            },
+                          ),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("Strok/TIA/CVA"),
+                            value: timeDilation != 1.0,
+                            onChanged: (newValue) {
+                              setState(() {
+                                setState(() {
+                                  timeDilation = newValue ? 2.0 : 1.0;
+                                });
+                              });
+                            },
+                          ),
+                          CheckboxListTile(
+                            activeColor: Colors.red,
+                            title: Text("Alcholism"),
+                            value: false,
+                            onChanged: (newValue) {
+                              setState(() {
+                                // newValue = !newValue;
+                                print(newValue);
+                                timeDilation = newValue ? 2.0 : 1.0;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: FlatButton(
-                    color: Colors.blue,
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                  Container(
+                    width: double.infinity,
+                    child: FlatButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        // _printPngBytes();
+                        String docId =
+                            DateTime.now().microsecondsSinceEpoch.toString();
+
+                        _saveForm(form, docId);
+                        print("from demo${form["name"]}");
+                        Navigator.of(context)
+                            .pushNamed(HomeScreen.routeName, arguments: docId);
+                      },
                     ),
-                    onPressed: () {
-                      // _printPngBytes();
-                      _saveForm(form);
-                      print("from demo${form["name"]}");
-                      Navigator.of(context).pushNamed(HomeScreen.routeName,
-                          arguments: form['name']);
-                    },
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ));
@@ -306,7 +474,7 @@ class _LivingConditionState extends State<LivingCondition> {
                   });
                 }),
             Text(
-              "Assistance\n ",
+              "\nAssistance",
               textAlign: TextAlign.justify,
             )
           ],
@@ -348,6 +516,116 @@ class _LivingConditionState extends State<LivingCondition> {
                 }),
             Text(
               "with\nFamily",
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class ActivityLevel extends StatefulWidget {
+  ActivityLevel({
+    Key key,
+    @required activityLevel2,
+    @required this.form,
+    @required this.activityLevel,
+  })  : _activityLevel = activityLevel2,
+        super(key: key);
+
+  var _activityLevel;
+  final Map form;
+  final List activityLevel;
+
+  @override
+  _ActivityLevelState createState() => _ActivityLevelState();
+}
+
+class _ActivityLevelState extends State<ActivityLevel> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "activityLevel: ",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Radio(
+                activeColor: Colors.green,
+                value: 1,
+                groupValue: widget._activityLevel,
+                onChanged: (val) {
+                  setState(() {
+                    widget._activityLevel = val;
+                    widget.form['livingCondition'] = widget.activityLevel[val];
+                  });
+                }),
+            Text(
+              "K1",
+              textAlign: TextAlign.justify,
+            )
+          ],
+        ),
+        Column(
+          // crossAxisAlignment: CrossAxisAlignment.end,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Radio(
+                activeColor: Colors.green,
+                value: 2,
+                groupValue: widget._activityLevel,
+                onChanged: (val) {
+                  setState(() {
+                    widget._activityLevel = val;
+                    widget.form['activityLevel'] = widget.activityLevel[val];
+                    print("2 selected");
+                  });
+                }),
+            Text(
+              "K2",
+              textAlign: TextAlign.center,
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Radio(
+                value: 3,
+                activeColor: Colors.green,
+                groupValue: widget._activityLevel,
+                onChanged: (val) {
+                  setState(() {
+                    widget._activityLevel = val;
+                    widget.form['activityLevel'] = widget.activityLevel[val];
+                  });
+                }),
+            Text(
+              "K3",
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        Column(
+          children: [
+            Radio(
+                value: 4,
+                activeColor: Colors.green,
+                groupValue: widget._activityLevel,
+                onChanged: (val) {
+                  setState(() {
+                    widget._activityLevel = val;
+                    widget.form['activityLevel'] = widget.activityLevel[val];
+                  });
+                }),
+            Text(
+              "K4",
               textAlign: TextAlign.center,
             ),
           ],

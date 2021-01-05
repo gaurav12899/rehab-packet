@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
+import 'package:project/screen/aboutUs/aboutus.dart';
 import 'package:project/screen/profile/profile.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import '../loginScreen/login.dart';
@@ -39,8 +40,10 @@ class AppDrawer extends StatelessWidget {
                       ),
                       title: Text(
                         'Profile',
-                        style:
-                            GoogleFonts.lato(color: Colors.white, fontSize: 15),
+                        style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Navigator.of(context).pushNamed(Profile.routeName);
@@ -74,7 +77,7 @@ class AppDrawer extends StatelessWidget {
                             GoogleFonts.lato(color: Colors.white, fontSize: 15),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushReplacementNamed('');
+                        Navigator.of(context).pushNamed(AboutUs.routeName);
                         // Navigator.of(context).pushReplacement(CustomRoute(builder:(context)=>OrderScreen()));
                       }),
                   // Divider(color: Colors.grey,),
@@ -86,8 +89,10 @@ class AppDrawer extends StatelessWidget {
                       ),
                       title: Text(
                         'Contact Us',
-                        style:
-                            GoogleFonts.lato(color: Colors.white, fontSize: 15),
+                        style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/');
@@ -100,8 +105,10 @@ class AppDrawer extends StatelessWidget {
                       ),
                       title: Text(
                         'Feedback',
-                        style:
-                            GoogleFonts.lato(color: Colors.white, fontSize: 15),
+                        style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/');
@@ -114,9 +121,13 @@ class AppDrawer extends StatelessWidget {
                         Icons.exit_to_app,
                         color: Colors.white,
                       ),
-                      title: Text('Logout',
-                          style: GoogleFonts.lato(
-                              color: Colors.white, fontSize: 15)),
+                      title: Text(
+                        'Logout',
+                        style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
                       onTap: () {
                         signOut().then((value) {
                           Navigator.of(context).pushAndRemoveUntil(

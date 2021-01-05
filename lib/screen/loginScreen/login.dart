@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/screen/forgetPassword/forget-password.dart';
-import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/widgets/authentication_background.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../controllers/authentication.dart';
 
 // import './components/body.dart';
@@ -251,8 +249,8 @@ class _LoginState extends State<Login> {
                                     if (value == null) {
                                       print("some error occured");
                                     } else {
-                                      User user =
-                                          FirebaseAuth.instance.currentUser;
+                                      // User user =
+                                      //     FirebaseAuth.instance.currentUser;
                                       print("err");
                                       Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(

@@ -4,7 +4,7 @@ import 'package:share/share.dart';
 // import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
-import 'package:project/screen/sharePdf/sharePdf.dart';
+// import './sharePdf.dart';
 
 class PdfScreen extends StatefulWidget {
   PdfScreen(this.link);
@@ -53,7 +53,7 @@ class _PdfScreenState extends State<PdfScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FlutterPluginPDFViewer'),
+        title: const Text('Form'),
         actions: [
           IconButton(
               icon: Icon(Icons.share),

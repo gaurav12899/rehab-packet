@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:project/screen/aboutUs/aboutUs.dart';
 import 'package:project/screen/forgetPassword/forget-password.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
 import 'package:project/screen/forms/Afo/afoB.dart';
@@ -11,20 +12,17 @@ import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/screen/profile/profile.dart';
-import 'package:project/screen/sharePdf/sharePdf.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import 'package:project/view_pdf/select_form.dart';
-import 'package:project/view_pdf/viewPdf.dart';
 import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
@@ -59,7 +57,7 @@ class MyApp extends StatelessWidget {
         AfoC.routeName: (ctxt) => AfoC(),
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
         PdfList.routeName: (ctx) => PdfList(),
-        SelectForm.routeName: (ctx) => SelectForm(),
+        AboutUs.routeName: (ctx) => AboutUs()
       },
     );
   }

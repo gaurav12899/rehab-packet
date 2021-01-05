@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:image_pixels/image_pixels.dart';
 import 'package:pdf/pdf.dart';
@@ -93,7 +92,6 @@ class _KneeFormState extends State<KneeForm> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     List args = ModalRoute.of(context).settings.arguments;
     print(args);
 

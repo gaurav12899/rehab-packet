@@ -86,20 +86,42 @@ class _AfoCState extends State<AfoC> {
           loading = false;
         }));
     final url = await ref.getDownloadURL();
-    await FirebaseFirestore.instance
-        .collection("users")
-        .doc("${FirebaseAuth.instance.currentUser.uid}")
-        .collection("username")
-        .doc(args["username"])
-        .collection("formname")
-        .doc("AFO")
-        .set({"form": url});
+    try {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc("${FirebaseAuth.instance.currentUser.uid}")
+          .collection("username")
+          .doc("${args["username"]}")
+          .collection("formname")
+          .doc("AFO")
+          .set({"form": url});
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.green,
+        content: Text("Form Submitted!!"),
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+            label: "Okay",
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => MyApp()));
+            }),
+      ));
+    } on Exception catch (_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text("Something went wrong!!"),
+          action: SnackBarAction(
+              label: "Okay",
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => MyApp()));
+              }),
+        ),
+      );
+    }
     await Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
-    // .doc("usernamex")
-    // .set({"FormName": url});
-
-    // print(bs64);
   }
 
   // void onTapDown(BuildContext context, TapDownDetails details) {

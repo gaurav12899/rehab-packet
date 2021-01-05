@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/screen/forms/demographic_form.dart';
+import 'package:project/view_pdf/pdf_list.dart';
 import './app-drawer.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -70,10 +71,7 @@ class NewOrOldPatient extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       onPressed: () {
-                        // Navigator.of(context).pushReplacement(
-                        //   MaterialPageRoute(
-                        //       builder: (BuildContext context) => ()),
-                        // );
+                        Navigator.of(context).pushNamed(PdfList.routeName);
                       })),
             ],
           ),

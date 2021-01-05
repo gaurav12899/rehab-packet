@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
 final gSignIn = GoogleSignIn();
 
-Future<String> signUp(String email, String password) async {
+signUp(String email, String password) async {
   try {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
@@ -34,7 +34,7 @@ Future<String> signUp(String email, String password) async {
   }
 }
 
-Future<String> loginWithEmail(String email, String password) async {
+loginWithEmail(String email, String password) async {
   final auth = FirebaseAuth.instance;
   try {
     UserCredential result =
@@ -63,7 +63,7 @@ Future<String> loginWithEmail(String email, String password) async {
 //   return Future.value(result);
 // }
 
-Future<bool> googleSignIn() async {
+googleSignIn() async {
   GoogleSignInAccount googleSignInAccount =
       await gSignIn.signIn().catchError((onError) {
     print("error $onError");

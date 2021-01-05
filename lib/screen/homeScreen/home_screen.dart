@@ -5,7 +5,7 @@ import 'package:project/screen/forms/cosmetic.dart';
 
 import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
-import 'package:project/screen/homeScreen/app-drawer.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/homescreen';
@@ -20,8 +20,15 @@ class HomeScreen extends StatelessWidget {
     print("From demo to home$username");
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).popAndPushNamed(NewOrOldPatient.routeName);
+          },
+        ),
         title: Text("Form Type"),
       ),
+
       // drawer: AppDrawer(),
       body: ListView(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
