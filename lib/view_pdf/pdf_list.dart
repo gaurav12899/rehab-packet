@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/view_pdf/select_form.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PdfList extends StatefulWidget {
@@ -89,6 +89,11 @@ class _PdfListState extends State<PdfList> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Patient Names'),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pushNamed(NewOrOldPatient.routeName);
+              }),
         ),
         body: Container(
           child: Column(
@@ -177,23 +182,98 @@ class _PdfListState extends State<PdfList> {
                                   ],
                                 ),
                                 newMethod(index, "Age", 'age'),
+                                newMethod(index, "Gender", 'gender'),
+                                newMethod(index, "Address", 'address'),
+                                newMethod(index, "State", 'state'),
+                                newMethod(index, "Pincode", 'pincode'),
                                 newMethod(index, "Contact", 'contact'),
+                                newMethod(index, "Email", 'email'),
                                 newMethod(index, "Occupation", 'occupation'),
+                                newMethod(index, "Height", 'height'),
+                                newMethod(index, "Weight", 'weight'),
                                 newMethod(index, "Living Condition",
                                     'livingCondition'),
-                                newMethod(index, "Address", 'address'),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: Text(
-                                    "Date: ${_searchResultList[index]["date"].toDate()}",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                newMethod(index, "Pincode", 'pincode'),
-                                newMethod(index, "Weight", 'weight'),
-                                newMethod(index, "State", 'state'),
+                                newMethod(
+                                    index, "ActivityLevel", 'activityLevel'),
+                                newMethod(index, "Diagnosis", 'diagnosis'),
+                                newMethod(
+                                    index, "Prescription", 'prescription'),
+                                newMethod(index, "pastHistory", 'pastHistory'),
+                                newMethod(index, "OccupationHistory",
+                                    'occupationHistory'),
+                                newMethod(index, "CurrentSituation",
+                                    'currentSituation'),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    if (_searchResultList[index]["imgUrl1"] !=
+                                        null)
+                                      Image.network(
+                                          _searchResultList[index]["imgUorl1"]),
+                                    if (_searchResultList[index]["imgUrl2"] !=
+                                        null)
+                                      Image.network(
+                                          _searchResultList[index]["imgUrl2"]),
+                                    if (_searchResultList[index]["imgUrl3"] !=
+                                        null)
+                                      Image.network(
+                                          _searchResultList[index]["imgUrl3"]),
+                                  ],
+                                )
+
+                                //                           newMethod(index, "Address", 'address'),
+                                //                           newMethod(index, "Address", 'address'),
+                                //                           newMethod(index, "Address", 'address'),
+
+                                // 'height': form['height'],
+                                // 'weight': form['weight'],
+                                // 'livingCondition': form['livingCondition'],
+                                // 'date': DateTime.now().toUtc(),
+                                // 'activityLevel': form['activityLevel'],
+                                // 'imgUrl1': url1.toString(),
+                                // 'imgUrl2': url2.toString(),
+                                // 'imgUrl3': url3.toString(),
+                                // 'anyOtherProblem': anyOtherProblem,
+                                // 'diagnosis': form['diagnosis'],
+                                // 'description': form['description'],
+                                // 'pastHistory': form['pastHistory'],
+                                // 'occupationHistory': form['occupationHistory'],
+                                // 'currentSituation': form['currentSituation'],
+                                // 'goals': form['goals'],
+                                // 'practitionerName': form['practitionerName'],
+                                // 'practitionerContact': form['practitionerContact'],
+                                // 'company': form['company'],
+                                // 'location': form['location'],
+                                // 'physicianName': form['physicianName'],
+                                // 'physicianContact': form['physicianContact'],
+                                // 'dept': form['dept'],
+                                // 'hospital': form['hospital'],
+                                // 'currentlyTakingMedicines': form['currentlyTakingMedicines'],
+                                // 'userStatus': form['userStatus'],
+                                // 'phyDemandBefore': form['phyDemandBefore'],
+                                // 'phyDemandAfter': form['phyDemandAfter'],
+                                // 'standingPerBefore': form['standingPerBefore'],
+                                // 'standingPerAfter': form['standingPerAfter'],
+                                // 'liftingBefore': form['liftingBefore'],
+                                // 'liftingAfter': form['liftingAfter'],
+                                // 'walkingBefore': form['walkingBefore'],
+                                // 'walkingAfter': form['walkingAfter'],
+                                // 'walkingTrainsBefore': form['walkingTrainsBefore'],
+                                // 'walkingTrainsAfter': form['walkingTrainsAfter'],
+                                // 'prescription':form['prescription']
+                                // Padding(
+                                //   padding:
+                                //       const EdgeInsets.symmetric(horizontal: 8),
+                                //   child: Text(
+                                //     "Date: ${_searchResultList[index]["date"].toDate()}",
+                                //     style:
+                                //         TextStyle(fontWeight: FontWeight.bold),
+                                //   ),
+                                // ),
+                                // newMethod(index, "Pincode", 'pincode'),
+                                // newMethod(index, "Weight", 'weight'),
+                                // newMethod(index, "State", 'state'),
                               ],
                             ),
                           ),
@@ -215,7 +295,7 @@ class _PdfListState extends State<PdfList> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Text(
-        "$heading: ${_searchResultList[index]["$dbfield"].toUpperCase()}",
+        "$heading: ${_searchResultList[index]["$dbfield"]}",
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
     );
