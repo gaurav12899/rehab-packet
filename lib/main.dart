@@ -5,6 +5,12 @@ import 'package:project/screen/forgetPassword/forget-password.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
 import 'package:project/screen/forms/Afo/afoB.dart';
 import 'package:project/screen/forms/Afo/afoC.dart';
+import 'package:project/screen/forms/Kafo/kafoA.dart';
+import 'package:project/screen/forms/Kafo/kfoaB.dart';
+import 'package:project/screen/forms/Kafo/kfoac.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisA.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisB.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeproB.dart';
 import 'package:project/screen/forms/cosmetic.dart';
 import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
@@ -12,6 +18,7 @@ import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/screen/profile/profile.dart';
+import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
@@ -54,9 +61,15 @@ class MyApp extends StatelessWidget {
         AfoA.routeName: (ctxt) => AfoA(),
         AfoB.routeName: (ctxt) => AfoB(),
         AfoC.routeName: (ctxt) => AfoC(),
+        KafoA.routeName: (ctxt) => KafoA(),
+        KafoB.routeName: (ctxt) => KafoB(),
+        KafoC.routeName: (ctxt) => KafoC(),
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
         PdfList.routeName: (ctx) => PdfList(),
-        AboutUs.routeName: (ctx) => AboutUs()
+        AboutUs.routeName: (ctx) => AboutUs(),
+        ShowImage.routeName: (ctx) => ShowImage(),
+        BelowKneeProsthesisA.routeName: (ctx) => BelowKneeProsthesisA(),
+        BelowKneeProsB.routeName: (ctx) => BelowKneeProsB(),
       },
     );
   }

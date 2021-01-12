@@ -18,7 +18,9 @@ class _PickImageState extends State<PickImage> {
   final _imagePicker = ImagePicker();
   Future _imgFromCamera() async {
     final _pickedFile = await _imagePicker.getImage(
-        source: ImageSource.camera, imageQuality: 50, maxWidth: 150);
+      source: ImageSource.camera,
+      imageQuality: 80,
+    );
     setState(() {
       if (_pickedFile != null) {
         _image = File(_pickedFile.path);
@@ -31,7 +33,7 @@ class _PickImageState extends State<PickImage> {
 
   Future _imgFromGallery() async {
     final _pickedFile = await _imagePicker.getImage(
-        source: ImageSource.gallery, imageQuality: 50, maxWidth: 150);
+        source: ImageSource.gallery, imageQuality: 80);
     setState(() {
       if (_pickedFile != null) {
         _image = File(_pickedFile.path);

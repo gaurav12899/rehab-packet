@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisA.dart';
 
 class Prosthetic extends StatelessWidget {
-  static const routeName = 'prosthetic';
+  static const routeName = '/prosthetic';
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,10 @@ class Prosthetic extends StatelessWidget {
             child: Card(
               color: Colors.lightBlue,
               shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(0),
+                ),
+              ),
               elevation: 5,
               child: Text("UPPER LIMB",
                   textAlign: TextAlign.center,
@@ -82,7 +85,7 @@ class Prosthetic extends StatelessWidget {
           ),
           FormName(
             name: "Below Knee Pro",
-            path: AfoA.routeName,
+            path: BelowKneeProsthesisA.routeName,
             username: username,
           ),
           FormName(

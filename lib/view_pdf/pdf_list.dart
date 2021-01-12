@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
+import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/view_pdf/select_form.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -68,8 +69,8 @@ class _PdfListState extends State<PdfList> {
     });
   }
 
-  _makingPhoneCall() async {
-    const url = 'tel:9876543210';
+  _makingPhoneCall(ValueNotifier phone) async {
+    var url = 'tel:$phone';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -176,7 +177,8 @@ class _PdfListState extends State<PdfList> {
                                         color: Colors.green,
                                       ),
                                       onPressed: () {
-                                        _makingPhoneCall();
+                                        _makingPhoneCall(
+                                            _searchResultList[index]["phone"]);
                                       },
                                     )
                                   ],
@@ -203,28 +205,96 @@ class _PdfListState extends State<PdfList> {
                                     'occupationHistory'),
                                 newMethod(index, "CurrentSituation",
                                     'currentSituation'),
+
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     if (_searchResultList[index]["imgUrl1"] !=
                                         null)
-                                      Image.network(
-                                          _searchResultList[index]["imgUorl1"]),
+                                      GestureDetector(
+                                        onTap: () => Navigator.of(context)
+                                            .pushNamed(ShowImage.routeName,
+                                                arguments:
+                                                    _searchResultList[index]
+                                                        ["imgUrl1"]),
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .27,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .27,
+                                          child: Hero(
+                                            tag: "img1",
+                                            child: Image.network(
+                                                _searchResultList[index]
+                                                    ["imgUrl1"]),
+                                          ),
+                                        ),
+                                      ),
                                     if (_searchResultList[index]["imgUrl2"] !=
                                         null)
-                                      Image.network(
-                                          _searchResultList[index]["imgUrl2"]),
+                                      GestureDetector(
+                                        onTap: () => Navigator.of(context)
+                                            .pushNamed(ShowImage.routeName,
+                                                arguments:
+                                                    _searchResultList[index]
+                                                        ["imgUrl2"]),
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .27,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .27,
+                                          child: Hero(
+                                            tag: "img2",
+                                            child: Image.network(
+                                                _searchResultList[index]
+                                                    ["imgUrl2"]),
+                                          ),
+                                        ),
+                                      ),
                                     if (_searchResultList[index]["imgUrl3"] !=
                                         null)
-                                      Image.network(
-                                          _searchResultList[index]["imgUrl3"]),
+                                      GestureDetector(
+                                        onTap: () => Navigator.of(context)
+                                            .pushNamed(ShowImage.routeName,
+                                                arguments:
+                                                    _searchResultList[index]
+                                                        ["imgUrl3"]),
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .27,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .27,
+                                          child: Hero(
+                                            tag: "img",
+                                            child: Image.network(
+                                                _searchResultList[index]
+                                                    ["imgUrl3"]),
+                                          ),
+                                        ),
+                                      ),
                                   ],
-                                )
+                                ),
+                                Text("Other Problems"),
+                                Row(
+                                  children: [],
+                                ),
 
-                                //                           newMethod(index, "Address", 'address'),
-                                //                           newMethod(index, "Address", 'address'),
-                                //                           newMethod(index, "Address", 'address'),
+                                newMethod(index, "Address", 'address'),
+                                newMethod(index, "Address", 'address'),
+                                newMethod(index, "Address", 'address'),
 
                                 // 'height': form['height'],
                                 // 'weight': form['weight'],

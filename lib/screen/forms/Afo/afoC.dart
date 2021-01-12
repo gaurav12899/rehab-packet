@@ -21,10 +21,6 @@ class AfoC extends StatefulWidget {
 }
 
 class _AfoCState extends State<AfoC> {
-  // double posx = 00.0;
-
-  // double posy = 00.0;
-
   GlobalKey _containerKey = GlobalKey();
 
   final doc = pw.Document();
@@ -79,9 +75,8 @@ class _AfoCState extends State<AfoC> {
     file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
     // args.clear();
 
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("Img_${DateTime.now().microsecond}.pdf");
+    final ref =
+        FirebaseStorage.instance.ref().child(args["username"]).child("AFO.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
+import 'package:project/screen/forms/Kafo/kafoA.dart';
 
 class Orthotic extends StatelessWidget {
   static const routeName = '/orthotic';
@@ -106,7 +107,7 @@ class Orthotic extends StatelessWidget {
           ),
           FormName(
             name: "Knee Ankle Foot Osthesis",
-            path: AfoA.routeName,
+            path: KafoA.routeName,
             username: username,
           ),
           FormName(
