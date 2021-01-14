@@ -1,17 +1,10 @@
-import 'dart:typed_data';
-import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:image_pixels/image_pixels.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pdf/pdf.dart';
-import 'package:project/main.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisC.dart';
 
 class BelowKneeProsthesisB extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisB';
@@ -21,12 +14,30 @@ class BelowKneeProsthesisB extends StatefulWidget {
 }
 
 class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
-  GlobalKey _containerKey = GlobalKey();
+  bool gelLiner = false;
+  bool bullLock = false;
+  bool kneeSleeve = false;
+  bool eversion = false;
+  bool thighCorset = false;
+  bool sealInSuspension = false;
+  bool suction = false;
+  bool variablePressure = false;
+
+  bool _30mm = false;
+  bool _34mm = false;
+  bool stainlessSteel = false;
+  bool titanium = false;
+  bool aluminium = false;
+  bool fourProngAdaptor = false;
+  bool threeProngAdoptor = false;
+  bool fourHoleAdaptor = false;
+  bool pyramid = false;
+  bool receiver = false;
 
   final doc = pw.Document();
 
   bool loading = false;
-
+  GlobalKey _containerKey = GlobalKey();
   Future<Uint8List> _capturePng() async {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
@@ -37,278 +48,391 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
       return _capturePng();
     }
 
-    var image = await boundary.toImage(
-      pixelRatio: 2,
-    );
-    var byteData = await image.toByteData(
-      format: ui.ImageByteFormat.png,
-    );
+    var image = await boundary.toImage();
+    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     return byteData.buffer.asUint8List();
   }
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
-    print(pngBytes);
     await args['bytelist'].add(pngBytes);
-
-    print(args['bytelist'].length);
-    for (int i = 0; i < args['bytelist'].length; i++) {
-      final image = PdfImage.file(
-        doc.document,
-        bytes: args['bytelist'][i],
-      );
-      doc.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Center(
-            child: pw.Image(image),
-          ),
-        ),
-      );
-    }
-
-    this.setState(() {
-      loading = true;
+    Navigator.of(context).pushNamed(BelowKneeProsthesisC.routeName, arguments: {
+      "bytelist": args["bytelist"],
+      "username": args["username"]
     });
 
-    Directory directory = await getExternalStorageDirectory();
-    String docpath = directory.path;
-    final file = File('$docpath/${FirebaseAuth.instance.currentUser.uid}.pdf');
-    // print(docpath);
-
-    file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
-
-    final ref =
-        FirebaseStorage.instance.ref().child(args["username"]).child("KFO.pdf");
-    await ref.putFile(file).whenComplete(() => this.setState(() {
-          loading = false;
-        }));
-    final url = await ref.getDownloadURL();
-    try {
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc("${FirebaseAuth.instance.currentUser.uid}")
-          .collection("username")
-          .doc("${args["username"]}")
-          .collection("formname")
-          .doc("BelowKneePros")
-          .set({"form": url});
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.green,
-        content: Text("Form Submitted!!"),
-        duration: Duration(seconds: 3),
-        action: SnackBarAction(
-            label: "Okay",
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MyApp()));
-            }),
-      ));
-    } on Exception catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          content: Text("Something went wrong!!"),
-          action: SnackBarAction(
-              label: "Okay",
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => MyApp()));
-              }),
-        ),
-      );
-    }
-    await Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
+    // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print("from c${args["username"]}");
-    print("------------>>>>>>${args["bytelist"]}");
     if (args['bytelist'].length > 1) {
       args['bytelist'].removeLast();
     }
-
+    // args.values.toList()
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test1"),
+        title: Text("Below Knee Prosthesis"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.navigate_next_rounded),
+              onPressed: () {
+                _printPngBytes(args);
+              })
+        ],
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * .8,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: RepaintBoundary(
-                      key: _containerKey,
-                      child: Zoom(
-                        initZoom: 0,
-                        centerOnScale: true,
-                        width: 1200,
-                        height: 1200,
-                        backgroundColor: Colors.white,
-                        onPositionUpdate: (Offset position) {
-                          print(position);
-                        },
-                        onScaleUpdate: (double scale, double zoom) {
-                          print("$scale  $zoom");
-                        },
-                        child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            RepaintBoundary(
+              key: _containerKey,
+              child: Container(
+                margin: EdgeInsets.all(5),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black)),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Type Of Suspension:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: GestureDetector(
-                                // onTapDown: (TapDownDetails details) =>
-                                //     onTapDown(context, details),
-                                child: Stack(
-                                    fit: StackFit.expand,
-                                    children: <Widget>[
-                                      // Hack to expand stack to fill all the space. There must be a better
-                                      // way to do it.
-                                      Image(
-                                        image: AssetImage(
-                                          "assets/images/belowKnee1.png",
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-
-                                      Textfield(
-                                          top: 80,
-                                          left: 90,
-                                          height: 90,
-                                          width: 80,
-                                          label: "test"),
-                                      Textfield(
-                                          top: 420,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "b"),
-                                      Textfield(
-                                          top: 510,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "c"),
-
-                                      Textfield(
-                                          top: 510,
-                                          left: 600,
-                                          height: 20,
-                                          width: 100,
-                                          label: "d"),
-
-                                      Textfield(
-                                          top: 610,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "e"),
-                                      Textfield(
-                                          top: 680,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "f"),
-                                      Textfield(
-                                          top: 680,
-                                          left: 680,
-                                          height: 20,
-                                          width: 100,
-                                          label: "g"),
-                                      Textfield(
-                                          top: 610,
-                                          left: 750,
-                                          height: 20,
-                                          width: 100,
-                                          label: "h"),
-
-                                      Textfield(
-                                          top: 540,
-                                          left: 820,
-                                          height: 20,
-                                          width: 100,
-                                          label: "i"),
-                                      Textfield(
-                                          top: 750,
-                                          left: 620,
-                                          height: 20,
-                                          width: 100,
-                                          label: "j"),
-                                      Textfield(
-                                          top: 820,
-                                          left: 560,
-                                          height: 20,
-                                          width: 100,
-                                          label: "j"),
-                                    ]),
-                              ),
+                            Row(
+                              children: [
+                                Text("Gel Liner with\nPin shuttle Lock"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: gelLiner,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        gelLiner = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Bull Lock"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: bullLock,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        bullLock = value;
+                                      });
+                                    }),
+                              ],
                             ),
                           ],
                         ),
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Knee Sleeve"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: kneeSleeve,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        kneeSleeve = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Thigh Corser"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: thighCorset,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        thighCorset = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Seal In Suspension"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: sealInSuspension,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        sealInSuspension = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Suction"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: suction,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        suction = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Variable Pressure \n(Harmony / Limb logic)",
+                        ),
+                        Checkbox(
+                            activeColor: Colors.blue,
+                            value: variablePressure,
+                            onChanged: (bool value) {
+                              setState(() {
+                                variablePressure = value;
+                              });
+                            }),
+                      ],
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: "Other:"),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Component:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Pylon"),
+                            Row(
+                              children: [
+                                Text("30mm"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: _30mm,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        _30mm = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("34mm"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: _34mm,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        _34mm = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Stainless Steel"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: stainlessSteel,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        stainlessSteel = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Titanium"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: titanium,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        titanium = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("Aluminium"),
+                                Checkbox(
+                                    activeColor: Colors.blue,
+                                    value: aluminium,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        aluminium = value;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "Prosthetic Foot:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        Text("Foot Name:"),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(child: TextField())
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text("Part Code:"),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(child: TextField())
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text("Tubeclamp Adaptor Part Code:"),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(child: TextField())
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Four Prong Adoptor"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: fourProngAdaptor,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    fourProngAdaptor = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Four Prong Adoptor"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: threeProngAdoptor,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    threeProngAdoptor = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Four Hole Adoptor"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: fourHoleAdaptor,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    fourHoleAdaptor = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Pyramid"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: pyramid,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    pyramid = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Receiver"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: receiver,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    receiver = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "Other Information that may affect prosthetic fitting:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextField(
+                      maxLines: 3,
+                    )
+                  ],
                 ),
-                Container(
-                  width: double.infinity,
-                  color: Colors.blue,
-                  // height: 100,2
-                  child: FlatButton(
-                    child: loading
-                        ? CircularProgressIndicator()
-                        : Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                    onPressed: () {
-                      // convertWidgetToImage();
-                      _printPngBytes(args);
-                    },
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Textfield extends StatelessWidget {
-  final double top;
-  final double left;
-  final double height;
-  final double width;
-  final label;
-  Textfield({
-    @required this.top,
-    @required this.left,
-    @required this.height,
-    @required this.width,
-    @required this.label,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      top: top,
-      left: left,
-      height: height,
-      width: width,
-      child: Container(
-        // color: Colors.white,
-        width: 20,
-        child: TextField(
-          decoration: InputDecoration(labelText: label),
-          style: TextStyle(color: Colors.black),
+          ],
         ),
       ),
     );

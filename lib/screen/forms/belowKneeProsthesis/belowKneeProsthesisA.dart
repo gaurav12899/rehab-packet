@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisB.dart';
-import 'package:project/screen/forms/belowKneeProsthesis/belowKneeproB.dart';
 
 class BelowKneeProsthesisA extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisA';
@@ -54,7 +53,7 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
     bytList.add(pngBytes);
     print(bytList);
     print("bbk$username");
-    Navigator.of(context).pushNamed(BelowKneeProsB.routeName,
+    Navigator.of(context).pushNamed(BelowKneeProsthesisB.routeName,
         arguments: {"bytelist": bytList, "username": username});
 
     // print(bs64);
@@ -358,6 +357,14 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
                                     });
                                   }),
                             ],
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: "Other",
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
                           )
                         ],
                       )

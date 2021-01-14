@@ -8,9 +8,13 @@ import 'package:project/screen/forms/Afo/afoC.dart';
 import 'package:project/screen/forms/Kafo/kafoA.dart';
 import 'package:project/screen/forms/Kafo/kfoaB.dart';
 import 'package:project/screen/forms/Kafo/kfoac.dart';
+import 'package:project/screen/forms/TransfemoralMeasurementForm/transfemoralMeasurementFormA.dart';
+import 'package:project/screen/forms/TransfemoralMeasurementForm/transfemoralMeasurmentFormB.dart';
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisA.dart';
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisB.dart';
-import 'package:project/screen/forms/belowKneeProsthesis/belowKneeproB.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisC.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisD.dart';
+import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisE.dart';
 import 'package:project/screen/forms/cosmetic.dart';
 import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
@@ -69,7 +73,12 @@ class MyApp extends StatelessWidget {
         AboutUs.routeName: (ctx) => AboutUs(),
         ShowImage.routeName: (ctx) => ShowImage(),
         BelowKneeProsthesisA.routeName: (ctx) => BelowKneeProsthesisA(),
-        BelowKneeProsB.routeName: (ctx) => BelowKneeProsB(),
+        BelowKneeProsthesisB.routeName: (ctx) => BelowKneeProsthesisB(),
+        BelowKneeProsthesisC.routeName: (ctx) => BelowKneeProsthesisC(),
+        BelowKneeProsthesisD.routeName: (ctx) => BelowKneeProsthesisD(),
+        BelowKneeProsthesisE.routeName: (ctx) => BelowKneeProsthesisE(),
+        TransfemoralMeasurementA.routeName: (ctx) => TransfemoralMeasurementA(),
+        TransfemoralMeasurementB.routeName: (ctx) => TransfemoralMeasurementB(),
       },
     );
   }
