@@ -16,11 +16,23 @@ import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisC.da
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisD.dart';
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisE.dart';
 import 'package:project/screen/forms/cosmetic.dart';
+import 'package:project/screen/forms/elbowOrthosis/elbowOrthosis.dart';
+import 'package:project/screen/forms/elbowOrthosis/elbowOrthosisB.dart';
+import 'package:project/screen/forms/elbowOrthosis/elbowOrthosisC.dart';
 import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisA.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisB.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisC.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisD.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisE.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisF.dart';
+import 'package:project/screen/forms/wristHandOrthosis/wristHandOrthosisA.dart';
+import 'package:project/screen/forms/wristHandOrthosis/wristHandOrthosisB.dart';
 import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/loginScreen/login.dart';
+import 'package:project/screen/profile/editProfile.dart';
 import 'package:project/screen/profile/profile.dart';
 import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
@@ -57,6 +69,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName: (ctx) => HomeScreen(),
         ForgetPassword.routeName: (ctx) => ForgetPassword(),
         Profile.routeName: (ctx) => Profile(),
+        EditProfile.routeName: (ctx) => EditProfile(),
         DemographicForm.routeName: (ctx) => DemographicForm(),
         KneeForm.routeName: (ctx) => KneeForm(),
         Prosthetic.routeName: (ctxt) => Prosthetic(),
@@ -79,6 +92,17 @@ class MyApp extends StatelessWidget {
         BelowKneeProsthesisE.routeName: (ctx) => BelowKneeProsthesisE(),
         TransfemoralMeasurementA.routeName: (ctx) => TransfemoralMeasurementA(),
         TransfemoralMeasurementB.routeName: (ctx) => TransfemoralMeasurementB(),
+        ElbowOrthosisA.routeName: (ctx) => ElbowOrthosisA(),
+        ElbowOrthosisB.routeName: (ctx) => ElbowOrthosisB(),
+        ElbowOrthosisC.routeName: (ctx) => ElbowOrthosisC(),
+        WristHandOrthosisA.routeName: (ctx) => WristHandOrthosisA(),
+        WristHandOrthosisB.routeName: (ctx) => WristHandOrthosisB(),
+        SpinalOrthosisA.routeName: (ctx) => SpinalOrthosisA(),
+        SpinalOrthosisB.routeName: (ctx) => SpinalOrthosisB(),
+        SpinalOrthosisC.routeName: (ctx) => SpinalOrthosisC(),
+        SpinalOrthosisD.routeName: (ctx) => SpinalOrthosisD(),
+        SpinalOrthosisE.routeName: (ctx) => SpinalOrthosisE(),
+        SpinalOrthosisF.routeName: (ctx) => SpinalOrthosisF(),
       },
     );
   }

@@ -21,9 +21,9 @@ class RoundedButton extends StatelessWidget {
       width: size.width * .45,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
-        child: FlatButton(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-          color: bgColor,
+        child: TextButton(
+          // padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          // color: bgColor,
           onPressed: press,
           child: Text(
             text,

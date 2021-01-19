@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:image_pixels/image_pixels.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:project/main.dart';
 import 'package:zoom_widget/zoom_widget.dart';
@@ -54,12 +55,32 @@ class _AfoCState extends State<AfoC> {
         doc.document,
         bytes: args['bytelist'][i],
       );
+      final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
+      final Uint8List list = bytes.buffer.asUint8List();
+      final x = PdfImage.file(doc.document, bytes: list);
+
+      // doc.addPage(pw.Page(build: (pw.Context context)=>));
+
       doc.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Center(
-            child: pw.Image(image),
-          ),
-        ),
+        pw.MultiPage(
+            margin: pw.EdgeInsets.all(10),
+            build: (pw.Context context) => [
+                  pw.Header(
+                    level: 0,
+                    child: pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text('AFO Form', textScaleFactor: 1),
+                          pw.Image(x, width: 60, height: 60)
+                        ]),
+                  ),
+                  pw.Center(
+                    child: pw.Image(
+                      image,
+                      height: 600,
+                    ),
+                  )
+                ]),
       );
     }
 
@@ -147,218 +168,235 @@ class _AfoCState extends State<AfoC> {
       body: Container(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height * .8,
             child: Column(
               children: [
                 Expanded(
-                  child: RepaintBoundary(
-                    key: _containerKey,
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: Zoom(
-                        initZoom: 0,
-                        // zoomSensibility: 2.0,
-                        centerOnScale: true,
-                        width: 1200,
-                        height: 1200,
-                        backgroundColor: Colors.white,
-                        onPositionUpdate: (Offset position) {
-                          print(position);
-                        },
-                        onScaleUpdate: (double scale, double zoom) {
-                          print("$scale  $zoom");
-                        },
+                  child: Container(
+                    child: Zoom(
+                      initZoom: 0,
+                      // zoomSensibility: 2.0,
+                      centerOnScale: true,
+                      width: 1200,
+                      height: 1200,
+                      backgroundColor: Colors.white,
+
+                      child: RepaintBoundary(
+                        key: _containerKey,
                         child: Column(
                           children: [
-                            Container(
-                              child: Text(
-                                "Hello world",
-                                style:
-                                    TextStyle(fontSize: 40, color: Colors.red),
-                              ),
-                            ),
                             Expanded(
                               child: GestureDetector(
-                                // onTapDown: (TapDownDetails details) =>
-                                //     onTapDown(context, details),
-                                child: Stack(fit: StackFit.expand, children: <
-                                    Widget>[
-                                  // Hack to expand stack to fill all the space. There must be a better
-                                  // way to do it.
-                                  Image(
-                                    image: AssetImage(
-                                      "assets/images/form1.png",
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
-                                  Positioned(
-                                    top: 180,
-                                    left: 470,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "a"),
-                                        style: TextStyle(color: Colors.black),
+                                child: Stack(
+                                    fit: StackFit.expand,
+                                    children: <Widget>[
+                                      Image(
+                                        image: AssetImage(
+                                          "assets/images/form1.png",
+                                        ),
+                                        fit: BoxFit.fill,
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 420,
-                                    left: 470,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "b"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 190,
+                                        left: 470,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(hintText: "a"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 510,
-                                    left: 470,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        style: TextStyle(color: Colors.black),
-                                        decoration:
-                                            InputDecoration(labelText: "c"),
+                                      Positioned(
+                                        top: 430,
+                                        left: 470,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "b"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 510,
-                                    left: 600,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "d"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 510,
+                                        left: 470,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                            decoration:
+                                                InputDecoration(labelText: "c"),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 610,
-                                    left: 470,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "e"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 510,
+                                        left: 600,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "d"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 680,
-                                    left: 470,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "f"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 610,
+                                        left: 470,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "e"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
+                                      Positioned(
+                                        top: 680,
+                                        left: 470,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "f"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
 
-                                  Positioned(
-                                    top: 680,
-                                    left: 680,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "g"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 680,
+                                        left: 680,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "g"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 610,
-                                    left: 750,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "h"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 610,
+                                        left: 750,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "h"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 540,
-                                    left: 820,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "i"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 540,
+                                        left: 820,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "i"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 750,
-                                    left: 620,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "j"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 750,
+                                        left: 620,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "j"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 820,
-                                    left: 560,
-                                    height: 20,
-                                    width: 100,
-                                    child: Container(
-                                      // color: Colors.white,
-                                      width: 20,
-                                      child: TextField(
-                                        decoration:
-                                            InputDecoration(labelText: "j"),
-                                        style: TextStyle(color: Colors.black),
+                                      Positioned(
+                                        top: 820,
+                                        left: 560,
+                                        height: 20,
+                                        width: 100,
+                                        child: Container(
+                                          // color: Colors.white,
+                                          width: 20,
+                                          child: TextField(
+                                            decoration:
+                                                InputDecoration(labelText: "j"),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  // Container(color: Colors.red),
-                                ]),
+                                      // Container(color: Colors.red),
+                                    ]),
                               ),
                             ),
                           ],
@@ -371,7 +409,7 @@ class _AfoCState extends State<AfoC> {
                   width: double.infinity,
                   color: Colors.blue,
                   // height: 100,2
-                  child: FlatButton(
+                  child: TextButton(
                     child: loading
                         ? CircularProgressIndicator()
                         : Text(
@@ -380,6 +418,9 @@ class _AfoCState extends State<AfoC> {
                           ),
                     onPressed: () {
                       // convertWidgetToImage();
+                      if (args['bytelist'].length > 2) {
+                        args['bytelist'].removeLast();
+                      }
                       _printPngBytes(args);
                     },
                   ),

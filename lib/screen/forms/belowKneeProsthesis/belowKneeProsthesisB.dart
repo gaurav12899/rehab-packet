@@ -84,355 +84,348 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            RepaintBoundary(
-              key: _containerKey,
-              child: Container(
-                margin: EdgeInsets.all(5),
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+        child: RepaintBoundary(
+          key: _containerKey,
+          child: Container(
+            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            padding: EdgeInsets.symmetric(
+              horizontal: 10,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Text(
+                      "Type Of Suspension:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Type Of Suspension:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text("Gel Liner with\nPin shuttle Lock"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: gelLiner,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        gelLiner = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("Bull Lock"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: bullLock,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        bullLock = value;
-                                      });
-                                    }),
-                              ],
-                            ),
+                            Text("Gel Liner with\nPin shuttle Lock"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: gelLiner,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    gelLiner = value;
+                                  });
+                                }),
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                Text("Knee Sleeve"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: kneeSleeve,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        kneeSleeve = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("Thigh Corser"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: thighCorset,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        thighCorset = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Seal In Suspension"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: sealInSuspension,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        sealInSuspension = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("Suction"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: suction,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        suction = value;
-                                      });
-                                    }),
-                              ],
-                            ),
+                            Text("Bull Lock"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: bullLock,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    bullLock = value;
+                                  });
+                                }),
                           ],
                         ),
                       ],
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Variable Pressure \n(Harmony / Limb logic)",
+                        Row(
+                          children: [
+                            Text("Knee Sleeve"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: kneeSleeve,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    kneeSleeve = value;
+                                  });
+                                }),
+                          ],
                         ),
+                        Row(
+                          children: [
+                            Text("Thigh Corser"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: thighCorset,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    thighCorset = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Seal In Suspension"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: sealInSuspension,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    sealInSuspension = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Suction"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: suction,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    suction = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Variable Pressure \n(Harmony / Limb logic)",
+                    ),
+                    Checkbox(
+                        activeColor: Colors.blue,
+                        value: variablePressure,
+                        onChanged: (bool value) {
+                          setState(() {
+                            variablePressure = value;
+                          });
+                        }),
+                  ],
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: "Other:"),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Component:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Pylon"),
+                        Row(
+                          children: [
+                            Text("30mm"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: _30mm,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    _30mm = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("34mm"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: _34mm,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    _34mm = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Stainless Steel"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: stainlessSteel,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    stainlessSteel = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Titanium"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: titanium,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    titanium = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Aluminium"),
+                            Checkbox(
+                                activeColor: Colors.blue,
+                                value: aluminium,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    aluminium = value;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Text(
+                  "Prosthetic Foot:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: [
+                    Text("Foot Name:"),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(child: TextField())
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("Part Code:"),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(child: TextField())
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("Tubeclamp Adaptor Part Code:"),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(child: TextField())
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Four Prong Adoptor"),
                         Checkbox(
                             activeColor: Colors.blue,
-                            value: variablePressure,
+                            value: fourProngAdaptor,
                             onChanged: (bool value) {
                               setState(() {
-                                variablePressure = value;
+                                fourProngAdaptor = value;
                               });
                             }),
                       ],
                     ),
-                    TextField(
-                      decoration: InputDecoration(labelText: "Other:"),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Component:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Pylon"),
-                            Row(
-                              children: [
-                                Text("30mm"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: _30mm,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        _30mm = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("34mm"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: _34mm,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        _34mm = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text("Stainless Steel"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: stainlessSteel,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        stainlessSteel = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("Titanium"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: titanium,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        titanium = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text("Aluminium"),
-                                Checkbox(
-                                    activeColor: Colors.blue,
-                                    value: aluminium,
-                                    onChanged: (bool value) {
-                                      setState(() {
-                                        aluminium = value;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "Prosthetic Foot:",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
                     Row(
                       children: [
-                        Text("Foot Name:"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(child: TextField())
+                        Text("Four Prong Adoptor"),
+                        Checkbox(
+                            activeColor: Colors.blue,
+                            value: threeProngAdoptor,
+                            onChanged: (bool value) {
+                              setState(() {
+                                threeProngAdoptor = value;
+                              });
+                            }),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text("Part Code:"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(child: TextField())
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("Tubeclamp Adaptor Part Code:"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(child: TextField())
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Four Prong Adoptor"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: fourProngAdaptor,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    fourProngAdaptor = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text("Four Prong Adoptor"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: threeProngAdoptor,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    threeProngAdoptor = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Four Hole Adoptor"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: fourHoleAdaptor,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    fourHoleAdaptor = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Pyramid"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: pyramid,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    pyramid = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text("Receiver"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: receiver,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    receiver = value;
-                                  });
-                                }),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "Other Information that may affect prosthetic fitting:",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextField(
-                      maxLines: 3,
-                    )
                   ],
                 ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Four Hole Adoptor"),
+                        Checkbox(
+                            activeColor: Colors.blue,
+                            value: fourHoleAdaptor,
+                            onChanged: (bool value) {
+                              setState(() {
+                                fourHoleAdaptor = value;
+                              });
+                            }),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Pyramid"),
+                        Checkbox(
+                            activeColor: Colors.blue,
+                            value: pyramid,
+                            onChanged: (bool value) {
+                              setState(() {
+                                pyramid = value;
+                              });
+                            }),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text("Receiver"),
+                        Checkbox(
+                            activeColor: Colors.blue,
+                            value: receiver,
+                            onChanged: (bool value) {
+                              setState(() {
+                                receiver = value;
+                              });
+                            }),
+                      ],
+                    ),
+                  ],
+                ),
+                Text(
+                  "Other Information that may affect prosthetic fitting:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextField(
+                  maxLines: 3,
+                )
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

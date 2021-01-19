@@ -77,20 +77,14 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.all(10),
-                      child: RepaintBoundary(
-                        key: _containerKey,
-                        child: Zoom(
-                          initZoom: 0,
-                          centerOnScale: true,
-                          width: 1200,
-                          height: 1200,
-                          backgroundColor: Colors.white,
-                          onPositionUpdate: (Offset position) {
-                            print(position);
-                          },
-                          onScaleUpdate: (double scale, double zoom) {
-                            print("$scale  $zoom");
-                          },
+                      child: Zoom(
+                        initZoom: 0,
+                        centerOnScale: true,
+                        width: 1200,
+                        height: 1200,
+                        backgroundColor: Colors.white,
+                        child: RepaintBoundary(
+                          key: _containerKey,
                           child: Column(
                             children: [
                               Expanded(

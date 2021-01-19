@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
 import 'package:project/screen/forms/Kafo/kafoA.dart';
+import 'package:project/screen/forms/elbowOrthosis/elbowOrthosis.dart';
+import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisA.dart';
+import 'package:project/screen/forms/wristHandOrthosis/wristHandOrthosisA.dart';
 
 class Orthotic extends StatelessWidget {
   static const routeName = '/orthotic';
@@ -49,22 +52,22 @@ class Orthotic extends StatelessWidget {
           ),
           FormName(
             name: " Elbow Orthosis",
+            path: ElbowOrthosisA.routeName,
+            username: username,
+          ),
+          FormName(
+            name: "Wrist Osthosis",
             path: AfoA.routeName,
             username: username,
           ),
           FormName(
-            name: "Wrist Osthesis",
-            path: AfoA.routeName,
+            name: "Spinal Osthosis",
+            path: SpinalOrthosisA.routeName,
             username: username,
           ),
           FormName(
-            name: "Hand Osthesis",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Weist-Hand Osthesis",
-            path: AfoA.routeName,
+            name: "Wrist-Hand Osthosis",
+            path: WristHandOrthosisA.routeName,
             username: username,
           ),
           Container(

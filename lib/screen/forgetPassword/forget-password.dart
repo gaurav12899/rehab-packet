@@ -77,8 +77,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         alignment: Alignment.centerRight,
-                        child: RaisedButton(
-                          color: Colors.blue.shade700,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Colors.blue),
                           child: Text(
                             "Submit",
                             style: GoogleFonts.lato(color: Colors.white),
@@ -100,7 +100,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                           ),
                                           Container(
                                             alignment: Alignment.centerRight,
-                                            child: FlatButton(
+                                            child: TextButton(
                                                 onPressed: () {
                                                   Navigator.of(context)
                                                       .pushReplacementNamed(

@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:image_pixels/image_pixels.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pdf/pdf.dart';
 import 'package:project/main.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -80,8 +78,10 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
 
     file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
 
-    final ref =
-        FirebaseStorage.instance.ref().child(args["username"]).child("KFO.pdf");
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child(args["username"])
+        .child("Below knee Pros.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));

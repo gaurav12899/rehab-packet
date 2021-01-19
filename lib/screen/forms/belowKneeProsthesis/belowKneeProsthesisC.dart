@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
-// import 'package:image_pixels/image_pixels.dart';
-import 'package:project/screen/forms/Afo/afoC.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
 import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisD.dart';
@@ -76,20 +74,20 @@ class _BelowKneeProsthesisCState extends State<BelowKneeProsthesisC> {
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.all(10),
-                      child: RepaintBoundary(
-                        key: _containerKey,
-                        child: Zoom(
-                          initZoom: 0,
-                          centerOnScale: true,
-                          width: 1200,
-                          height: 1200,
-                          backgroundColor: Colors.white,
-                          onPositionUpdate: (Offset position) {
-                            print(position);
-                          },
-                          onScaleUpdate: (double scale, double zoom) {
-                            print("$scale  $zoom");
-                          },
+                      child: Zoom(
+                        initZoom: 0,
+                        centerOnScale: true,
+                        width: 1200,
+                        height: 1200,
+                        backgroundColor: Colors.white,
+                        onPositionUpdate: (Offset position) {
+                          print(position);
+                        },
+                        onScaleUpdate: (double scale, double zoom) {
+                          print("$scale  $zoom");
+                        },
+                        child: RepaintBoundary(
+                          key: _containerKey,
                           child: Column(
                             children: [
                               Expanded(
