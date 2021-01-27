@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
             setState(() {
               isLoading = false;
             });
-            Scaffold.of(context).showSnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(value),
                 backgroundColor: Colors.red,
@@ -179,23 +179,27 @@ class _LoginState extends State<Login> {
                           ),
                           Container(
                             alignment: Alignment.topRight,
-                            child: FlatButton(
+                            child: TextButton(
                               onPressed: () {
                                 Navigator.of(context)
                                     .pushNamed(ForgetPassword.routeName);
                               },
                               child: Text(
-                                "Forget Password?",
+                                "forgot password?",
                                 style: GoogleFonts.lato(color: Colors.blue),
                               ),
                             ),
                           ),
                           isLoading
-                              ? Center(child: CircularProgressIndicator())
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                  backgroundColor: Colors.blue,
+                                ))
                               : Container(
-                                  color: Colors.blue,
                                   width: size.width * .6,
-                                  child: FlatButton(
+                                  padding: EdgeInsets.all(10),
+                                  height: 60,
+                                  child: ElevatedButton(
                                     onPressed: () {
                                       _tryToLogin(context);
                                     },
@@ -203,7 +207,7 @@ class _LoginState extends State<Login> {
                                       "Login",
                                       style: GoogleFonts.lato(
                                           color: Colors.white,
-                                          fontSize: 15,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -239,10 +243,10 @@ class _LoginState extends State<Login> {
                           if (!_keyboardIsVisible())
                             Container(
                               width: size.width * .7,
-                              child: FlatButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
+                              child: TextButton(
+                                //   shape: RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.circular(30.0),
+                                //   ),
                                 onPressed: () {
                                   print("initialized");
                                   googleSignIn().then((value) {
@@ -251,7 +255,7 @@ class _LoginState extends State<Login> {
                                     } else {
                                       // User user =
                                       //     FirebaseAuth.instance.currentUser;
-                                      print("err");
+
                                       Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
                                           builder: (context) =>
@@ -287,7 +291,7 @@ class _LoginState extends State<Login> {
                           if (!_keyboardIsVisible())
                             GestureDetector(
                               onTap: () => Navigator.of(context)
-                                  .pushNamed(Signup.routeName),
+                                  .popAndPushNamed(Signup.routeName),
                               child: RichText(
                                 text: TextSpan(
                                     text: "Do not have account? ",

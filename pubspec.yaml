@@ -53,11 +53,14 @@ dependencies:
   advance_pdf_viewer: any
   flutter_svg: ^0.19.2+1
   share: ^0.6.5+4
+  flutter_spinkit: ^3.1.0
+  flutter_email_sender: ^4.0.0
 
   image_picker: ^0.6.7+17
   image_gallery_saver: ^1.6.7
   flutter_share: ^1.0.5
-
+  skeleton_text: ^2.0.2
+  flutter_archive: ^2.0.1
 
 
   # The following adds the Cupertino Icons font to your application.

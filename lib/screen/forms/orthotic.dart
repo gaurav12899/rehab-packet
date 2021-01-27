@@ -10,7 +10,6 @@ class Orthotic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    print("ort$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("Orthotic Forms"),
@@ -18,11 +17,6 @@ class Orthotic extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(0),
-              ),
-            ),
             padding: EdgeInsets.only(
               top: 10,
             ),
@@ -33,8 +27,8 @@ class Orthotic extends StatelessWidget {
             child: Card(
               color: Colors.lightBlue,
               shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
+                borderRadius: BorderRadius.circular(10),
+              ),
               elevation: 5,
               child: Text("UPPER LIMB",
                   textAlign: TextAlign.center,
@@ -46,36 +40,16 @@ class Orthotic extends StatelessWidget {
             ),
           ),
           FormName(
-            name: "Shoulder Orthosis",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: " Elbow Orthosis",
+            name: " Elbow Hand Orthosis",
             path: ElbowOrthosisA.routeName,
             username: username,
           ),
           FormName(
-            name: "Wrist Osthosis",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Spinal Osthosis",
-            path: SpinalOrthosisA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Wrist-Hand Osthosis",
+            name: "Wrist-Hand Orthosis",
             path: WristHandOrthosisA.routeName,
             username: username,
           ),
           Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(0),
-              ),
-            ),
             padding: EdgeInsets.only(
               top: 10,
             ),
@@ -86,9 +60,8 @@ class Orthotic extends StatelessWidget {
             child: Card(
               color: Colors.lightBlue,
               shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
-              elevation: 5,
+                  borderRadius: BorderRadius.circular(10)),
+              elevation: 10,
               child: Text("LOWER LIMB",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -99,28 +72,51 @@ class Orthotic extends StatelessWidget {
             ),
           ),
           FormName(
-            name: "Foot Osthesis",
+            name: "Ankle Foot Orthosis",
             path: AfoA.routeName,
             username: username,
           ),
           FormName(
-            name: "Ankle Foot Osthesis",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Knee Ankle Foot Osthesis",
+            name: "Knee Ankle Foot Orthosis",
             path: KafoA.routeName,
             username: username,
           ),
           FormName(
-            name: "Knee Osthesis",
+            name: "Knee Orthosis",
             path: AfoA.routeName,
             username: username,
           ),
           FormName(
-            name: "Hip Knee-Ankle Foot Osthesis",
+            name: "Hip Knee-Ankle Foot Orthosis",
             path: AfoA.routeName,
+            username: username,
+          ),
+          Container(
+            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
+            padding: EdgeInsets.only(
+              top: 10,
+            ),
+            width: double.infinity,
+            // color: Colors.red,
+            height: 80,
+
+            child: Card(
+              color: Colors.lightBlue,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              elevation: 5,
+              child: Text("Spinal Orthosis",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
+          FormName(
+            name: "Spinal Orthosis",
+            path: SpinalOrthosisA.routeName,
             username: username,
           ),
         ]),

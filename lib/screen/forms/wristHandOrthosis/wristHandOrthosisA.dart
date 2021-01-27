@@ -36,7 +36,6 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -50,9 +49,12 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
     print(pngBytes);
+    if (bytList.length > 0) {
+      bytList.removeLast();
+    }
+
     bytList.add(pngBytes);
-    print(bytList);
-    print("bbk$username");
+
     Navigator.of(context).pushNamed(WristHandOrthosisB.routeName,
         arguments: {"bytelist": bytList, "username": username});
 
@@ -62,13 +64,10 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    if (bytList.length > 0) {
-      bytList.removeLast();
-    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Elbow Orthosis"),
+        title: Text("Wrist Hand Orthosis"),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),

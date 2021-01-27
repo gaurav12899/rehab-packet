@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:project/main.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
@@ -31,7 +33,6 @@ class _KafoCState extends State<KafoC> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -45,37 +46,130 @@ class _KafoCState extends State<KafoC> {
     return byteData.buffer.asUint8List();
   }
 
+  var doctorInfo;
+  var patientInfo;
   void _printPngBytes(dynamic args) async {
+    this.setState(() {
+      loading = true;
+    });
+    doctorInfo = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .get();
+    patientInfo = await FirebaseFirestore.instance
+        .collection("users")
+        .doc("${FirebaseAuth.instance.currentUser.uid}")
+        .collection("username")
+        .doc("${args["username"]}")
+        .get();
+
     var pngBytes = await _capturePng();
-    // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
+    if (args['bytelist'].length > 2) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
 
-    print(args['bytelist'].length);
+    final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
+    final Uint8List list = bytes.buffer.asUint8List();
+    final logo = PdfImage.file(doc.document, bytes: list);
+
+    doc.addPage(pw.MultiPage(
+        margin: pw.EdgeInsets.all(10),
+        build: (pw.Context context) => [
+              pw.Header(
+                level: 0,
+                child: pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: <pw.Widget>[
+                      pw.Text('KAFO Form', textScaleFactor: 1),
+                      pw.Image(logo, width: 60, height: 60)
+                    ]),
+              ),
+              pw.Center(
+                  child: pw.Column(
+                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                      children: [
+                    pw.Column(children: [
+                      pw.Text("Patient Information",
+                          style: pw.TextStyle(
+                            fontWeight: pw.FontWeight.bold,
+                            fontSize: 35,
+                            decoration: pw.TextDecoration.underline,
+                          )),
+                      pw.Text("PatientName: ${patientInfo['name']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Age: ${patientInfo['age']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Sex: ${patientInfo['gender']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                    ]),
+                    pw.Column(children: [
+                      pw.Text("Doctor Information",
+                          style: pw.TextStyle(
+                            fontWeight: pw.FontWeight.bold,
+                            fontSize: 35,
+                            decoration: pw.TextDecoration.underline,
+                          )),
+                      pw.Text(
+                          "BY:${doctorInfo['firstName']} ${doctorInfo['lastName']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Phone:${doctorInfo['phone']} ",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Address:${doctorInfo['address']} ",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                    ])
+                  ])),
+              pw.Divider()
+            ]));
+
     for (int i = 0; i < args['bytelist'].length; i++) {
       final image = PdfImage.file(
         doc.document,
         bytes: args['bytelist'][i],
       );
-      doc.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Center(
-            child: pw.Image(image),
-          ),
-        ),
-      );
-    }
 
-    this.setState(() {
-      loading = true;
-    });
+      doc.addPage(pw.MultiPage(
+          margin: pw.EdgeInsets.all(10),
+          build: (pw.Context context) => [
+                pw.Header(
+                  level: 0,
+                  child: pw.Row(
+                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                      children: <pw.Widget>[
+                        pw.Text('K Form', textScaleFactor: 1),
+                        pw.Image(logo, width: 60, height: 60)
+                      ]),
+                ),
+                pw.Center(
+                  child: pw.Image(image, height: 700, fit: pw.BoxFit.fill),
+                ),
+                pw.Divider(),
+              ]));
+    }
 
     Directory directory = await getExternalStorageDirectory();
     String docpath = directory.path;
     final file = File('$docpath/${FirebaseAuth.instance.currentUser.uid}.pdf');
-    // print(docpath);
 
-    file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
+    file.writeAsBytesSync(doc.save(), flush: true);
 
     final ref =
         FirebaseStorage.instance.ref().child(args["username"]).child("KFO.pdf");
@@ -96,29 +190,16 @@ class _KafoCState extends State<KafoC> {
         backgroundColor: Colors.green,
         content: Text("Form Submitted!!"),
         duration: Duration(seconds: 3),
-        action: SnackBarAction(
-            label: "Okay",
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MyApp()));
-            }),
       ));
     } on Exception catch (_) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
           content: Text("Something went wrong!!"),
-          action: SnackBarAction(
-              label: "Okay",
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => MyApp()));
-              }),
         ),
       );
     }
-    await Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
+    await Navigator.of(context).pushNamedAndRemoveUntil(NewOrOldPatient.routeName, (route) => false);
   }
 
   @override
@@ -126,20 +207,15 @@ class _KafoCState extends State<KafoC> {
     // final size = MediaQuery.of(context).size;
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print("from c${args["username"]}");
-    print("------------>>>>>>${args["bytelist"]}");
-    if (args['bytelist'].length > 2) {
-      args['bytelist'].removeLast();
-    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test1"),
+        title: Text("KAFO"),
       ),
       body: Container(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * .8,
+            height: MediaQuery.of(context).size.height * .9,
             child: Column(
               children: [
                 Expanded(
@@ -148,22 +224,20 @@ class _KafoCState extends State<KafoC> {
                     child: Zoom(
                       initZoom: 0,
                       centerOnScale: true,
-                      width: 1200,
-                      height: 1200,
-                      backgroundColor: Colors.white,
+                      enableScroll: false,
+                      width: 1000,
+                      height: 1500,
+                      doubleTapZoom: true,
+                      zoomSensibility: 2,
                       child: RepaintBoundary(
                         key: _containerKey,
                         child: Column(
                           children: [
                             Expanded(
                               child: GestureDetector(
-                                // onTapDown: (TapDownDetails details) =>
-                                //     onTapDown(context, details),
                                 child: Stack(
                                     fit: StackFit.expand,
                                     children: <Widget>[
-                                      // Hack to expand stack to fill all the space. There must be a better
-                                      // way to do it.
                                       Image(
                                         image: AssetImage(
                                           "assets/images/form1.png",
@@ -174,74 +248,129 @@ class _KafoCState extends State<KafoC> {
                                       ),
 
                                       Textfield(
-                                          top: 80,
-                                          left: 90,
-                                          height: 90,
-                                          width: 80,
-                                          label: "test"),
+                                        top: 250, //2/5,2.04
+                                        left: 400,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 420,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "b"),
+                                        top: 660,
+                                        left: 400,
+                                        height: 20,
+                                        width: 80,
+                                      ),
                                       Textfield(
-                                          top: 510,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "c"),
+                                        top: 700,
+                                        left: 680,
+                                        height: 20,
+                                        width: 100,
+                                      ),
 
                                       Textfield(
-                                          top: 510,
-                                          left: 600,
-                                          height: 20,
-                                          width: 100,
-                                          label: "d"),
+                                        top: 660,
+                                        left: 500,
+                                        height: 20,
+                                        width: 100,
+                                      ),
 
                                       Textfield(
-                                          top: 610,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "e"),
+                                        top: 700,
+                                        left: 26,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 680,
-                                          left: 470,
-                                          height: 20,
-                                          width: 100,
-                                          label: "f"),
+                                        top: 1410,
+                                        left: 26,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 680,
-                                          left: 680,
-                                          height: 20,
-                                          width: 100,
-                                          label: "g"),
+                                        top: 800,
+                                        left: 400,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 610,
-                                          left: 750,
-                                          height: 20,
-                                          width: 100,
-                                          label: "h"),
+                                        top: 890,
+                                        left: 400,
+                                        height: 20,
+                                        width: 100,
+                                      ),
 
                                       Textfield(
-                                          top: 540,
-                                          left: 820,
-                                          height: 20,
-                                          width: 100,
-                                          label: "i"),
+                                        top: 780,
+                                        left: 620,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 750,
-                                          left: 620,
-                                          height: 20,
-                                          width: 100,
-                                          label: "j"),
+                                        top: 880,
+                                        left: 570,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                       Textfield(
-                                          top: 820,
-                                          left: 560,
-                                          height: 20,
-                                          width: 100,
-                                          label: "j"),
+                                        top: 970,
+                                        left: 520,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+// a
+                                      Textfield(
+                                        top: 1050,
+                                        left: 460,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1210,
+                                        left: 368,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1170,
+                                        left: 185,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1330,
+                                        left: 85,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1410,
+                                        left: 170,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1450,
+                                        left: 550,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1450,
+                                        left: 880,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 1330,
+                                        left: 900,
+                                        height: 20,
+                                        width: 100,
+                                      ),
+                                      Textfield(
+                                        top: 970,
+                                        left: 115,
+                                        height: 20,
+                                        width: 100,
+                                      ),
                                     ]),
                               ),
                             ),
@@ -252,20 +381,29 @@ class _KafoCState extends State<KafoC> {
                   ),
                 ),
                 Container(
-                  width: double.infinity,
-                  color: Colors.blue,
-                  // height: 100,2
-                  child: FlatButton(
+                  padding: EdgeInsets.all(20),
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: ElevatedButton(
                     child: loading
-                        ? CircularProgressIndicator()
-                        : Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                    onPressed: () {
-                      // convertWidgetToImage();
-                      _printPngBytes(args);
-                    },
+                        ? Row(
+                            children: [
+                              Text("Generating Doc",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10)),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              CircularProgressIndicator(),
+                            ],
+                          )
+                        : Text("Submit",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
+                    onPressed: loading
+                        ? null
+                        : () {
+                            _printPngBytes(args);
+                          },
                   ),
                 )
               ],
@@ -282,13 +420,11 @@ class Textfield extends StatelessWidget {
   final double left;
   final double height;
   final double width;
-  final label;
   Textfield({
     @required this.top,
     @required this.left,
     @required this.height,
     @required this.width,
-    @required this.label,
     Key key,
   }) : super(key: key);
 
@@ -303,8 +439,12 @@ class Textfield extends StatelessWidget {
         // color: Colors.white,
         width: 20,
         child: TextField(
-          decoration: InputDecoration(labelText: label),
-          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(isDense: true),
+          style: TextStyle(
+              color: Colors.black,
+              backgroundColor: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

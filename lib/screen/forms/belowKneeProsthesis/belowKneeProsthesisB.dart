@@ -23,8 +23,8 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
   bool suction = false;
   bool variablePressure = false;
 
-  bool _30mm = false;
-  bool _34mm = false;
+  bool thirtyMm = false;
+  bool thirtyFourMm = false;
   bool stainlessSteel = false;
   bool titanium = false;
   bool aluminium = false;
@@ -55,6 +55,10 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(BelowKneeProsthesisC.routeName, arguments: {
       "bytelist": args["bytelist"],
@@ -68,13 +72,25 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
-    }
+    print(args['bytelist'].length);
+
+    // if (args['bytelist'].length > 1) {
+    //   args['bytelist'].removeLast();
+    // }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee Prosthesis"),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //     if (args['bytelist'].length > 1) {
+        //       args['bytelist'].removeLast();
+        //     }
+        //   },
+        // ),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
@@ -236,10 +252,10 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                             Text("30mm"),
                             Checkbox(
                                 activeColor: Colors.blue,
-                                value: _30mm,
+                                value: thirtyMm,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    _30mm = value;
+                                    thirtyMm = value;
                                   });
                                 }),
                           ],
@@ -249,10 +265,10 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                             Text("34mm"),
                             Checkbox(
                                 activeColor: Colors.blue,
-                                value: _34mm,
+                                value: thirtyFourMm,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    _34mm = value;
+                                    thirtyFourMm = value;
                                   });
                                 }),
                           ],

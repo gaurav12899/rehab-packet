@@ -4,12 +4,47 @@ import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import './app-drawer.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class NewOrOldPatient extends StatelessWidget {
+class NewOrOldPatient extends StatefulWidget {
   static const routeName = "/new-or-old";
+
+  @override
+  _NewOrOldPatientState createState() => _NewOrOldPatientState();
+}
+
+class _NewOrOldPatientState extends State<NewOrOldPatient> {
+  @override
+  void initState() {
+    super.initState();
+    final ref = FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid.toString());
+    ref.snapshots().listen((event) {
+      if (!event.data().containsKey('address')) {
+        ref.set(
+          {
+            "email": "",
+            "address": 'add',
+            'dob': '',
+            "firstName": '',
+            'gender': 'male',
+            "lastName": '',
+            'phone': '',
+            "profileUrl": '',
+            'qualification': '',
+            'state': '',
+          },
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: GestureDetector(
         onTap: () {
@@ -35,13 +70,16 @@ class NewOrOldPatient extends StatelessWidget {
                     width: double.infinity,
                     height: size.height * .3,
                   ),
-                  Text(
-                    "Without the right data, we are just \n another person with an opinion.",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                      color: HexColor("000014"),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    // color: Colors.blue.shade100,
+                    child: Text(
+                      "Without the right data, we are just \n another person with an opinion.",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        color: HexColor("000014"),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -50,39 +88,48 @@ class NewOrOldPatient extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                      width: size.width * .8,
-                      color: HexColor("60656F"),
-                      child: FlatButton(
-                          child: Text(
-                            "New Patient",
-                            style: GoogleFonts.lato(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              DemographicForm.routeName,
-                            );
-                          })),
+                  SizedBox(
+                    width: 250,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 40),
+                          primary: Colors.blueGrey,
+                        ),
+                        child: Text(
+                          "New Patient",
+                          style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            DemographicForm.routeName,
+                          );
+                        }),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                      width: size.width * .8,
-                      color: HexColor("279AF1"),
-                      child: FlatButton(
-                          child: Text(
-                            "Existing Patient",
-                            style: GoogleFonts.lato(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(PdfList.routeName);
-                          })),
+                  SizedBox(
+                    width: 250,
+                    height: 50,
+                    child: ElevatedButton(
+                        child: Text(
+                          "Existing Patient",
+                          style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PdfList()));
+                        }),
+                  ),
                 ],
               ),
             ],

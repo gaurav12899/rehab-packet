@@ -29,7 +29,6 @@ class _SpinalOrthosisBState extends State<SpinalOrthosisB> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -41,6 +40,9 @@ class _SpinalOrthosisBState extends State<SpinalOrthosisB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(SpinalOrthosisC.routeName, arguments: {
       "bytelist": args["bytelist"],
@@ -54,9 +56,7 @@ class _SpinalOrthosisBState extends State<SpinalOrthosisB> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
-    }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(

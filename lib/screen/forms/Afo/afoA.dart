@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/screen/forms/Afo/afoB.dart';
 import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
-// import 'package:image_pixels/image_pixels.dart';
 import 'dart:ui' as ui;
-import 'package:pdf/widgets.dart' as pw;
 
 class AfoA extends StatefulWidget {
   static const routeName = '/AfoA';
@@ -31,7 +29,8 @@ class _AfoAState extends State<AfoA> {
   bool camberaxis = false;
   bool hookloop = false;
   bool strapping = false;
-  final doc = pw.Document();
+
+  // final doc = pw.Document();
 
   bool loading = false;
   GlobalKey _containerKey = GlobalKey();
@@ -41,7 +40,6 @@ class _AfoAState extends State<AfoA> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -53,15 +51,12 @@ class _AfoAState extends State<AfoA> {
 
   void _printPngBytes(String username) async {
     var pngBytes = await _capturePng();
-    // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
+    if (bytList.length > 1) {
+      bytList.removeLast();
+    }
     bytList.add(pngBytes);
-    print(bytList);
-    print("bbk$username");
     Navigator.of(context).pushNamed(AfoB.routeName,
         arguments: {"bytelist": bytList, "username": username});
-
-    // print(bs64);
   }
 
   @override
@@ -71,7 +66,6 @@ class _AfoAState extends State<AfoA> {
       bytList.removeLast();
     }
 
-    print("afoA$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("AFO"),
@@ -98,11 +92,13 @@ class _AfoAState extends State<AfoA> {
                   padding: EdgeInsets.symmetric(
                     horizontal: 10,
                   ),
-                  // color: Colors.blue.shade50,
-                  // height: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -112,9 +108,15 @@ class _AfoAState extends State<AfoA> {
                           ),
                           Expanded(
                               child: TextField(
+                            decoration: InputDecoration(
+                                isDense: true, border: OutlineInputBorder()),
+                            maxLines: 2,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,7 +125,15 @@ class _AfoAState extends State<AfoA> {
                             "Prescription:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Expanded(child: TextField())
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                isDense: true, border: OutlineInputBorder()),
+                            maxLines: 2,
+                          ))
                         ],
                       ),
                       Row(
@@ -230,8 +240,8 @@ class _AfoAState extends State<AfoA> {
                                 ),
                                 Expanded(
                                     child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
+                                  decoration: InputDecoration(
+                                      hintText: "others", isDense: true),
                                 ))
                               ],
                             ),
@@ -293,8 +303,8 @@ class _AfoAState extends State<AfoA> {
                                 ),
                                 Expanded(
                                     child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
+                                  decoration: InputDecoration(
+                                      hintText: "others", isDense: true),
                                 ))
                               ],
                             ),
@@ -388,8 +398,8 @@ class _AfoAState extends State<AfoA> {
                                 ),
                                 Expanded(
                                     child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
+                                  decoration: InputDecoration(
+                                      hintText: "others", isDense: true),
                                 ))
                               ],
                             ),
@@ -438,13 +448,16 @@ class _AfoAState extends State<AfoA> {
                                 ),
                                 Expanded(
                                     child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
+                                  decoration: InputDecoration(
+                                      hintText: "others", isDense: true),
                                 ))
                               ],
                             ),
                           )
                         ],
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Container(
                         height: 150,
@@ -456,9 +469,18 @@ class _AfoAState extends State<AfoA> {
                               "Other Modification:",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Expanded(child: TextField()),
-                            Expanded(child: TextField()),
-                            Expanded(child: TextField()),
+                            Expanded(
+                                child: TextField(
+                              decoration: InputDecoration(isDense: true),
+                            )),
+                            Expanded(
+                                child: TextField(
+                              decoration: InputDecoration(isDense: true),
+                            )),
+                            Expanded(
+                                child: TextField(
+                              decoration: InputDecoration(isDense: true),
+                            )),
                             SizedBox(
                               height: 20,
                             )
@@ -469,21 +491,6 @@ class _AfoAState extends State<AfoA> {
                   ),
                 ),
               ),
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              //   width: 200,
-              //   color: Colors.blue,
-              //   child: FlatButton(
-              //     onPressed: () {
-              //       _printPngBytes();
-              //       // Navigator.of(context).pushNamed(AfoB.routeName);
-              //     },
-              //     child: Text(
-              //       "Next",
-              //       style: TextStyle(color: Colors.white, fontSize: 20),
-              //     ),
-              //   ),
-              // )
             ],
           ),
         ),

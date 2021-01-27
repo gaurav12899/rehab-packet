@@ -45,6 +45,9 @@ class _ElbowOrthosisBState extends State<ElbowOrthosisB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(ElbowOrthosisC.routeName, arguments: {
       "bytelist": args["bytelist"],
@@ -58,10 +61,7 @@ class _ElbowOrthosisBState extends State<ElbowOrthosisB> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
-    }
-    // args.values.toList()
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Elbow Orthosis"),
@@ -191,7 +191,7 @@ class _MaterialState extends State<Material> {
                 });
               }),
           RadioListTile(
-              title: Text("Low Temp ThermoPlastic"),
+              title: Text("High Temp ThermoPlastic"),
               activeColor: Colors.green,
               value: 1,
               groupValue: widget._material,

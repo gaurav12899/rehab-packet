@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
-import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisD.dart';
 import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisF.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 
@@ -24,7 +23,6 @@ class _SpinalOrthosisEState extends State<SpinalOrthosisE> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -36,6 +34,9 @@ class _SpinalOrthosisEState extends State<SpinalOrthosisE> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+    if (args['bytelist'].length > 4) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(SpinalOrthosisF.routeName, arguments: {
       "bytelist": args["bytelist"],
@@ -49,13 +50,11 @@ class _SpinalOrthosisEState extends State<SpinalOrthosisE> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 4) {
-      args['bytelist'].removeLast();
-    }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
-        title: Text("Below Knee Prosthesis"),
+        title: Text("Spinal Orthosis"),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
@@ -65,122 +64,82 @@ class _SpinalOrthosisEState extends State<SpinalOrthosisE> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * .8,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: Zoom(
-                        initZoom: 0,
-                        centerOnScale: true,
-                        width: 1200,
-                        height: 1200,
-                        backgroundColor: Colors.white,
-                        child: RepaintBoundary(
-                          key: _containerKey,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  // onTapDown: (TapDownDetails details) =>
-                                  //     onTapDown(context, details),
-                                  child: Stack(
-                                      fit: StackFit.expand,
-                                      children: <Widget>[
-                                        // Hack to expand stack to fill all the space. There must be a better
-                                        // way to do it.
-                                        Image(
-                                          image: AssetImage(
-                                            "assets/images/spinalOrthosisC.png",
-                                          ),
-                                          fit: BoxFit.fill,
-                                        ),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  child: Zoom(
+                    initZoom: 0,
+                    // zoomSensibility: 2.0,
+                    centerOnScale: true,
+                    enableScroll: true,
+                    width: 1000,
+                    height: 1500,
+                    doubleTapZoom: true,
+                    zoomSensibility: 2,
+                    backgroundColor: Colors.orange,
+                    child: RepaintBoundary(
+                      key: _containerKey,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              // onTapDown: (TapDownDetails details) =>
+                              //     onTapDown(context, details),
+                              child: Stack(
+                                  fit: StackFit.expand,
+                                  children: <Widget>[
+                                    // Hack to expand stack to fill all the space. There must be a better
+                                    // way to do it.
+                                    Image(
+                                      image: AssetImage(
+                                        "assets/images/spinalOrthosisC.png",
+                                      ),
+                                      fit: BoxFit.fill,
+                                    ),
 
-                                        Textfield(
-                                            top: 80,
-                                            left: 90,
-                                            height: 90,
-                                            width: 80,
-                                            label: "test"),
-                                        Textfield(
-                                            top: 420,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "b"),
-                                        Textfield(
-                                            top: 510,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "c"),
-
-                                        Textfield(
-                                            top: 510,
-                                            left: 600,
-                                            height: 20,
-                                            width: 100,
-                                            label: "d"),
-
-                                        Textfield(
-                                            top: 610,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "e"),
-                                        Textfield(
-                                            top: 680,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "f"),
-                                        Textfield(
-                                            top: 680,
-                                            left: 680,
-                                            height: 20,
-                                            width: 100,
-                                            label: "g"),
-                                        Textfield(
-                                            top: 610,
-                                            left: 750,
-                                            height: 20,
-                                            width: 100,
-                                            label: "h"),
-
-                                        Textfield(
-                                            top: 540,
-                                            left: 820,
-                                            height: 20,
-                                            width: 100,
-                                            label: "i"),
-                                        Textfield(
-                                            top: 750,
-                                            left: 620,
-                                            height: 20,
-                                            width: 100,
-                                            label: "j"),
-                                        Textfield(
-                                            top: 820,
-                                            left: 560,
-                                            height: 20,
-                                            width: 100,
-                                            label: "j"),
-                                      ]),
-                                ),
-                              ),
-                            ],
+                                    Textfield(
+                                      top: 360,
+                                      left: 60,
+                                      height: 120,
+                                      width: 120,
+                                    ),
+                                    Textfield(
+                                      top: 800,
+                                      left: 200,
+                                      height: 100,
+                                      width: 120,
+                                    ),
+                                    Textfield(
+                                      top: 1150,
+                                      left: 200,
+                                      height: 100,
+                                      width: 120,
+                                    ),
+                                    Textfield(
+                                      top: 880,
+                                      left: 830,
+                                      height: 100,
+                                      width: 120,
+                                    ),
+                                    Textfield(
+                                      top: 1150,
+                                      left: 830,
+                                      height: 100,
+                                      width: 120,
+                                    ),
+                                  ]),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -193,13 +152,11 @@ class Textfield extends StatelessWidget {
   final double left;
   final double height;
   final double width;
-  final label;
   Textfield({
     @required this.top,
     @required this.left,
     @required this.height,
     @required this.width,
-    @required this.label,
     Key key,
   }) : super(key: key);
 
@@ -212,10 +169,14 @@ class Textfield extends StatelessWidget {
       width: width,
       child: Container(
         // color: Colors.white,
-        width: 20,
+        width: 30,
         child: TextField(
-          decoration: InputDecoration(labelText: label),
-          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(isDense: true),
+          style: TextStyle(
+              color: Colors.black,
+              backgroundColor: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

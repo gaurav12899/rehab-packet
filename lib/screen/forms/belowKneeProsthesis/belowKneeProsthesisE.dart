@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:project/main.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class BelowKneeProsthesisE extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisE';
@@ -41,42 +43,137 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
     var byteData = await image.toByteData(
       format: ui.ImageByteFormat.png,
     );
+
     return byteData.buffer.asUint8List();
   }
 
+  var doctorInfo;
+  var patientInfo;
   void _printPngBytes(dynamic args) async {
+    this.setState(() {
+      loading = true;
+    });
+    doctorInfo = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .get();
+    patientInfo = await FirebaseFirestore.instance
+        .collection("users")
+        .doc("${FirebaseAuth.instance.currentUser.uid}")
+        .collection("username")
+        .doc("${args["username"]}")
+        .get();
+
     var pngBytes = await _capturePng();
     print(pngBytes);
+
+    if (args['bytelist'].length > 4) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
 
     print(args['bytelist'].length);
+    final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
+    final Uint8List list = bytes.buffer.asUint8List();
+    final logo = PdfImage.file(doc.document, bytes: list);
+
+    doc.addPage(pw.MultiPage(
+        margin: pw.EdgeInsets.all(10),
+        build: (pw.Context context) => [
+              pw.Header(
+                level: 0,
+                child: pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: <pw.Widget>[
+                      pw.Text('Below Kneee Prosthesis', textScaleFactor: 1),
+                      pw.Image(logo, width: 60, height: 60)
+                    ]),
+              ),
+              pw.Center(
+                  child: pw.Column(
+                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                      children: [
+                    pw.Column(children: [
+                      pw.Text("Patient Information",
+                          style: pw.TextStyle(
+                            fontWeight: pw.FontWeight.bold,
+                            fontSize: 35,
+                            decoration: pw.TextDecoration.underline,
+                          )),
+                      pw.Text("PatientName: ${patientInfo['name']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Age: ${patientInfo['age']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Sex: ${patientInfo['gender']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                    ]),
+                    pw.Column(children: [
+                      pw.Text("Doctor Information",
+                          style: pw.TextStyle(
+                            fontWeight: pw.FontWeight.bold,
+                            fontSize: 35,
+                            decoration: pw.TextDecoration.underline,
+                          )),
+                      pw.Text(
+                          "BY:${doctorInfo['firstName']} ${doctorInfo['lastName']}",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Phone:${doctorInfo['phone']} ",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                      pw.Text("Address:${doctorInfo['address']} ",
+                          style: pw.TextStyle(
+                            fontStyle: pw.FontStyle.italic,
+                            fontSize: 20,
+                          )),
+                    ])
+                  ])),
+              pw.Divider()
+            ]));
+
     for (int i = 0; i < args['bytelist'].length; i++) {
       final image = PdfImage.file(
         doc.document,
         bytes: args['bytelist'][i],
       );
-      doc.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(children: [
-            // pw.Image(pw.Image("assets/images/Rehab-without-bg.png")),
-            pw.Image(
-              image,
-            )
-          ]),
-        ),
-      );
-    }
 
-    this.setState(() {
-      loading = true;
-    });
+      doc.addPage(pw.MultiPage(
+          margin: pw.EdgeInsets.all(10),
+          build: (pw.Context context) => [
+                pw.Header(
+                  level: 0,
+                  child: pw.Row(
+                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                      children: <pw.Widget>[
+                        pw.Text('AFO Form', textScaleFactor: 1),
+                        pw.Image(logo, width: 60, height: 60)
+                      ]),
+                ),
+                pw.Center(
+                  child: pw.Image(image, height: 700, fit: pw.BoxFit.fill),
+                ),
+                pw.Divider(),
+              ]));
+    }
 
     Directory directory = await getExternalStorageDirectory();
     String docpath = directory.path;
     final file = File('$docpath/${FirebaseAuth.instance.currentUser.uid}.pdf');
-    // print(docpath);
 
-    file.writeAsBytesSync(doc.save(), mode: FileMode.append, flush: false);
+    file.writeAsBytesSync(doc.save(), flush: true);
 
     final ref = FirebaseStorage.instance
         .ref()
@@ -99,29 +196,17 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
         backgroundColor: Colors.green,
         content: Text("Form Submitted!!"),
         duration: Duration(seconds: 3),
-        action: SnackBarAction(
-            label: "Okay",
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MyApp()));
-            }),
       ));
     } on Exception catch (_) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
           content: Text("Something went wrong!!"),
-          action: SnackBarAction(
-              label: "Okay",
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => MyApp()));
-              }),
         ),
       );
     }
     await Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
+        .pushNamedAndRemoveUntil(NewOrOldPatient.routeName, (route) => false);
   }
 
   @override
@@ -129,15 +214,11 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
     // final size = MediaQuery.of(context).size;
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print("from c${args["username"]}");
-    print("------------>>>>>>${args["bytelist"]}");
-    if (args['bytelist'].length > 4) {
-      args['bytelist'].removeLast();
-    }
+    print(args['bytelist'].length);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test1"),
+        title: Text("Below Knee prosthesis"),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -212,20 +293,29 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
                   ),
                 ),
                 Container(
-                  width: double.infinity,
-                  color: Colors.blue,
-                  // height: 100,2
-                  child: FlatButton(
+                  padding: EdgeInsets.all(20),
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: ElevatedButton(
                     child: loading
-                        ? CircularProgressIndicator()
-                        : Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                    onPressed: () {
-                      // convertWidgetToImage();
-                      _printPngBytes(args);
-                    },
+                        ? Row(
+                            children: [
+                              Text("Generating Doc",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10)),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              CircularProgressIndicator(),
+                            ],
+                          )
+                        : Text("Submit",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
+                    onPressed: loading
+                        ? null
+                        : () {
+                            _printPngBytes(args);
+                          },
                   ),
                 )
               ],

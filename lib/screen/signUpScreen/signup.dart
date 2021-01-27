@@ -52,7 +52,7 @@ class _SignupState extends State<Signup> {
           credential['email'],
           credential['password'],
         ).then((value) {
-          Scaffold.of(context).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: (value == 'signUpSuccessful')
                   ? Text('Varification link sent to your Email')
@@ -271,9 +271,10 @@ class _SignupState extends State<Signup> {
                                   child: CircularProgressIndicator(),
                                 )
                               : Container(
-                                  color: Colors.blue,
                                   width: size.width * .6,
-                                  child: FlatButton(
+                                  height: 60,
+                                  padding: EdgeInsets.all(10),
+                                  child: ElevatedButton(
                                     onPressed: () {
                                       _tryToSignup(context);
                                     },
@@ -281,7 +282,7 @@ class _SignupState extends State<Signup> {
                                       "Signup",
                                       style: GoogleFonts.lato(
                                           color: Colors.white,
-                                          fontSize: 15,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -299,7 +300,8 @@ class _SignupState extends State<Signup> {
               ),
             if (_keyboardIsVisible()) Divider(color: Colors.black),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(Login.routeName),
+              onTap: () =>
+                  Navigator.of(context).popAndPushNamed(Login.routeName),
               child: RichText(
                 text: TextSpan(
                     text: "Already have a account? ",
@@ -313,7 +315,7 @@ class _SignupState extends State<Signup> {
                     ]),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
           ],
         ),
       ),

@@ -33,7 +33,6 @@ class _AfoBState extends State<AfoB> {
         _containerKey.currentContext.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
       await Future.delayed(const Duration(milliseconds: 20));
       return _capturePng();
     }
@@ -45,22 +44,21 @@ class _AfoBState extends State<AfoB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(AfoC.routeName, arguments: {
       "bytelist": args["bytelist"],
       "username": args["username"]
     });
-
-    // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
-    }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
@@ -95,7 +93,7 @@ class _AfoBState extends State<AfoB> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Ankle Position:",
+                          "Ankle\nPosition:",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Column(
@@ -108,7 +106,7 @@ class _AfoBState extends State<AfoB> {
                                     dorsi = value;
                                   });
                                 }),
-                            Text("Dorsi-flexion")
+                            Text("Dorsi\nflexion")
                           ],
                         ),
                         Column(
@@ -121,7 +119,7 @@ class _AfoBState extends State<AfoB> {
                                     planter = value;
                                   });
                                 }),
-                            Text("Planter-flexion")
+                            Text("Planter\nflexion")
                           ],
                         ),
                         Expanded(
@@ -132,7 +130,10 @@ class _AfoBState extends State<AfoB> {
                               ),
                               Expanded(
                                   child: TextField(
-                                decoration: InputDecoration(hintText: "others"),
+                                decoration: InputDecoration(
+                                  hintText: "others",
+                                  isDense: true,
+                                ),
                               ))
                             ],
                           ),
@@ -144,7 +145,7 @@ class _AfoBState extends State<AfoB> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Heel Position:",
+                          "Heel\nPosition:",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Column(
@@ -247,10 +248,26 @@ class _AfoBState extends State<AfoB> {
                             "Other Information:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Expanded(child: TextField()),
-                          Expanded(child: TextField()),
-                          Expanded(child: TextField()),
-                          Expanded(child: TextField()),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "others", isDense: true),
+                          )),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "others", isDense: true),
+                          )),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "others", isDense: true),
+                          )),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "others", isDense: true),
+                          )),
                         ],
                       ),
                     ),

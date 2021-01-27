@@ -1,8 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/controllers/authentication.dart';
-import 'package:project/screen/aboutUs/aboutus.dart';
+import 'package:project/screen/aboutUs/aboutUs.dart';
+import 'package:project/screen/contactUs/contactUs.dart';
+import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/profile/profile.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import '../loginScreen/login.dart';
@@ -35,86 +36,102 @@ class AppDrawer extends StatelessWidget {
                 children: [
                   ListTile(
                       leading: Icon(
-                        Icons.person,
+                        Icons.home,
                         color: Colors.white,
                       ),
                       title: Text(
-                        'Profile',
+                        'Home',
                         style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed(Profile.routeName);
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            NewOrOldPatient.routeName, (route) => false);
                       }),
 
                   ListTile(
-                      leading: Icon(
-                        Icons.list,
+                    leading: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Profile',
+                      style: GoogleFonts.lato(
                         color: Colors.white,
+                        fontSize: 15,
                       ),
-                      title: Text(
-                        'My Forms',
-                        style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => Profile()));
+                    },
+                  ),
+
+                  ListTile(
+                    leading: Icon(
+                      Icons.list,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'My Patients',
+                      style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontSize: 15,
                       ),
-                      onTap: () {
-                        print(FirebaseAuth.instance.currentUser.uid.toString());
-                        Navigator.of(context).pushNamed(PdfList.routeName);
-                      }),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => PdfList()));
+                    },
+                  ),
                   // Divider(color: Colors.grey,),
                   ListTile(
-                      leading: Icon(
-                        Icons.info_sharp,
-                        color: Colors.white,
-                      ),
-                      title: Text(
-                        'About Us',
-                        style:
-                            GoogleFonts.lato(color: Colors.white, fontSize: 15),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(AboutUs.routeName);
-                        // Navigator.of(context).pushReplacement(CustomRoute(builder:(context)=>OrderScreen()));
-                      }),
+                    leading: Icon(
+                      Icons.info_sharp,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'About Us',
+                      style:
+                          GoogleFonts.lato(color: Colors.white, fontSize: 15),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          new MaterialPageRoute(builder: (context) {
+                        return AboutUs();
+                      }));
+                    },
+                  ),
                   // Divider(color: Colors.grey,),
 
                   ListTile(
-                      leading: Icon(
-                        Icons.contact_support_rounded,
+                    leading: Icon(
+                      Icons.contact_support_rounded,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Contact Us',
+                      style: GoogleFonts.lato(
                         color: Colors.white,
+                        fontSize: 15,
                       ),
-                      title: Text(
-                        'Contact Us',
-                        style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushReplacementNamed('/');
-                      }),
+                    ),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => ContactUs()));
+                    },
+                  ),
 
-                  ListTile(
-                      leading: Icon(
-                        Icons.feedback,
-                        color: Colors.white,
-                      ),
-                      title: Text(
-                        'Feedback',
-                        style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushReplacementNamed('/');
-                      }),
                   Divider(
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                   ListTile(
                       leading: Icon(
@@ -142,6 +159,7 @@ class AppDrawer extends StatelessWidget {
           ),
         ],
       ),
+      elevation: 10,
     );
   }
 }

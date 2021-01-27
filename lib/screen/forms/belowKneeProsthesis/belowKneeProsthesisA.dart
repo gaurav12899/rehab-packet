@@ -25,6 +25,7 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
   bool softInsertWithBuildup = false;
   bool siliconSocketWithCarbonFrame = false;
   bool socketWithPadelineLiner = false;
+  bool trialsocket1 = false;
 
   final doc = pw.Document();
 
@@ -49,10 +50,11 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
   void _printPngBytes(String username) async {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
+    if (bytList.length > 0) {
+      bytList.removeLast();
+    }
     bytList.add(pngBytes);
-    print(bytList);
-    print("bbk$username");
+
     Navigator.of(context).pushNamed(BelowKneeProsthesisB.routeName,
         arguments: {"bytelist": bytList, "username": username});
 
@@ -62,11 +64,11 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    if (bytList.length > 0) {
-      bytList.removeLast();
-    }
+    // if (bytList.length > 0) {
+    //   bytList.removeLast();
+    // }
 
-    print("afoA$username");
+    print(bytList.length);
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee Prosthesis"),
@@ -269,10 +271,10 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
                               Text("Trial Socket"),
                               Checkbox(
                                   activeColor: Colors.blue,
-                                  value: trialsocket,
+                                  value: trialsocket1,
                                   onChanged: (bool value) {
                                     setState(() {
-                                      trialsocket = value;
+                                      trialsocket1 = value;
                                     });
                                   }),
                             ],

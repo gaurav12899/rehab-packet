@@ -4,7 +4,7 @@ import 'package:share/share.dart';
 class SharePdf extends StatefulWidget {
   static const routeName = 'sharePdf';
   final url;
-  SharePdf(@required this.url);
+  SharePdf(this.url);
   @override
   _SharePdfState createState() => _SharePdfState();
 }
@@ -55,7 +55,7 @@ class _SharePdfState extends State<SharePdf> {
             const Padding(padding: EdgeInsets.only(top: 12.0)),
             Builder(
               builder: (BuildContext context) {
-                return RaisedButton(
+                return ElevatedButton(
                   child: const Text('Share'),
                   onPressed: text.isEmpty && imagePaths.isEmpty
                       ? null
@@ -66,7 +66,7 @@ class _SharePdfState extends State<SharePdf> {
             const Padding(padding: EdgeInsets.only(top: 12.0)),
             Builder(
               builder: (BuildContext context) {
-                return RaisedButton(
+                return ElevatedButton(
                   child: const Text('Share'),
                   onPressed: () => _onShareWithEmptyOrigin(context),
                 );

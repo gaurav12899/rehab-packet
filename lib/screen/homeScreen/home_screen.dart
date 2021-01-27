@@ -7,10 +7,34 @@ import 'package:project/screen/forms/orthotic.dart';
 import 'package:project/screen/forms/prosthetic.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/homescreen';
   final String uid;
   HomeScreen({this.uid});
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+Image myImage1;
+Image myImage2;
+Image myImage3;
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    myImage1 = Image.asset("assets/images/prosthetic.jpg");
+    myImage2 = Image.asset("assets/images/orthetic.jpg");
+    myImage3 = Image.asset("assets/images/skeleton.jpg");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(myImage1.image, context);
+    precacheImage(myImage2.image, context);
+    precacheImage(myImage3.image, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,93 +47,14 @@ class HomeScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).popAndPushNamed(NewOrOldPatient.routeName);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                NewOrOldPatient.routeName, (route) => false);
           },
         ),
         title: Text("Form Type"),
       ),
-
-      // drawer: AppDrawer(),
       body: ListView(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // InkWell(
-          //   child: Container(
-          //     height: MediaQuery.of(context).size.height * .35,
-          //     width: double.infinity,
-          //     child: Card(
-          //       shape: RoundedRectangleBorder(
-          //           borderRadius: BorderRadius.circular(5)),
-          //       color: Colors.black,
-          //       elevation: 10,
-          //       child: Stack(
-          //         children: [
-          //           Container(
-          //             decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(5),
-          //               image: DecorationImage(
-          //                   fit: BoxFit.cover,
-          //                   colorFilter: ColorFilter.mode(
-          //                       Colors.black.withOpacity(.52),
-          //                       BlendMode.dstATop),
-          //                   image: AssetImage(
-          //                     "assets/images/form.jpg",
-          //                   )),
-          //             ),
-          //           ),
-          //           Container(
-          //             // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          //             child: Column(
-          //               children: [
-          //                 Container(
-          //                   margin: EdgeInsets.symmetric(
-          //                       horizontal: 20, vertical: 5),
-          //                   child: Text(
-          //                     "Demographic Data",
-          //                     style:
-          //                         TextStyle(fontSize: 55, color: Colors.white),
-          //                   ),
-          //                 ),
-          //                 Container(
-          //                   color: Colors.black26,
-          //                   margin: EdgeInsets.symmetric(horizontal: 10),
-          //                   child: Text(
-          //                     "Knee pain can have causes that aren't due to underlying disease. Examples include heavy physical activity, lack of use, injuries",
-          //                     style: TextStyle(
-          //                       color: Colors.white,
-          //                       fontSize: 15,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //           Align(
-          //             alignment: Alignment.bottomRight,
-          //             child: Container(
-          //               height: size.height * .05,
-          //               width: size.width * .4,
-          //               alignment: Alignment.bottomRight,
-          //               margin: EdgeInsets.all(10),
-          //               color: Colors.blue,
-          //               child: FlatButton(
-          //                 onPressed: () {
-          //                   Navigator.of(context)
-          //                       .pushNamed(DemographicForm.routeName);
-          //                 },
-          //                 child: Text(
-          //                   "Select Form",
-          //                   style: TextStyle(color: Colors.white, fontSize: 20),
-          //                 ),
-          //               ),
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
           InkWell(
             child: Container(
               height: MediaQuery.of(context).size.height * .3,
@@ -129,9 +74,7 @@ class HomeScreen extends StatelessWidget {
                             colorFilter: ColorFilter.mode(
                                 Colors.black.withOpacity(.52),
                                 BlendMode.dstATop),
-                            image: AssetImage(
-                              "assets/images/prosthetic.jpg",
-                            )),
+                            image: myImage1.image),
                       ),
                     ),
                     Container(
@@ -192,8 +135,7 @@ class HomeScreen extends StatelessWidget {
                                           content: Text(
                                               "You need to first complete your demographic form"),
                                           actions: [
-                                            RaisedButton(
-                                              color: Colors.blue,
+                                            ElevatedButton(
                                               child: Text("Okay"),
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),
@@ -235,9 +177,7 @@ class HomeScreen extends StatelessWidget {
                             colorFilter: ColorFilter.mode(
                                 Colors.black.withOpacity(.52),
                                 BlendMode.dstATop),
-                            image: AssetImage(
-                              "assets/images/orthetic.jpg",
-                            )),
+                            image: myImage2.image),
                       ),
                     ),
                     Container(
@@ -277,7 +217,7 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         margin: EdgeInsets.all(10),
                         color: Colors.blue,
-                        child: FlatButton(
+                        child: TextButton(
                           onPressed: () async {
                             await FirebaseFirestore.instance
                                 .collection('users')
@@ -298,8 +238,7 @@ class HomeScreen extends StatelessWidget {
                                           content: Text(
                                               "You need to first complete your demographic form"),
                                           actions: [
-                                            RaisedButton(
-                                              color: Colors.blue,
+                                            TextButton(
                                               child: Text("Okay"),
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),
@@ -341,9 +280,7 @@ class HomeScreen extends StatelessWidget {
                             colorFilter: ColorFilter.mode(
                                 Colors.black.withOpacity(.52),
                                 BlendMode.dstATop),
-                            image: AssetImage(
-                              "assets/images/skeleton.jpg",
-                            )),
+                            image: myImage3.image),
                       ),
                     ),
                     Container(
@@ -372,7 +309,7 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         margin: EdgeInsets.all(10),
                         color: Colors.blue,
-                        child: FlatButton(
+                        child: TextButton(
                           onPressed: () async {
                             await FirebaseFirestore.instance
                                 .collection('users')
@@ -393,8 +330,8 @@ class HomeScreen extends StatelessWidget {
                                           content: Text(
                                               "You need to first complete your demographic form"),
                                           actions: [
-                                            RaisedButton(
-                                              color: Colors.blue,
+                                            ElevatedButton(
+                                              // style: ButtonStyle(backgroundColor: Color.blue),
                                               child: Text("Okay"),
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),

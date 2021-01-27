@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
-import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisD.dart';
 import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisD.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 
@@ -56,7 +55,7 @@ class _SpinalOrthosisCState extends State<SpinalOrthosisC> {
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
-        title: Text("Below Knee Prosthesis"),
+        title: Text("Spinal Prosthesis"),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
@@ -69,18 +68,20 @@ class _SpinalOrthosisCState extends State<SpinalOrthosisC> {
         child: Container(
           child: SingleChildScrollView(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * .8,
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(10),
                       child: Zoom(
                         initZoom: 0,
                         centerOnScale: true,
-                        width: 1200,
-                        height: 1200,
-                        backgroundColor: Colors.white,
+                        enableScroll: false,
+                        width: 1000,
+                        height: 1500,
+                        doubleTapZoom: true,
+                        zoomSensibility: 2,
+                        backgroundColor: Colors.orange,
                         onPositionUpdate: (Offset position) {
                           print(position);
                         },
@@ -108,74 +109,157 @@ class _SpinalOrthosisCState extends State<SpinalOrthosisC> {
                                         ),
 
                                         Textfield(
-                                            top: 80,
-                                            left: 90,
-                                            height: 90,
-                                            width: 80,
-                                            label: "test"),
+                                          top: 480, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 420,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "b"),
+                                          top: 480, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 510,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "c"),
+                                          top: 610, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 610, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 740, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 740, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 890, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 890, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1020, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1020, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 950, //2/5,2.04
+                                          left: 290,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 880, //2/5,2.04
+                                          left: 630,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 780, //2/5,2.04
+                                          left: 730,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 760, //2/5,2.04
+                                          left: 850,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 580, //2/5,2.04
+                                          left: 800,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 500, //2/5,2.04
+                                          left: 870,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1030, //2/5,2.04
+                                          left: 870,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1120, //2/5,2.04
+                                          left: 700,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1210, //2/5,2.04
+                                          left: 780,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1250, //2/5,2.04
+                                          left: 530,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1350, //2/5,2.04
+                                          left: 870,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1220, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
 
                                         Textfield(
-                                            top: 510,
-                                            left: 600,
-                                            height: 20,
-                                            width: 100,
-                                            label: "d"),
+                                          top: 1220, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
 
                                         Textfield(
-                                            top: 610,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "e"),
+                                          top: 1350, //2/5,2.04
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 680,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "f"),
-                                        Textfield(
-                                            top: 680,
-                                            left: 680,
-                                            height: 20,
-                                            width: 100,
-                                            label: "g"),
-                                        Textfield(
-                                            top: 610,
-                                            left: 750,
-                                            height: 20,
-                                            width: 100,
-                                            label: "h"),
-
-                                        Textfield(
-                                            top: 540,
-                                            left: 820,
-                                            height: 20,
-                                            width: 100,
-                                            label: "i"),
-                                        Textfield(
-                                            top: 750,
-                                            left: 620,
-                                            height: 20,
-                                            width: 100,
-                                            label: "j"),
-                                        Textfield(
-                                            top: 820,
-                                            left: 560,
-                                            height: 20,
-                                            width: 100,
-                                            label: "j"),
+                                          top: 1350, //2/5,2.04
+                                          left: 150,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                       ]),
                                 ),
                               ),
@@ -200,13 +284,11 @@ class Textfield extends StatelessWidget {
   final double left;
   final double height;
   final double width;
-  final label;
   Textfield({
     @required this.top,
     @required this.left,
     @required this.height,
     @required this.width,
-    @required this.label,
     Key key,
   }) : super(key: key);
 
@@ -219,10 +301,14 @@ class Textfield extends StatelessWidget {
       width: width,
       child: Container(
         // color: Colors.white,
-        width: 20,
+        width: 30,
         child: TextField(
-          decoration: InputDecoration(labelText: label),
-          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(isDense: true),
+          style: TextStyle(
+              color: Colors.black,
+              backgroundColor: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

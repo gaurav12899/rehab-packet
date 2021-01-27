@@ -53,11 +53,10 @@ class _KafoAState extends State<KafoA> {
 
   void _printPngBytes(String username) async {
     var pngBytes = await _capturePng();
-    // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
+    if (bytList.length > 0) {
+      bytList.removeLast();
+    }
     bytList.add(pngBytes);
-    print(bytList);
-    print("bbk$username");
     Navigator.of(context).pushNamed(KafoB.routeName,
         arguments: {"bytelist": bytList, "username": username});
 

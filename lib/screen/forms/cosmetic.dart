@@ -13,124 +13,18 @@ class Cosmetic extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(0),
-              ),
-            ),
-            padding: EdgeInsets.only(
-              top: 10,
-            ),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 80,
-
-            child: Card(
-              color: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
-              elevation: 5,
-              child: Text("UPPER LIMB",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-            ),
-          ),
           FormName(
-              name: "Partial Hand", path: AfoA.routeName, username: username),
+              name: "Partial Hand Prosthesis",
+              path: AfoA.routeName,
+              username: username),
           FormName(
-              name: "Below Elbow Prothesis",
+              name: "Partial Foot Prosthesis",
               path: AfoA.routeName,
               username: username),
           FormName(
               name: "Silicon Fingers",
               path: AfoA.routeName,
               username: username),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(0),
-              ),
-            ),
-            padding: EdgeInsets.only(
-              top: 10,
-            ),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 80,
-
-            child: Card(
-              color: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
-              elevation: 5,
-              child: Text("LOWER LIMB",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-            ),
-          ),
-          FormName(
-              name: "Partial Foot Prosthesis",
-              path: AfoA.routeName,
-              username: username),
-          FormName(
-              name: "Silicon Toes", path: AfoA.routeName, username: username),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
-            ),
-            padding: EdgeInsets.only(
-              top: 10,
-            ),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 80,
-
-            child: Card(
-              color: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
-              elevation: 5,
-              child: Text("OTHERS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-            ),
-          ),
-          FormName(
-            name: "Silicon Prosthesis",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Silicon Noes",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Silicon Ear",
-            path: AfoA.routeName,
-            username: username,
-          ),
-          FormName(
-            name: "Facial",
-            path: AfoA.routeName,
-            username: username,
-          ),
         ]),
       ),
     );

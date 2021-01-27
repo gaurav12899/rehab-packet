@@ -39,7 +39,12 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+
+    if (args['bytelist'].length > 3) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
+
     Navigator.of(context).pushNamed(BelowKneeProsthesisE.routeName, arguments: {
       "bytelist": args["bytelist"],
       "username": args["username"]
@@ -52,13 +57,24 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 3) {
-      args['bytelist'].removeLast();
-    }
+    print(args['bytelist'].length);
+    // if (args['bytelist'].length > 3) {
+    //   args['bytelist'].removeLast();
+    // }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee Prosthesis"),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //     if (args['bytelist'].length > 3) {
+        //       args['bytelist'].removeLast();
+        //     }
+        //   },
+        // ),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
@@ -80,8 +96,11 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
                       child: Zoom(
                         initZoom: 0,
                         centerOnScale: true,
-                        width: 1200,
-                        height: 1200,
+                        enableScroll: false,
+                        width: 1000,
+                        height: 1500,
+                        doubleTapZoom: true,
+                        zoomSensibility: 2,
                         backgroundColor: Colors.white,
                         child: RepaintBoundary(
                           key: _containerKey,
@@ -104,74 +123,79 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
                                         ),
 
                                         Textfield(
-                                            top: 80,
-                                            left: 90,
-                                            height: 90,
-                                            width: 80,
-                                            label: "test"),
+                                          top: 350,
+                                          left: 40,
+                                          height: 20,
+                                          width: 120,
+                                        ),
                                         Textfield(
-                                            top: 420,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "b"),
+                                          top: 600,
+                                          left: 40,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 510,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "c"),
+                                          top: 950,
+                                          left: 40,
+                                          height: 20,
+                                          width: 120,
+                                        ),
 
                                         Textfield(
-                                            top: 510,
-                                            left: 600,
-                                            height: 20,
-                                            width: 100,
-                                            label: "d"),
+                                          top: 1220,
+                                          left: 40,
+                                          height: 20,
+                                          width: 120,
+                                        ),
 
                                         Textfield(
-                                            top: 610,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "e"),
+                                          top: 250,
+                                          left: 220,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 680,
-                                            left: 470,
-                                            height: 20,
-                                            width: 100,
-                                            label: "f"),
-                                        Textfield(
-                                            top: 680,
-                                            left: 680,
-                                            height: 20,
-                                            width: 100,
-                                            label: "g"),
-                                        Textfield(
-                                            top: 610,
-                                            left: 750,
-                                            height: 20,
-                                            width: 100,
-                                            label: "h"),
+                                          top: 1200,
+                                          left: 250,
+                                          height: 20,
+                                          width: 100,
+                                        ),
 
                                         Textfield(
-                                            top: 540,
-                                            left: 820,
-                                            height: 20,
-                                            width: 100,
-                                            label: "i"),
+                                          top: 700,
+                                          left: 670,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+
                                         Textfield(
-                                            top: 750,
-                                            left: 620,
-                                            height: 20,
-                                            width: 100,
-                                            label: "j"),
+                                          top: 1070,
+                                          left: 670,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                         Textfield(
-                                            top: 820,
-                                            left: 560,
+                                            top: 260,
+                                            left: 850,
                                             height: 20,
-                                            width: 100,
-                                            label: "j"),
+                                            width: 100),
+                                        Textfield(
+                                            top: 450,
+                                            left: 850,
+                                            height: 20,
+                                            width: 100),
+                                        Textfield(
+                                          top: 680,
+                                          left: 850,
+                                          height: 20,
+                                          width: 100,
+                                        ),
+                                        Textfield(
+                                          top: 1050,
+                                          left: 850,
+                                          height: 20,
+                                          width: 100,
+                                        ),
                                       ]),
                                 ),
                               ),
@@ -196,13 +220,11 @@ class Textfield extends StatelessWidget {
   final double left;
   final double height;
   final double width;
-  final label;
   Textfield({
     @required this.top,
     @required this.left,
     @required this.height,
     @required this.width,
-    @required this.label,
     Key key,
   }) : super(key: key);
 
@@ -215,10 +237,14 @@ class Textfield extends StatelessWidget {
       width: width,
       child: Container(
         // color: Colors.white,
-        width: 20,
+        width: 50,
         child: TextField(
-          decoration: InputDecoration(labelText: label),
-          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(isDense: true),
+          style: TextStyle(
+              color: Colors.black,
+              backgroundColor: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

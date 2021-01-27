@@ -86,15 +86,14 @@ class SelectForm extends StatelessWidget {
                                 leading: Container(
                                   child: SvgPicture.asset(
                                     'assets/images/file.svg',
-                                    width: 60,
-                                    height: 60,
+                                    width: 40,
+                                    height: 40,
                                   ),
                                 ),
                                 title: Text(
-                                    "${index + 1}. ${forms[index].documentID.toUpperCase()}",
+                                    "${index + 1}. ${forms[index].documentID}",
                                     style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     )),
                               ),

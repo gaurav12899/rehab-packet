@@ -9,7 +9,6 @@ class Prosthetic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    print("from pros $username");
     return Scaffold(
       appBar: AppBar(
         title: Text("Prosthetic Forms"),
@@ -47,12 +46,12 @@ class Prosthetic extends StatelessWidget {
             ),
           ),
           FormName(
-            name: "Below Elbow Pro",
+            name: "Below Elbow Prosthesis",
             path: AfoA.routeName,
             username: username,
           ),
           FormName(
-            name: "Above Elbow Pro",
+            name: "Above Elbow Prosthesis",
             path: AfoA.routeName,
             username: username,
           ),
@@ -85,46 +84,15 @@ class Prosthetic extends StatelessWidget {
             ),
           ),
           FormName(
-            name: "Below Knee Pro",
+            name: "Below Knee Prosthesis",
             path: BelowKneeProsthesisA.routeName,
             username: username,
           ),
           FormName(
-            name: "Above Knee Pro",
+            name: "Above Knee Prothesis",
             path: TransfemoralMeasurementA.routeName,
             username: username,
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
-            ),
-            padding: EdgeInsets.only(
-              top: 10,
-            ),
-            width: double.infinity,
-            // color: Colors.red,
-            height: 80,
-
-            child: Card(
-              color: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(0))),
-              elevation: 5,
-              child: Text("OTHERS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-            ),
-          ),
-          // FormName(name: "Foot Osthesis", path: AfoA.routeName),
-          // FormName(name: "Ankle Foot Osthesis", path: AfoA.routeName),
-          // FormName(name: "Knee Ankle Foot Osthesis", path: AfoA.routeName),
-          // FormName(name: "Knee Osthesis", path: AfoA.routeName),
-          // FormName(name: "Hip Knee-Ankle Foot Osthesis", path: AfoA.routeName),
         ]),
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/aboutUs/aboutUs.dart';
+import 'package:project/screen/contactUs/contactUs.dart';
 import 'package:project/screen/forgetPassword/forget-password.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
 import 'package:project/screen/forms/Afo/afoB.dart';
@@ -34,12 +37,10 @@ import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/loginScreen/login.dart';
 import 'package:project/screen/profile/editProfile.dart';
 import 'package:project/screen/profile/profile.dart';
-import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/screen/signUpScreen/signup.dart';
 import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/screen/forms/knee_form.dart';
 import 'package:project/view_pdf/pdf_list.dart';
-import 'constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
@@ -54,10 +55,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primaryColor: kPrimaryColor,
-        accentColor: kAccentCOlor,
-        primarySwatch: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
+        // Define the default brightness and colors.
+        // brightness: Brightness.,
+        primaryColor: HexColor('#1e88e5'),
+
+        // Define the default font family.
+
+        // Define the default TextTheme. Use this to specify the default
+        // text styling for headlines, titles, bodies of text, and more.
+        textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+        ),
       ),
       title: "Rehab Pocket",
       home: FirebaseAuth.instance.currentUser == null
@@ -84,7 +94,6 @@ class MyApp extends StatelessWidget {
         NewOrOldPatient.routeName: (ctx) => NewOrOldPatient(),
         PdfList.routeName: (ctx) => PdfList(),
         AboutUs.routeName: (ctx) => AboutUs(),
-        ShowImage.routeName: (ctx) => ShowImage(),
         BelowKneeProsthesisA.routeName: (ctx) => BelowKneeProsthesisA(),
         BelowKneeProsthesisB.routeName: (ctx) => BelowKneeProsthesisB(),
         BelowKneeProsthesisC.routeName: (ctx) => BelowKneeProsthesisC(),
@@ -103,6 +112,7 @@ class MyApp extends StatelessWidget {
         SpinalOrthosisD.routeName: (ctx) => SpinalOrthosisD(),
         SpinalOrthosisE.routeName: (ctx) => SpinalOrthosisE(),
         SpinalOrthosisF.routeName: (ctx) => SpinalOrthosisF(),
+        ContactUs.routeName: (ctx) => ContactUs(),
       },
     );
   }

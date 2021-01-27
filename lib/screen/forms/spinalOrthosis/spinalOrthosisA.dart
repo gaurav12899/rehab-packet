@@ -38,10 +38,11 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
   void _printPngBytes(String username) async {
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
-    print(pngBytes);
+    ;
+    if (bytList.length > 0) {
+      bytList.removeLast();
+    }
     bytList.add(pngBytes);
-    print(bytList);
-    print("bbk$username");
     Navigator.of(context).pushNamed(SpinalOrthosisB.routeName,
         arguments: {"bytelist": bytList, "username": username});
 
@@ -51,13 +52,10 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    if (bytList.length > 0) {
-      bytList.removeLast();
-    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Elbow Orthosis"),
+        title: Text("Spinal Orthosis"),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),

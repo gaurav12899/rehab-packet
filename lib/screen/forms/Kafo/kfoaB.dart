@@ -48,6 +48,9 @@ class _KafoBState extends State<KafoB> {
 
   void _printPngBytes(dynamic args) async {
     var pngBytes = await _capturePng();
+    if (args['bytelist'].length > 1) {
+      args['bytelist'].removeLast();
+    }
     await args['bytelist'].add(pngBytes);
     Navigator.of(context).pushNamed(KafoC.routeName, arguments: {
       "bytelist": args["bytelist"],
@@ -61,9 +64,7 @@ class _KafoBState extends State<KafoB> {
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
-    }
+
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
@@ -139,7 +140,7 @@ class _KafoBState extends State<KafoB> {
                                 value: valgus,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    planter = value;
+                                    valgus = value;
                                   });
                                 }),
                             Text("Valgus")
