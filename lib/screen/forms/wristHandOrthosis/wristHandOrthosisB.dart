@@ -15,6 +15,9 @@ import 'package:path_provider/path_provider.dart';
 
 class WristHandOrthosisB extends StatefulWidget {
   static const routeName = 'wristHandOrthosisB';
+  var bytelist;
+  var username;
+  WristHandOrthosisB({@required this.bytelist, @required this.username});
   @override
   _WristHandOrthosisBState createState() => _WristHandOrthosisBState();
 }
@@ -46,7 +49,7 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
 
   var doctorInfo;
   var patientInfo;
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -58,15 +61,14 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc(widget.username)
         .get();
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
-    print(args['bytelist'].length);
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
@@ -140,10 +142,10 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -176,7 +178,7 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
 
     final ref = FirebaseStorage.instance
         .ref()
-        .child(args["username"])
+        .child(widget.username)
         .child("wristHandOrthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -187,7 +189,7 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("WristHandOrthosis")
           .set({"form": url});
@@ -210,10 +212,6 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Wrist Hand Orthosis"),
@@ -324,7 +322,7 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
                     onPressed: loading
                         ? null
                         : () {
-                            _printPngBytes(args);
+                            _printPngBytes();
                           },
                   ),
                 )

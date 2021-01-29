@@ -10,6 +10,9 @@ import 'package:zoom_widget/zoom_widget.dart';
 
 class BelowKneeProsthesisD extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisD';
+  var bytelist;
+  var username;
+  BelowKneeProsthesisD({@required this.bytelist, @required this.username});
 
   @override
   _BelowKneeProsthesisDState createState() => _BelowKneeProsthesisDState();
@@ -37,49 +40,31 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
 
-    if (args['bytelist'].length > 3) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 3) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
-    Navigator.of(context).pushNamed(BelowKneeProsthesisE.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => BelowKneeProsthesisE(
+            bytelist: widget.bytelist, username: widget.username)));
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print(args['bytelist'].length);
-    // if (args['bytelist'].length > 3) {
-    //   args['bytelist'].removeLast();
-    // }
-
-    // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee Prosthesis"),
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     Navigator.of(context).pop();
-        //     if (args['bytelist'].length > 3) {
-        //       args['bytelist'].removeLast();
-        //     }
-        //   },
-        // ),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),

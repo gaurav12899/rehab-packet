@@ -31,6 +31,9 @@ class _KafoAState extends State<KafoA> {
   bool camberaxis = false;
   bool hookloop = false;
   bool strapping = false;
+  bool anterior = false;
+  bool exterior = false;
+
   final doc = pw.Document();
 
   bool loading = false;
@@ -57,8 +60,8 @@ class _KafoAState extends State<KafoA> {
       bytList.removeLast();
     }
     bytList.add(pngBytes);
-    Navigator.of(context).pushNamed(KafoB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => KafoB(bytelist: bytList, username: username)));
 
     // print(bs64);
   }
@@ -70,7 +73,6 @@ class _KafoAState extends State<KafoA> {
       bytList.removeLast();
     }
 
-    print("afoA$username");
     return Scaffold(
       appBar: AppBar(
         title: Text("KAFO"),
@@ -237,129 +239,139 @@ class _KafoAState extends State<KafoA> {
                           )
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Type of KAFO material:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Column(
+                          Row(
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Checkbox(
-                                  activeColor: Colors.blue,
-                                  value: pp,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      pp = value;
-                                    });
-                                  }),
-                              Text("PP")
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Checkbox(
-                                  activeColor: Colors.blue,
-                                  value: copp,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      copp = value;
-                                    });
-                                  }),
-                              Text("COPP")
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Checkbox(
-                                  activeColor: Colors.blue,
-                                  value: carbon,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      carbon = value;
-                                    });
-                                  }),
-                              Text("Carbon Fiber")
-                            ],
-                          ),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 10,
+                              Column(
+                                children: [
+                                  Checkbox(
+                                      activeColor: Colors.blue,
+                                      value: pp,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          pp = value;
+                                        });
+                                      }),
+                                  Text("PP")
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Checkbox(
+                                      activeColor: Colors.blue,
+                                      value: copp,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          copp = value;
+                                        });
+                                      }),
+                                  Text("COPP")
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Checkbox(
+                                      activeColor: Colors.blue,
+                                      value: carbon,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          carbon = value;
+                                        });
+                                      }),
+                                  Text("Carbon Fiber")
+                                ],
+                              ),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                        child: TextField(
+                                      decoration:
+                                          InputDecoration(hintText: "others"),
+                                    ))
+                                  ],
                                 ),
-                                Expanded(
-                                    child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
-                                ))
-                              ],
-                            ),
-                          )
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Divider(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Type of Ankle Joint:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
                                   children: [
-                                    Column(
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      // crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Checkbox(
-                                            activeColor: Colors.blue,
-                                            value: overlap,
-                                            onChanged: (bool value) {
-                                              setState(() {
-                                                overlap = value;
-                                              });
-                                            }),
-                                        Text("Overlap")
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Checkbox(
-                                            activeColor: Colors.blue,
-                                            value: tamarack,
-                                            onChanged: (bool value) {
-                                              setState(() {
-                                                tamarack = value;
-                                              });
-                                            }),
-                                        Text("Tamatack")
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Checkbox(
-                                            activeColor: Colors.blue,
-                                            value: oklohama,
-                                            onChanged: (bool value) {
-                                              setState(() {
-                                                oklohama = value;
-                                              });
-                                            }),
-                                        Text("Okhalama")
+                                        Column(
+                                          children: [
+                                            Checkbox(
+                                                activeColor: Colors.blue,
+                                                value: overlap,
+                                                onChanged: (bool value) {
+                                                  setState(() {
+                                                    overlap = value;
+                                                  });
+                                                }),
+                                            Text("Overlap")
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Checkbox(
+                                                activeColor: Colors.blue,
+                                                value: tamarack,
+                                                onChanged: (bool value) {
+                                                  setState(() {
+                                                    tamarack = value;
+                                                  });
+                                                }),
+                                            Text("Tamatack")
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Checkbox(
+                                                activeColor: Colors.blue,
+                                                value: oklohama,
+                                                onChanged: (bool value) {
+                                                  setState(() {
+                                                    oklohama = value;
+                                                  });
+                                                }),
+                                            Text("Okhalama")
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -384,10 +396,10 @@ class _KafoAState extends State<KafoA> {
                                       children: [
                                         Checkbox(
                                             activeColor: Colors.blue,
-                                            value: overlap,
+                                            value: anterior,
                                             onChanged: (bool value) {
                                               setState(() {
-                                                overlap = value;
+                                                anterior = value;
                                               });
                                             }),
                                         Text(
@@ -398,10 +410,10 @@ class _KafoAState extends State<KafoA> {
                                       children: [
                                         Checkbox(
                                             activeColor: Colors.blue,
-                                            value: tamarack,
+                                            value: exterior,
                                             onChanged: (bool value) {
                                               setState(() {
-                                                tamarack = value;
+                                                exterior = value;
                                               });
                                             }),
                                         Text(
@@ -447,74 +459,64 @@ class _KafoAState extends State<KafoA> {
                           )
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Divider(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "Strapping Type:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Column(
+                          Row(
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Checkbox(
-                                  activeColor: Colors.blue,
-                                  value: hookloop,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      hookloop = value;
-                                    });
-                                  }),
-                              Text("Hook &\nLoop")
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Checkbox(
-                                  activeColor: Colors.blue,
-                                  value: strapping,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      strapping = value;
-                                    });
-                                  }),
-                              Text("Dynamic \nStraping")
-                            ],
-                          ),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 10,
+                              Column(
+                                children: [
+                                  Checkbox(
+                                      activeColor: Colors.blue,
+                                      value: hookloop,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          hookloop = value;
+                                        });
+                                      }),
+                                  Text("Hook &\nLoop")
+                                ],
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: [
+                                  Checkbox(
+                                      activeColor: Colors.blue,
+                                      value: strapping,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          strapping = value;
+                                        });
+                                      }),
+                                  Text("Dynamic \nStraping")
+                                ],
+                              ),
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                        child: TextField(
+                                      decoration:
+                                          InputDecoration(hintText: "others"),
+                                    ))
+                                  ],
                                 ),
-                                Expanded(
-                                    child: TextField(
-                                  decoration:
-                                      InputDecoration(hintText: "others"),
-                                ))
-                              ],
-                            ),
-                          )
+                              )
+                            ],
+                          ),
                         ],
-                      ),
-                      Container(
-                        height: 150,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Other Modification:",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Expanded(child: TextField()),
-                            Expanded(child: TextField()),
-                            Expanded(child: TextField()),
-                            SizedBox(
-                              height: 20,
-                            )
-                          ],
-                        ),
                       ),
                     ],
                   ),

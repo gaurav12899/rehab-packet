@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:project/main.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -16,6 +15,9 @@ import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 class TransfemoralMeasurementB extends StatefulWidget {
   static const routeName = '/transfemoralMeasurementB';
 
+  var bytelist;
+  var username;
+  TransfemoralMeasurementB({@required this.bytelist, @required this.username});
   @override
   _TransfemoralMeasurementBState createState() =>
       _TransfemoralMeasurementBState();
@@ -52,7 +54,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
 
   var doctorInfo;
   var patientInfo;
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -64,15 +66,15 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc(widget.username)
         .get();
 
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
@@ -145,10 +147,10 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -179,7 +181,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
 
     final ref = FirebaseStorage.instance
         .ref()
-        .child(args["username"])
+        .child(widget.username)
         .child("Transfemoral.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -190,7 +192,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("Transfemoral Measurement")
           .set({"form": url});
@@ -213,9 +215,6 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Transfemoral Measurement Form"),
@@ -278,7 +277,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
                       onPressed: loading
                           ? null
                           : () {
-                              _printPngBytes(args);
+                              _printPngBytes();
                             },
                     ),
                   ))

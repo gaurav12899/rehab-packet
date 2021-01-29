@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">610863341147-13mblfvk0guaa87anck3781jrcjrg531.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://raheb-pocket.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">610863341147</string>
+    <string name="google_api_key" translatable="false">AIzaSyBxeozv6sKZpJa2s9qYaeC8UqWRiHvDo9I</string>
+    <string name="google_app_id" translatable="false">1:610863341147:android:7937c7c301d1b8bb4a297e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBxeozv6sKZpJa2s9qYaeC8UqWRiHvDo9I</string>
+    <string name="google_storage_bucket" translatable="false">raheb-pocket.appspot.com</string>
+    <string name="project_id" translatable="false">raheb-pocket</string>
+</resources>

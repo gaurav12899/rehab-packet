@@ -55,8 +55,9 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
 
     bytList.add(pngBytes);
 
-    Navigator.of(context).pushNamed(WristHandOrthosisB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) =>
+            WristHandOrthosisB(bytelist: bytList, username: username)));
 
     // print(bs64);
   }
@@ -100,7 +101,6 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -114,7 +114,6 @@ class _WristHandOrthosisAState extends State<WristHandOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           )),
                         ],
@@ -242,7 +241,10 @@ class _MaterialState extends State<Material> {
             children: [
               Expanded(
                 child: RadioListTile(
-                    title: Text("Low Temp\nThermoPlastic"),
+                    title: Text(
+                      "Low Temp\nThermoPlastic",
+                      style: TextStyle(fontSize: 12),
+                    ),
                     activeColor: Colors.green,
                     dense: true,
                     value: 0,
@@ -255,7 +257,10 @@ class _MaterialState extends State<Material> {
               ),
               Expanded(
                 child: RadioListTile(
-                    title: Text("High Temp\nThermoPlastic"),
+                    title: Text(
+                      "High Temp\nThermoPlastic",
+                      style: TextStyle(fontSize: 12),
+                    ),
                     activeColor: Colors.green,
                     dense: true,
                     value: 1,

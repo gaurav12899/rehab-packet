@@ -9,6 +9,9 @@ import 'package:project/screen/forms/elbowOrthosis/elbowOrthosisC.dart';
 
 class ElbowOrthosisB extends StatefulWidget {
   static const routeName = '/elbowOrthosisB';
+  var bytelist;
+  var username;
+  ElbowOrthosisB({@required this.bytelist, @required this.username});
 
   @override
   _ElbowOrthosisBState createState() => _ElbowOrthosisBState();
@@ -43,25 +46,20 @@ class _ElbowOrthosisBState extends State<ElbowOrthosisB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(ElbowOrthosisC.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
-
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => ElbowOrthosisC(
+            bytelist: widget.bytelist, username: widget.username)));
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Elbow Orthosis"),
@@ -69,7 +67,7 @@ class _ElbowOrthosisBState extends State<ElbowOrthosisB> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),

@@ -55,8 +55,15 @@ class _AfoAState extends State<AfoA> {
       bytList.removeLast();
     }
     bytList.add(pngBytes);
-    Navigator.of(context).pushNamed(AfoB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (ctx) => AfoB(
+                bytelist: bytList,
+                username: username,
+              )),
+    );
+    // Navigator.of(context).pushNamed(AfoB.routeName,
+    //     arguments: {"bytelist": bytList, "username": username});
   }
 
   @override

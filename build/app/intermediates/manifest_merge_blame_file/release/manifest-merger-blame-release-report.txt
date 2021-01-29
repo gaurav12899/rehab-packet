@@ -47,8 +47,8 @@
 28-->[androidx.core:core:1.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\7fbad9cbb9812648e8a336bc8f6d72ad\core-1.3.2\AndroidManifest.xml:24:18-86
 29        android:icon="@mipmap/ic_launcher"
 29-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:11:9-43
-30        android:label="project"
-30-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:10:9-32
+30        android:label="Rehab Pocket"
+30-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:10:9-37
 31        android:requestLegacyExternalStorage="true" >
 31-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\release\AndroidManifest.xml:11:18-61
 32        <activity

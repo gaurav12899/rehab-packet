@@ -4,11 +4,13 @@ import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
-import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisA.dart';
 import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisC.dart';
 
 class SpinalOrthosisB extends StatefulWidget {
   static const routeName = 'spinalorthosisB';
+  var bytelist;
+  var username;
+  SpinalOrthosisB({@required this.bytelist, @required this.username});
   @override
   _SpinalOrthosisBState createState() => _SpinalOrthosisBState();
 }
@@ -38,25 +40,21 @@ class _SpinalOrthosisBState extends State<SpinalOrthosisB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(SpinalOrthosisC.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => SpinalOrthosisC(
+            bytelist: widget.bytelist, username: widget.username)));
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +63,7 @@ class _SpinalOrthosisBState extends State<SpinalOrthosisB> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),

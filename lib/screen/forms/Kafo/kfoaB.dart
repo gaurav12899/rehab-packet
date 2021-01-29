@@ -10,6 +10,9 @@ import 'package:project/screen/forms/Kafo/kfoac.dart';
 
 class KafoB extends StatefulWidget {
   static const routeName = '/KafoB';
+  var bytelist;
+  var username;
+  KafoB({@required this.bytelist, @required this.username});
 
   @override
   _KafoBState createState() => _KafoBState();
@@ -46,26 +49,21 @@ class _KafoBState extends State<KafoB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(KafoC.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) =>
+            KafoC(bytelist: widget.bytelist, username: widget.username)));
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
-    // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("KAFO"),
@@ -73,7 +71,7 @@ class _KafoBState extends State<KafoB> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),
@@ -94,6 +92,25 @@ class _KafoBState extends State<KafoB> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    Container(
+                      height: 150,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Other Modification:",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Expanded(child: TextField()),
+                          Expanded(child: TextField()),
+                          Expanded(child: TextField()),
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      ),
+                    ),
                     Row(
                       children: [
                         Text(

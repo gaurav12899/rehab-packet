@@ -68,14 +68,13 @@ class FormName extends StatelessWidget {
             //   height: 30,
             //   width: 30,
             // ),
-            leading: Image.asset(
-              "assets/images/star.png",
-              height: 30,
-              width: 30,
+            leading: Icon(
+              Icons.arrow_forward,
+              color: Colors.blue,
             ),
             title: Text(
               name,
-              style: TextStyle(fontSize: 22),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ),
         ),

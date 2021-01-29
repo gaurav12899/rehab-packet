@@ -51,8 +51,9 @@ class _ElbowOrthosisAState extends State<ElbowOrthosisA> {
       bytList.removeLast();
     }
     bytList.add(pngBytes);
-    Navigator.of(context).pushNamed(ElbowOrthosisB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) =>
+            ElbowOrthosisB(bytelist: bytList, username: username)));
 
     // print(bs64);
   }

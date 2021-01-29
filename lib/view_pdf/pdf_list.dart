@@ -94,9 +94,7 @@ class _PdfListState extends State<PdfList> {
         .doc(user)
         .collection('formname')
         .get();
-    // .then((value) => value.docs.forEach((element) {
-    //       list.add(element.documentID);
-    //     }));
+
     final List<DocumentSnapshot> documents = result.docs;
     documents.forEach((data) => list.add(data.id));
     return list;
@@ -281,7 +279,7 @@ class _PdfListState extends State<PdfList> {
                                                 onPressed: () {
                                                   _makingPhoneCall(
                                                       _searchResultList[index]
-                                                          ["phone"]
+                                                          ["contact"]
                                                       // "989164151"
                                                       );
                                                 },

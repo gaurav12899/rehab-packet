@@ -1,0 +1,371 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.project"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="29" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->D:\MyFlutterApps\RehabPocket\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->D:\MyFlutterApps\RehabPocket\android\app\src\debug\AndroidManifest.xml:6:22-64
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
+15-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-81
+16-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-78
+17    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+17-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
+17-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
+18    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:5-79
+19-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:26:22-76
+20    <uses-permission android:name="android.permission.WAKE_LOCK" />
+20-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:24:5-68
+20-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:24:22-65
+21    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:26:5-110
+21-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:26:22-107
+22    <!--
+23 io.flutter.app.FlutterApplication is an android.app.Application that
+24         calls FlutterMain.startInitialization(this); in its onCreate method.
+25         In most cases you can leave this as-is, but you if you want to provide
+26         additional functionality it is fine to subclass or reimplement
+27         FlutterApplication and put your custom class here.
+28    -->
+29    <application
+29-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:8:5-46:19
+30        android:name="io.flutter.app.FlutterApplication"
+30-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:9:9-57
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\7fbad9cbb9812648e8a336bc8f6d72ad\core-1.3.2\AndroidManifest.xml:24:18-86
+32        android:debuggable="true"
+33        android:icon="@mipmap/ic_launcher"
+33-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:11:9-43
+34        android:label="Rehab Pocket"
+34-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:10:9-37
+35        android:requestLegacyExternalStorage="true" >
+35-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:11:18-61
+36        <activity
+36-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:12:9-40:20
+37            android:name="com.example.project.MainActivity"
+37-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:13:13-41
+38            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+38-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:16:13-163
+39            android:hardwareAccelerated="true"
+39-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:17:13-47
+40            android:launchMode="singleTop"
+40-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:14:13-43
+41            android:theme="@style/LaunchTheme"
+41-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:15:13-47
+42            android:windowSoftInputMode="adjustResize" >
+42-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:18:13-55
+43
+44            <!--
+45                 Specifies an Android theme to apply to this Activity as soon as
+46                 the Android process has started. This theme is visible to the user
+47                 while the Flutter UI initializes. After that, this theme continues
+48                 to determine the Window background behind the Flutter UI.
+49            -->
+50            <meta-data
+50-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:23:13-26:17
+51                android:name="io.flutter.embedding.android.NormalTheme"
+51-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:24:15-70
+52                android:resource="@style/NormalTheme" />
+52-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:25:15-52
+53            <!--
+54                 Displays an Android View that continues showing the launch screen
+55                 Drawable until Flutter paints its first frame, then this splash
+56                 screen fades out. A splash screen is useful to avoid any visual
+57                 gap between the end of Android's launch screen and the painting of
+58                 Flutter's first frame.
+59            -->
+60            <meta-data
+60-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:32:13-35:17
+61                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+61-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:33:15-79
+62                android:resource="@drawable/launch_background" />
+62-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:34:15-61
+63
+64            <intent-filter>
+64-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:36:13-39:29
+65                <action android:name="android.intent.action.MAIN" />
+65-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:37:17-68
+65-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:37:25-66
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+67-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:38:17-76
+67-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:38:27-74
+68            </intent-filter>
+69        </activity>
+70        <!--
+71             Don't delete the meta-data below.
+72             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+73        -->
+74        <meta-data
+74-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:43:9-45:33
+75            android:name="flutterEmbedding"
+75-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:44:13-44
+76            android:value="2" />
+76-->D:\MyFlutterApps\RehabPocket\android\app\src\main\AndroidManifest.xml:45:13-30
+77
+78        <provider
+78-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
+79            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+79-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
+80            android:authorities="com.example.project.flutter.image_provider"
+80-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
+81            android:exported="false"
+81-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+82            android:grantUriPermissions="true" >
+82-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
+83            <meta-data
+83-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+84                android:name="android.support.FILE_PROVIDER_PATHS"
+84-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+85                android:resource="@xml/flutter_image_picker_file_paths" />
+85-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+86        </provider>
+87
+88        <service
+88-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+89            android:name="com.google.firebase.components.ComponentDiscoveryService"
+89-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+90            android:directBootAware="true"
+90-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:35:13-43
+91            android:exported="false" >
+91-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:35:13-37
+92            <meta-data
+92-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+93                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+93-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-134
+94                android:value="com.google.firebase.components.ComponentRegistrar" />
+94-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+95            <meta-data
+95-->[:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+96                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+96-->[:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+97                android:value="com.google.firebase.components.ComponentRegistrar" />
+97-->[:firebase_auth] D:\MyFlutterApps\RehabPocket\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+98            <meta-data
+98-->[:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+99                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
+99-->[:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-127
+100                android:value="com.google.firebase.components.ComponentRegistrar" />
+100-->[:firebase_database] D:\MyFlutterApps\RehabPocket\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+101            <meta-data
+101-->[:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+102                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+102-->[:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
+103                android:value="com.google.firebase.components.ComponentRegistrar" />
+103-->[:firebase_storage] D:\MyFlutterApps\RehabPocket\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+104            <meta-data
+104-->[:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+105                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+105-->[:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+106                android:value="com.google.firebase.components.ComponentRegistrar" />
+106-->[:firebase_core] D:\MyFlutterApps\RehabPocket\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+107            <meta-data
+107-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:36:13-38:85
+108                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+108-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:37:17-109
+109                android:value="com.google.firebase.components.ComponentRegistrar" />
+109-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:38:17-82
+110            <meta-data
+110-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:33:13-35:85
+111                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+111-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:34:17-107
+112                android:value="com.google.firebase.components.ComponentRegistrar" />
+112-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:35:17-82
+113            <meta-data
+113-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:20:13-22:85
+114                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+114-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:21:17-111
+115                android:value="com.google.firebase.components.ComponentRegistrar" />
+115-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:22:17-82
+116            <meta-data
+116-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:32:13-34:85
+117                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+117-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:33:17-109
+118                android:value="com.google.firebase.components.ComponentRegistrar" />
+118-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:34:17-82
+119            <meta-data
+119-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:30:13-32:85
+120                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+120-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:31:17-139
+121                android:value="com.google.firebase.components.ComponentRegistrar" />
+121-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:32:17-82
+122            <meta-data
+122-->[com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:17:13-19:85
+123                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+123-->[com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:18:17-127
+124                android:value="com.google.firebase.components.ComponentRegistrar" />
+124-->[com.google.firebase:firebase-installations:16.3.2] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\ff2efd0259911673380f14d147be15bb\firebase-installations-16.3.2\AndroidManifest.xml:19:17-82
+125        </service>
+126
+127        <provider
+127-->[:flutter_email_sender] D:\MyFlutterApps\RehabPocket\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+128            android:name="com.sidlatau.flutteremailsender.FlutterEmailSenderFileProvider"
+128-->[:flutter_email_sender] D:\MyFlutterApps\RehabPocket\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-90
+129            android:authorities="com.example.project.file_provider"
+129-->[:flutter_email_sender] D:\MyFlutterApps\RehabPocket\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-65
+130            android:exported="false"
+130-->[:flutter_email_sender] D:\MyFlutterApps\RehabPocket\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+131            android:grantUriPermissions="true" >
+131-->[:flutter_email_sender] D:\MyFlutterApps\RehabPocket\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+132            <meta-data
+132-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+133                android:name="android.support.FILE_PROVIDER_PATHS"
+133-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+134                android:resource="@xml/shared_file_paths" />
+134-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+135        </provider>
+136        <provider
+136-->[:share] D:\MyFlutterApps\RehabPocket\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+137            android:name="io.flutter.plugins.share.ShareFileProvider"
+137-->[:share] D:\MyFlutterApps\RehabPocket\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-70
+138            android:authorities="com.example.project.flutter.share_provider"
+138-->[:share] D:\MyFlutterApps\RehabPocket\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+139            android:exported="false"
+139-->[:share] D:\MyFlutterApps\RehabPocket\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+140            android:grantUriPermissions="true" >
+140-->[:share] D:\MyFlutterApps\RehabPocket\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+141            <meta-data
+141-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+142                android:name="android.support.FILE_PROVIDER_PATHS"
+142-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+143                android:resource="@xml/flutter_share_file_paths" />
+143-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+144        </provider>
+145        <provider
+145-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
+146            android:name="com.crazecoder.openfile.FileProvider"
+146-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
+147            android:authorities="com.example.project.fileProvider.com.crazecoder.openfile"
+147-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-88
+148            android:exported="false"
+148-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+149            android:grantUriPermissions="true" >
+149-->[:open_file] D:\MyFlutterApps\RehabPocket\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+150            <meta-data
+150-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+151                android:name="android.support.FILE_PROVIDER_PATHS"
+151-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+152                android:resource="@xml/filepaths" />
+152-->[:image_picker] D:\MyFlutterApps\RehabPocket\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+153        </provider>
+154
+155        <activity
+155-->[:url_launcher] D:\MyFlutterApps\RehabPocket\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+156            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+156-->[:url_launcher] D:\MyFlutterApps\RehabPocket\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+157            android:exported="false"
+157-->[:url_launcher] D:\MyFlutterApps\RehabPocket\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+158            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+158-->[:url_launcher] D:\MyFlutterApps\RehabPocket\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+159        <activity
+159-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:24:9-31:50
+160            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+160-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:25:13-85
+161            android:excludeFromRecents="true"
+161-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:26:13-46
+162            android:exported="true"
+162-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:27:13-36
+163            android:launchMode="singleTask"
+163-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:28:13-44
+164            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+164-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:29:13-102
+165            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+165-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:30:13-72
+166        <activity
+166-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:23:9-27:75
+167            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+167-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:24:13-93
+168            android:excludeFromRecents="true"
+168-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:25:13-46
+169            android:exported="false"
+169-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:26:13-37
+170            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+170-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:27:13-72
+171        <!--
+172            Service handling Google Sign-In user revocation. For apps that do not integrate with
+173            Google Sign-In, this service will never be started.
+174        -->
+175        <service
+175-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:33:9-37:51
+176            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+176-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:34:13-89
+177            android:exported="true"
+177-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:35:13-36
+178            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+178-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:36:13-107
+179            android:visibleToInstantApps="true" />
+179-->[com.google.android.gms:play-services-auth:18.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\36d99b68d7f9e35d46982fe6891e6eef\play-services-auth-18.1.0\AndroidManifest.xml:37:13-48
+180
+181        <activity
+181-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+182            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+182-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+183            android:exported="false"
+183-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+184            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+184-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+185
+186        <provider
+186-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:26:9-31:39
+187            android:name="com.google.firebase.provider.FirebaseInitProvider"
+187-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:27:13-77
+188            android:authorities="com.example.project.firebaseinitprovider"
+188-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:28:13-72
+189            android:directBootAware="true"
+189-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:29:13-43
+190            android:exported="false"
+190-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:30:13-37
+191            android:initOrder="100" />
+191-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:31:13-36
+192
+193        <receiver
+193-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:29:9-33:20
+194            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+194-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:30:13-85
+195            android:enabled="true"
+195-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:31:13-35
+196            android:exported="false" >
+196-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:32:13-37
+197        </receiver>
+198
+199        <service
+199-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:35:9-38:40
+200            android:name="com.google.android.gms.measurement.AppMeasurementService"
+200-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:36:13-84
+201            android:enabled="true"
+201-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:37:13-35
+202            android:exported="false" />
+202-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:38:13-37
+203        <service
+203-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:39:9-43:72
+204            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+204-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:40:13-87
+205            android:enabled="true"
+205-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:41:13-35
+206            android:exported="false"
+206-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:42:13-37
+207            android:permission="android.permission.BIND_JOB_SERVICE" />
+207-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:43:13-69
+208
+209        <meta-data
+209-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:23:9-25:69
+210            android:name="com.google.android.gms.version"
+210-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:24:13-58
+211            android:value="@integer/google_play_services_version" />
+211-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:25:13-66
+212    </application>
+213
+214</manifest>

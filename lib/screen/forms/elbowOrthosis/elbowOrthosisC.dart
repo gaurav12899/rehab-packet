@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:project/main.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
@@ -17,6 +16,9 @@ import 'package:path_provider/path_provider.dart';
 
 class ElbowOrthosisC extends StatefulWidget {
   static const routeName = '/elbowOrthosisC';
+  var bytelist;
+  var username;
+  ElbowOrthosisC({@required this.bytelist, @required this.username});
   @override
   _ElbowOrthosisCState createState() => _ElbowOrthosisCState();
 }
@@ -45,7 +47,7 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
 
   var doctorInfo;
   var patientInfo;
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -57,17 +59,16 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc(widget.username)
         .get();
     var pngBytes = await _capturePng();
     // var bs64 = base64Encode(pngBytes);
     print(pngBytes);
-    if (args['bytelist'].length > 2) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 2) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
-    print(args['bytelist'].length);
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
@@ -139,10 +140,10 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -170,11 +171,9 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
 
     file.writeAsBytesSync(doc.save(), flush: true);
 
-    // args.clear();
-
     final ref = FirebaseStorage.instance
         .ref()
-        .child(args["username"])
+        .child(widget.username)
         .child("ElbowOrthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -185,7 +184,7 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("ElbowOrthosis")
           .set({"form": url});
@@ -208,10 +207,6 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Elbow Orthosis"),
@@ -364,7 +359,7 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
                     onPressed: loading
                         ? null
                         : () {
-                            _printPngBytes(args);
+                            _printPngBytes();
                           },
                   ),
                 )

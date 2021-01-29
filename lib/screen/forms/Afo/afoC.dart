@@ -18,6 +18,9 @@ import 'package:path_provider/path_provider.dart';
 
 class AfoC extends StatefulWidget {
   static const routeName = '/afoc';
+  var bytelist;
+  var username;
+  AfoC({@required this.bytelist, @required this.username});
 
   @override
   _AfoCState createState() => _AfoCState();
@@ -47,7 +50,7 @@ class _AfoCState extends State<AfoC> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -59,15 +62,15 @@ class _AfoCState extends State<AfoC> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc("${widget.username}")
         .get();
 
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 2) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 2) {
+      widget.bytelist.removeLast();
     }
 
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
@@ -140,10 +143,10 @@ class _AfoCState extends State<AfoC> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -174,7 +177,7 @@ class _AfoCState extends State<AfoC> {
     final ref = FirebaseStorage.instance
         .ref()
         .child(FirebaseAuth.instance.currentUser.uid)
-        .child(args["username"])
+        .child(widget.username)
         .child("AFO.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -185,7 +188,7 @@ class _AfoCState extends State<AfoC> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("AFO")
           .set({"form": url});
@@ -219,9 +222,6 @@ class _AfoCState extends State<AfoC> {
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("AFO"),
@@ -696,7 +696,7 @@ class _AfoCState extends State<AfoC> {
                     onPressed: loading
                         ? null
                         : () {
-                            _printPngBytes(args);
+                            _printPngBytes();
                           },
                   ),
                 )

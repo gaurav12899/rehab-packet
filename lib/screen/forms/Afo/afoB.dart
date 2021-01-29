@@ -9,7 +9,9 @@ import 'package:pdf/widgets.dart' as pw;
 
 class AfoB extends StatefulWidget {
   static const routeName = '/AfoB';
-
+  var bytelist;
+  var username;
+  AfoB({@required this.bytelist, @required this.username});
   @override
   _AfoBState createState() => _AfoBState();
 }
@@ -42,23 +44,21 @@ class _AfoBState extends State<AfoB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(AfoC.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => AfoC(
+              bytelist: widget.bytelist,
+              username: widget.username,
+            )));
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     // args.values.toList()
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +67,7 @@ class _AfoBState extends State<AfoB> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),

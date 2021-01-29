@@ -28,7 +28,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
-        android:label="project"
+        android:label="Rehab Pocket"
         android:requestLegacyExternalStorage="true" >
         <activity
             android:name="com.example.project.MainActivity"

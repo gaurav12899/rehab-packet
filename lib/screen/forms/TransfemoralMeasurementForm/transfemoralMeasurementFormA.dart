@@ -47,8 +47,9 @@ class _TransfemoralMeasurementAState extends State<TransfemoralMeasurementA> {
       bytList.removeLast();
     }
     bytList.add(pngBytes);
-    Navigator.of(context).pushNamed(TransfemoralMeasurementB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) =>
+            TransfemoralMeasurementB(bytelist: bytList, username: username)));
 
     // print(bs64);
   }

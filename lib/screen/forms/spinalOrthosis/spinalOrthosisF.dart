@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:project/main.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
@@ -16,6 +15,9 @@ import 'package:path_provider/path_provider.dart';
 
 class SpinalOrthosisF extends StatefulWidget {
   static const routeName = 'spinalOrthosisF';
+  var bytelist;
+  var username;
+  SpinalOrthosisF({@required this.bytelist, @required this.username});
   @override
   _SpinalOrthosisFState createState() => _SpinalOrthosisFState();
 }
@@ -47,7 +49,7 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
 
   var doctorInfo;
   var patientInfo;
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -59,13 +61,13 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc(widget.username)
         .get();
     var pngBytes = await _capturePng();
-    if (args['bytelist'].length > 5) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 5) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
@@ -137,10 +139,10 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -170,7 +172,7 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
 
     final ref = FirebaseStorage.instance
         .ref()
-        .child(args["username"])
+        .child(widget.username)
         .child("SpinalOrthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -181,7 +183,7 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("SpinalOrthosis")
           .set({"form": url});
@@ -204,10 +206,6 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Spnal Orthosis"),
@@ -306,7 +304,7 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
                     onPressed: loading
                         ? null
                         : () {
-                            _printPngBytes(args);
+                            _printPngBytes();
                           },
                   ),
                 )

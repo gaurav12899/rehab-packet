@@ -55,8 +55,9 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
     }
     bytList.add(pngBytes);
 
-    Navigator.of(context).pushNamed(BelowKneeProsthesisB.routeName,
-        arguments: {"bytelist": bytList, "username": username});
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) =>
+            BelowKneeProsthesisB(bytelist: bytList, username: username)));
 
     // print(bs64);
   }
@@ -64,9 +65,6 @@ class _BelowKneeProsthesisAState extends State<BelowKneeProsthesisA> {
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
-    // if (bytList.length > 0) {
-    //   bytList.removeLast();
-    // }
 
     print(bytList.length);
     return Scaffold(

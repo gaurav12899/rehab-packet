@@ -200,6 +200,12 @@
       "languageVersion": "2.6"
     },
     {
+      "name": "flutter_pdfview",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_pdfview-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11",
       "packageUri": "lib/",
@@ -237,7 +243,7 @@
     },
     {
       "name": "google_fonts",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-1.1.1",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-1.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.3"
     },
@@ -297,7 +303,7 @@
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_platform_interface-1.1.1",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_platform_interface-1.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.5"
     },
@@ -501,7 +507,7 @@
     },
     {
       "name": "sqflite_common",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.3",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.3+1",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     },
@@ -525,13 +531,13 @@
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-18.4.35+1",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-18.4.39",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
     {
       "name": "syncfusion_flutter_pdf",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_pdf-18.4.35-beta",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_pdf-18.4.39-beta",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
@@ -638,7 +644,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-01-27T18:15:13.133178Z",
+  "generated": "2021-01-29T12:47:46.236910Z",
   "generator": "pub",
   "generatorVersion": "2.12.0-253.0.dev"
 }

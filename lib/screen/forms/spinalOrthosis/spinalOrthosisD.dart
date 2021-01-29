@@ -10,7 +10,9 @@ import 'package:zoom_widget/zoom_widget.dart';
 
 class SpinalOrthosisD extends StatefulWidget {
   static const routeName = 'spinalOrthosisD';
-
+  var bytelist;
+  var username;
+  SpinalOrthosisD({@required this.bytelist, @required this.username});
   @override
   _SpinalOrthosisDState createState() => _SpinalOrthosisDState();
 }
@@ -35,27 +37,22 @@ class _SpinalOrthosisDState extends State<SpinalOrthosisD> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
 
-    if (args['bytelist'].length > 3) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 3) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(SpinalOrthosisE.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => SpinalOrthosisE(
+            bytelist: widget.bytelist, username: widget.username)));
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-
-    // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("Spinal Orthosis"),
@@ -63,7 +60,7 @@ class _SpinalOrthosisDState extends State<SpinalOrthosisD> {
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),

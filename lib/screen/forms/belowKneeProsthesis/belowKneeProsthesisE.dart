@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:project/main.dart';
 import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -15,6 +14,9 @@ import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class BelowKneeProsthesisE extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisE';
+  var bytelist;
+  var username;
+  BelowKneeProsthesisE({@required this.bytelist, @required this.username});
 
   @override
   _BelowKneeProsthesisEState createState() => _BelowKneeProsthesisEState();
@@ -49,7 +51,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
 
   var doctorInfo;
   var patientInfo;
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     this.setState(() {
       loading = true;
     });
@@ -61,18 +63,17 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
         .collection("users")
         .doc("${FirebaseAuth.instance.currentUser.uid}")
         .collection("username")
-        .doc("${args["username"]}")
+        .doc(widget.username)
         .get();
 
     var pngBytes = await _capturePng();
     print(pngBytes);
 
-    if (args['bytelist'].length > 4) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 4) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
+    await widget.bytelist.add(pngBytes);
 
-    print(args['bytelist'].length);
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
@@ -144,10 +145,10 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
               pw.Divider()
             ]));
 
-    for (int i = 0; i < args['bytelist'].length; i++) {
+    for (int i = 0; i < widget.bytelist.length; i++) {
       final image = PdfImage.file(
         doc.document,
-        bytes: args['bytelist'][i],
+        bytes: widget.bytelist[i],
       );
 
       doc.addPage(pw.MultiPage(
@@ -177,7 +178,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
 
     final ref = FirebaseStorage.instance
         .ref()
-        .child(args["username"])
+        .child(widget.username)
         .child("Below knee Pros.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
@@ -188,7 +189,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
           .collection("users")
           .doc("${FirebaseAuth.instance.currentUser.uid}")
           .collection("username")
-          .doc("${args["username"]}")
+          .doc(widget.username)
           .collection("formname")
           .doc("BelowKneePros")
           .set({"form": url});
@@ -211,11 +212,6 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print(args['bytelist'].length);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee prosthesis"),
@@ -314,7 +310,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
                     onPressed: loading
                         ? null
                         : () {
-                            _printPngBytes(args);
+                            _printPngBytes();
                           },
                   ),
                 )

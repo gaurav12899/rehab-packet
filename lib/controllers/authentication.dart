@@ -16,10 +16,18 @@ signUp(String email, String password) async {
     print(user.emailVerified);
     // if (user.emailVerified) {
     print("creatig");
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user.uid)
-        .set({'emailID': user.email});
+    FirebaseFirestore.instance.collection("users").doc(user.uid).set({
+      'firstName': "",
+      'address': '',
+      'emailID': email,
+      'phone': "",
+      'dob': '',
+      'gender': 'male',
+      'qualification': '',
+      'state': '',
+      'lastName': "",
+      'profileUrl': "",
+    }).whenComplete(() => print("donee"));
     print("done");
     // }
     if (!user.emailVerified) {
@@ -59,7 +67,7 @@ loginWithEmail(String email, String password) async {
         if (event.data().containsKey('firstName')) {
           return null;
         } else {
-          ref.update({
+          ref.set({
             'firstName': "",
             'address': '',
             'emailID': email,
@@ -69,7 +77,7 @@ loginWithEmail(String email, String password) async {
             'qualification': '',
             'state': '',
             'lastName': "",
-            'profileUrl': '',
+            'profileUrl': "",
           }).whenComplete(() => print("donee"));
         }
       });

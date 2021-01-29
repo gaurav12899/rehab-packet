@@ -8,6 +8,9 @@ import 'package:project/screen/forms/belowKneeProsthesis/belowKneeProsthesisC.da
 
 class BelowKneeProsthesisB extends StatefulWidget {
   static const routeName = '/belowKneeProsthesisB';
+  var bytelist;
+  var username;
+  BelowKneeProsthesisB({@required this.bytelist, @required this.username});
 
   @override
   _BelowKneeProsthesisBState createState() => _BelowKneeProsthesisBState();
@@ -53,49 +56,30 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
     return byteData.buffer.asUint8List();
   }
 
-  void _printPngBytes(dynamic args) async {
+  void _printPngBytes() async {
     var pngBytes = await _capturePng();
 
-    if (args['bytelist'].length > 1) {
-      args['bytelist'].removeLast();
+    if (widget.bytelist.length > 1) {
+      widget.bytelist.removeLast();
     }
-    await args['bytelist'].add(pngBytes);
-    Navigator.of(context).pushNamed(BelowKneeProsthesisC.routeName, arguments: {
-      "bytelist": args["bytelist"],
-      "username": args["username"]
-    });
+    await widget.bytelist.add(pngBytes);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => BelowKneeProsthesisC(
+            bytelist: widget.bytelist, username: widget.username)));
 
     // print(bs64);
   }
 
   @override
   Widget build(BuildContext context) {
-    var args =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    print(args['bytelist'].length);
-
-    // if (args['bytelist'].length > 1) {
-    //   args['bytelist'].removeLast();
-    // }
-
-    // args.values.toList()
     return Scaffold(
       appBar: AppBar(
         title: Text("Below Knee Prosthesis"),
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //     if (args['bytelist'].length > 1) {
-        //       args['bytelist'].removeLast();
-        //     }
-        //   },
-        // ),
         actions: [
           IconButton(
               icon: Icon(Icons.navigate_next_rounded),
               onPressed: () {
-                _printPngBytes(args);
+                _printPngBytes();
               })
         ],
       ),
@@ -275,6 +259,9 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                         ),
                       ],
                     ),
+                    Divider(
+                      color: Colors.black,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -304,22 +291,25 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                                 }),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Text("Aluminium"),
-                            Checkbox(
-                                activeColor: Colors.blue,
-                                value: aluminium,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    aluminium = value;
-                                  });
-                                }),
-                          ],
-                        ),
                       ],
                     ),
                   ],
+                ),
+                Row(
+                  children: [
+                    Text("Aluminium"),
+                    Checkbox(
+                        activeColor: Colors.blue,
+                        value: aluminium,
+                        onChanged: (bool value) {
+                          setState(() {
+                            aluminium = value;
+                          });
+                        }),
+                  ],
+                ),
+                Divider(
+                  color: Colors.black,
                 ),
                 Text(
                   "Prosthetic Foot:",
@@ -352,12 +342,15 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                     Expanded(child: TextField())
                   ],
                 ),
+                Divider(
+                  color: Colors.black,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Text("Four Prong Adoptor"),
+                        Text("Four\nProng Adoptor"),
                         Checkbox(
                             activeColor: Colors.blue,
                             value: fourProngAdaptor,
@@ -370,7 +363,7 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                     ),
                     Row(
                       children: [
-                        Text("Four Prong Adoptor"),
+                        Text("Three\n Prong Adoptor"),
                         Checkbox(
                             activeColor: Colors.blue,
                             value: threeProngAdoptor,
@@ -400,6 +393,9 @@ class _BelowKneeProsthesisBState extends State<BelowKneeProsthesisB> {
                       ],
                     ),
                   ],
+                ),
+                Divider(
+                  color: Colors.black,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
