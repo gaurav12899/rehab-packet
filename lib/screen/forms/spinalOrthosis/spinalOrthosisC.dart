@@ -26,19 +26,29 @@ class _SpinalOrthosisCState extends State<SpinalOrthosisC> {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
 
-    if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
-      await Future.delayed(const Duration(milliseconds: 20));
-      return _capturePng();
+    ui.Image image;
+    bool catched = false;
+    try {
+      image = await boundary.toImage();
+      catched = true;
+    } catch (exception) {
+      catched = false;
+      Future.delayed(Duration(milliseconds: 1), () {
+        _capturePng();
+      });
     }
 
-    var image = await boundary.toImage();
-    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    return byteData.buffer.asUint8List();
+    if (catched) {
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData.buffer.asUint8List();
+    }
   }
 
   void _printPngBytes() async {
     var pngBytes = await _capturePng();
+      if (widget.bytelist.length > 2) {
+      widget.bytelist.removeLast();
+    }
     await widget.bytelist.add(pngBytes);
     Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => SpinalOrthosisD(
@@ -48,9 +58,7 @@ class _SpinalOrthosisCState extends State<SpinalOrthosisC> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.bytelist.length > 2) {
-      widget.bytelist.removeLast();
-    }
+  
     return Scaffold(
       appBar: AppBar(
         title: Text("Spinal Prosthesis"),

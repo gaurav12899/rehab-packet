@@ -62,8 +62,8 @@ dependencies:
   flutter_share: ^1.0.5
   skeleton_text: ^2.0.2
   flutter_archive: ^2.0.1
-  flutter_pdfview: ^1.0.4
   advance_pdf_viewer: ^1.2.1+2
+  connectivity: ^2.0.2
 
 
 

@@ -24,15 +24,22 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
 
-    if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
-      await Future.delayed(const Duration(milliseconds: 20));
-      return _capturePng();
+    ui.Image image;
+    bool catched = false;
+    try {
+      image = await boundary.toImage();
+      catched = true;
+    } catch (exception) {
+      catched = false;
+      Future.delayed(Duration(milliseconds: 1), () {
+        _capturePng();
+      });
     }
 
-    var image = await boundary.toImage();
-    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    return byteData.buffer.asUint8List();
+    if (catched) {
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData.buffer.asUint8List();
+    }
   }
 
   void _printPngBytes(String username) async {
@@ -89,7 +96,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -103,7 +109,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           )),
                         ],
@@ -117,7 +122,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           )),
                         ],
@@ -132,7 +136,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -146,7 +149,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -160,7 +162,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -174,7 +175,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -188,7 +188,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -203,7 +202,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           Expanded(
                               child: TextField(
                             maxLines: 3,
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -222,7 +220,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -236,7 +233,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -250,7 +246,6 @@ class _SpinalOrthosisAState extends State<SpinalOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],

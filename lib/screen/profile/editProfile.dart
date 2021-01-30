@@ -412,6 +412,7 @@ class _EditProfileState extends State<EditProfile> {
                                       phone = val;
                                     });
                                 },
+                                keyboardType: TextInputType.number,
                                 enableInteractiveSelection: false,
                               ),
                               SizedBox(

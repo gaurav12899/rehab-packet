@@ -2,6 +2,9 @@
 advance_pdf_viewer=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\advance_pdf_viewer-1.2.1+2\\
 cloud_firestore=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.14.4\\
 cloud_firestore_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore_web-0.2.1+2\\
+connectivity=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\connectivity-2.0.2\\
+connectivity_for_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\connectivity_for_web-0.3.1+4\\
+connectivity_macos=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\connectivity_macos-0.1.0+7\\
 firebase_auth=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.18.4+1\\
 firebase_auth_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-0.3.2+3\\
 firebase_core=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.5.3\\
@@ -11,7 +14,6 @@ firebase_storage=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_sto
 firebase_storage_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_storage_web-0.1.1+1\\
 flutter_archive=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_archive-2.0.1\\
 flutter_email_sender=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_email_sender-4.0.0\\
-flutter_pdfview=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_pdfview-1.0.4\\
 flutter_plugin_android_lifecycle=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-1.0.11\\
 flutter_share=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_share-1.0.5\\
 google_sign_in=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_sign_in-4.5.9\\

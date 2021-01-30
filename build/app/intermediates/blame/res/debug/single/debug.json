@@ -816,10 +816,6 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\2551154c7d5ac78c1819adbdfd5480f4\\appcompat-1.1.0\\res\\anim\\abc_popup_exit.xml"
     },
     {
-        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_default_scroll_handle_top.xml.flat",
-        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\b10d8ea23e1645c7819f17eb7137e7bc\\jetified-android-pdf-viewer-3.1.0-beta.1\\res\\drawable\\default_scroll_handle_top.xml"
-    },
-    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\2551154c7d5ac78c1819adbdfd5480f4\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
@@ -1038,10 +1034,6 @@
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\2551154c7d5ac78c1819adbdfd5480f4\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
-        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_default_scroll_handle_bottom.xml.flat",
-        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\b10d8ea23e1645c7819f17eb7137e7bc\\jetified-android-pdf-viewer-3.1.0-beta.1\\res\\drawable\\default_scroll_handle_bottom.xml"
     },
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
@@ -1620,10 +1612,6 @@
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\googleg_disabled_color_18.png"
     },
     {
-        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_default_scroll_handle_left.xml.flat",
-        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\b10d8ea23e1645c7819f17eb7137e7bc\\jetified-android-pdf-viewer-3.1.0-beta.1\\res\\drawable\\default_scroll_handle_left.xml"
-    },
-    {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\2551154c7d5ac78c1819adbdfd5480f4\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
@@ -1798,10 +1786,6 @@
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
-    },
-    {
-        "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable_default_scroll_handle_right.xml.flat",
-        "source": "C:\\Users\\gaura\\.gradle\\caches\\transforms-2\\files-2.1\\b10d8ea23e1645c7819f17eb7137e7bc\\jetified-android-pdf-viewer-3.1.0-beta.1\\res\\drawable\\default_scroll_handle_right.xml"
     },
     {
         "merged": "D:\\MyFlutterApps\\RehabPocket\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",

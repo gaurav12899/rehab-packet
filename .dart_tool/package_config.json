@@ -80,6 +80,30 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "connectivity",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "connectivity_for_web",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_for_web-0.3.1+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "connectivity_macos",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_macos-0.1.0+7",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "connectivity_platform_interface",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_platform_interface-1.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "convert",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1",
       "packageUri": "lib/",
@@ -198,12 +222,6 @@
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_email_sender-4.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.6"
-    },
-    {
-      "name": "flutter_pdfview",
-      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_pdfview-1.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
@@ -644,7 +662,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-01-29T12:47:46.236910Z",
+  "generated": "2021-01-29T21:36:04.423556Z",
   "generator": "pub",
-  "generatorVersion": "2.12.0-253.0.dev"
+  "generatorVersion": "2.12.0-29.10.beta"
 }

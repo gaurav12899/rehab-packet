@@ -4,8 +4,6 @@ import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import './app-drawer.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class NewOrOldPatient extends StatefulWidget {
   static const routeName = "/new-or-old";
@@ -15,32 +13,6 @@ class NewOrOldPatient extends StatefulWidget {
 }
 
 class _NewOrOldPatientState extends State<NewOrOldPatient> {
-  @override
-  void initState() {
-    super.initState();
-    final ref = FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser.uid.toString());
-    ref.snapshots().listen((event) {
-      if (!event.data().containsKey('address')) {
-        ref.set(
-          {
-            "email": "",
-            "address": 'add',
-            'dob': '',
-            "firstName": '',
-            'gender': 'male',
-            "lastName": '',
-            'phone': '',
-            "profileUrl": '',
-            'qualification': '',
-            'state': '',
-          },
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

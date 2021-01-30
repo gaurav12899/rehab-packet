@@ -32,15 +32,22 @@ class _ElbowOrthosisAState extends State<ElbowOrthosisA> {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
 
-    if (boundary.debugNeedsPaint) {
-      print("Waiting for boundary to be painted.");
-      await Future.delayed(const Duration(milliseconds: 20));
-      return _capturePng();
+    ui.Image image;
+    bool catched = false;
+    try {
+      image = await boundary.toImage();
+      catched = true;
+    } catch (exception) {
+      catched = false;
+      Future.delayed(Duration(milliseconds: 1), () {
+        _capturePng();
+      });
     }
 
-    var image = await boundary.toImage();
-    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    return byteData.buffer.asUint8List();
+    if (catched) {
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData.buffer.asUint8List();
+    }
   }
 
   void _printPngBytes(String username) async {
@@ -102,7 +109,6 @@ class _ElbowOrthosisAState extends State<ElbowOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -116,7 +122,6 @@ class _ElbowOrthosisAState extends State<ElbowOrthosisA> {
                           ),
                           Expanded(
                               child: TextField(
-                            keyboardType: TextInputType.number,
                             textAlignVertical: TextAlignVertical.top,
                           ))
                         ],
@@ -239,123 +244,6 @@ class _SideOfAmputationState extends State<SideOfAmputation> {
             ],
           ),
         ]);
-  }
-}
-
-class SuspensionType extends StatefulWidget {
-  SuspensionType({
-    Key key,
-    @required suspensionType2,
-  })  : _suspensionType = suspensionType2,
-        super(key: key);
-
-  var _suspensionType;
-
-  @override
-  _SuspensionTypeState createState() => _SuspensionTypeState();
-}
-
-class _SuspensionTypeState extends State<SuspensionType> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "\nSuspension\nType:",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  children: [
-                    Radio(
-                        activeColor: Colors.green,
-                        value: 0,
-                        groupValue: widget._suspensionType,
-                        onChanged: (val) {
-                          setState(() {
-                            widget._suspensionType = val;
-                          });
-                        }),
-                    Text(
-                      "TES\nBelt",
-                      // textAlign: TextAlign.justify,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio(
-                        activeColor: Colors.green,
-                        value: 1,
-                        groupValue: widget._suspensionType,
-                        onChanged: (val) {
-                          setState(() {
-                            widget._suspensionType = val;
-                          });
-                        }),
-                    Text(
-                      "Locking\nLiner",
-                      textAlign: TextAlign.justify,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Radio(
-                        activeColor: Colors.green,
-                        value: 2,
-                        groupValue: widget._suspensionType,
-                        onChanged: (val) {
-                          setState(() {
-                            widget._suspensionType = val;
-                          });
-                        }),
-                    Text(
-                      "Suction\nValve",
-                      textAlign: TextAlign.justify,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio(
-                        activeColor: Colors.green,
-                        value: 3,
-                        groupValue: widget._suspensionType,
-                        onChanged: (val) {
-                          setState(() {
-                            widget._suspensionType = val;
-                          });
-                        }),
-                    Text(
-                      "KISS\n Lanyard",
-                      textAlign: TextAlign.justify,
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              width: 200,
-              child: TextField(
-                decoration: InputDecoration(hintText: "Others"),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
   }
 }
 
@@ -646,92 +534,95 @@ class StaticControls extends StatefulWidget {
 class _StaticControlsState extends State<StaticControls> {
   @override
   Widget build(BuildContext context) {
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        "Static Controls",
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      Column(children: [
-        Row(
-          children: [
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Radio(
-                    activeColor: Colors.green,
-                    value: 0,
-                    groupValue: widget._staticControls,
-                    onChanged: (val) {
-                      setState(() {
-                        widget._staticControls = val;
-                      });
-                    }),
-                Text(
-                  "Limit\nExtension",
-                  textAlign: TextAlign.justify,
-                )
-              ],
-            ),
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Radio(
-                    activeColor: Colors.green,
-                    value: 1,
-                    groupValue: widget._staticControls,
-                    onChanged: (val) {
-                      setState(() {
-                        widget._staticControls = val;
-                      });
-                    }),
-                Text(
-                  "Limit\nFlexion",
-                  textAlign: TextAlign.justify,
-                )
-              ],
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Static Controls",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Radio(
-                    activeColor: Colors.green,
-                    value: 2,
-                    groupValue: widget._staticControls,
-                    onChanged: (val) {
-                      setState(() {
-                        widget._staticControls = val;
-                      });
-                    }),
-                Text(
-                  "Full\nStop",
-                  textAlign: TextAlign.justify,
-                )
-              ],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Container(
-              width: 100,
-              child: Expanded(
-                child: TextField(
-                  decoration: InputDecoration(hintText: "Others"),
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Radio(
+                        activeColor: Colors.green,
+                        value: 0,
+                        groupValue: widget._staticControls,
+                        onChanged: (val) {
+                          setState(() {
+                            widget._staticControls = val;
+                          });
+                        }),
+                    Text(
+                      "Limit\nExtension",
+                      textAlign: TextAlign.justify,
+                    )
+                  ],
                 ),
-              ),
-            )
-          ],
-        ),
-      ])
-    ]);
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                        activeColor: Colors.green,
+                        value: 1,
+                        groupValue: widget._staticControls,
+                        onChanged: (val) {
+                          setState(() {
+                            widget._staticControls = val;
+                          });
+                        }),
+                    Text(
+                      "Limit\nFlexion",
+                      textAlign: TextAlign.justify,
+                    )
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                        activeColor: Colors.green,
+                        value: 2,
+                        groupValue: widget._staticControls,
+                        onChanged: (val) {
+                          setState(() {
+                            widget._staticControls = val;
+                          });
+                        }),
+                    Text(
+                      "Full\nStop",
+                      textAlign: TextAlign.justify,
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  width: 250,
+                  child: TextField(
+                    decoration: InputDecoration(labelText: "Others"),
+                  ),
+                ),
+              ],
+            ),
+          ])
+        ]),
+      ],
+    );
   }
 }
 

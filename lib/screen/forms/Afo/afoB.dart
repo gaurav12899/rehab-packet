@@ -34,14 +34,22 @@ class _AfoBState extends State<AfoB> {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
 
-    if (boundary.debugNeedsPaint) {
-      await Future.delayed(const Duration(milliseconds: 20));
-      return _capturePng();
+    ui.Image image;
+    bool catched = false;
+    try {
+      image = await boundary.toImage();
+      catched = true;
+    } catch (exception) {
+      catched = false;
+      Future.delayed(Duration(milliseconds: 1), () {
+        _capturePng();
+      });
     }
 
-    var image = await boundary.toImage();
-    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    return byteData.buffer.asUint8List();
+    if (catched) {
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData.buffer.asUint8List();
+    }
   }
 
   void _printPngBytes() async {

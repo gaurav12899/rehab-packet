@@ -132,6 +132,7 @@ googleSignIn() async {
     if (user != null) {
       // Add the following lines after getting the user
       // Checking if email and name is null
+
       assert(user.email != null);
       assert(user.displayName != null);
       assert(user.photoURL != null);
@@ -152,9 +153,35 @@ googleSignIn() async {
       print(imageUrl);
     }
 
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .get()
+        .then((docSnapshot) => {
+              if (!docSnapshot.exists)
+                {
+                  FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(FirebaseAuth.instance.currentUser.uid)
+                      .set({
+                    'firstName': firstName,
+                    'address': '',
+                    'emailID': email,
+                    'phone': phone ?? "",
+                    'dob': '',
+                    'gender': 'male',
+                    'qualification': '',
+                    'state': '',
+                    'lastName': lastName,
+                    'profileUrl': imageUrl,
+                  })
+                }
+            });
+
     final ref = FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser.uid);
+
     ref.snapshots().listen((event) {
       if (event.data().containsKey('firstName')) {
         return null;
