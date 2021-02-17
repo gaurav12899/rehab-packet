@@ -176,8 +176,11 @@ class _KafoCState extends State<KafoC> {
 
     file.writeAsBytesSync(doc.save(), flush: true);
 
-    final ref =
-        FirebaseStorage.instance.ref().child(widget.username).child("KFO.pdf");
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
+        .child(widget.username)
+        .child("KAFO.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));
@@ -189,7 +192,7 @@ class _KafoCState extends State<KafoC> {
           .collection("username")
           .doc(widget.username)
           .collection("formname")
-          .doc("Kafo")
+          .doc("KAFO")
           .set({"form": url});
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Colors.green,
@@ -230,6 +233,7 @@ class _KafoCState extends State<KafoC> {
                       centerOnScale: true,
                       enableScroll: false,
                       width: 1000,
+                      backgroundColor: Colors.white,
                       height: 1500,
                       doubleTapZoom: true,
                       zoomSensibility: 2,

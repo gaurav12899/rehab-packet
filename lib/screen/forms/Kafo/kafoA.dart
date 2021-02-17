@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screen/forms/Afo/afoB.dart';
 import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
@@ -39,10 +38,10 @@ class _KafoAState extends State<KafoA> {
   bool loading = false;
   GlobalKey _containerKey = GlobalKey();
   List bytList = [];
- Future<Uint8List> _capturePng() async {
+  Future<Uint8List> _capturePng() async {
     RenderRepaintBoundary boundary =
         _containerKey.currentContext.findRenderObject();
-   
+
     ui.Image image;
     bool catched = false;
     try {
@@ -56,9 +55,8 @@ class _KafoAState extends State<KafoA> {
     }
 
     if (catched) {
-    var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    return byteData.buffer.asUint8List();
-     
+      var byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData.buffer.asUint8List();
     }
   }
 

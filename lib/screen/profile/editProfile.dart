@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,7 +52,6 @@ class _EditProfileState extends State<EditProfile> {
       imageUrl;
   String url;
 
-  // var _formKey = GlobalKey<FormState>();
   _tryTOSubmit(Map profileInfo) async {
     _formKey.currentState.save();
     if (_image != null) {
@@ -521,10 +519,13 @@ class _EditProfileState extends State<EditProfile> {
                                 decoration: BoxDecoration(
                                     border: Border.all(color: Colors.grey)),
                                 child: ListTile(
-                                    leading: Text(
-                                      dob ?? profileInfo['dob'],
-                                      style: TextStyle(fontSize: 20),
-                                    ),
+                                    leading: ((profileInfo['dob'] == '') &&
+                                            dob == null)
+                                        ? Text("DOB")
+                                        : Text(
+                                            dob ?? profileInfo['dob'],
+                                            style: TextStyle(fontSize: 20),
+                                          ),
                                     trailing: GestureDetector(
                                         child: Icon(
                                           Icons.calendar_today,

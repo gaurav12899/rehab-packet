@@ -31,7 +31,13 @@ class _NewOrOldPatientState extends State<NewOrOldPatient> {
           appBar: AppBar(
             title: Text("Rehab Pocket"),
           ),
-          drawer: AppDrawer(),
+          drawer: AppDrawer(
+            home: false,
+            aboutUs: true,
+            contactUs: true,
+            myPatient: true,
+            profile: true,
+          ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -66,14 +72,12 @@ class _NewOrOldPatientState extends State<NewOrOldPatient> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(horizontal: 40),
-                          primary: Colors.blueGrey,
+                          primary: HexColor('344955'),
                         ),
                         child: Text(
                           "New Patient",
                           style: GoogleFonts.lato(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
                           Navigator.of(context).pushNamed(

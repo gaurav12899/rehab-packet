@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
+import 'package:project/screen/forms/HKAFO/hkafoA.dart';
 import 'package:project/screen/forms/Kafo/kafoA.dart';
 import 'package:project/screen/forms/elbowOrthosis/elbowOrthosis.dart';
 import 'package:project/screen/forms/spinalOrthosis/spinalOrthosisA.dart';
@@ -22,7 +24,7 @@ class Orthotic extends StatelessWidget {
             ),
             width: double.infinity,
             // color: Colors.red,
-            height: 80,
+            height: 70,
 
             child: Card(
               color: Colors.lightBlue,
@@ -30,10 +32,10 @@ class Orthotic extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               elevation: 5,
-              child: Text("UPPER LIMB",
+              child: Text("Upper Limb",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   )),
@@ -55,17 +57,18 @@ class Orthotic extends StatelessWidget {
             ),
             width: double.infinity,
             // color: Colors.red,
-            height: 80,
+            height: 70,
 
             child: Card(
               color: Colors.lightBlue,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              elevation: 10,
-              child: Text("LOWER LIMB",
+                borderRadius: BorderRadius.circular(10),
+              ),
+              elevation: 5,
+              child: Text("Lower Limb",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   )),
@@ -88,27 +91,27 @@ class Orthotic extends StatelessWidget {
           ),
           FormName(
             name: "Hip Knee-Ankle Foot Orthosis",
-            path: AfoA.routeName,
+            path: HKAFOA.routeName,
             username: username,
           ),
           Container(
-            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
             padding: EdgeInsets.only(
               top: 10,
             ),
             width: double.infinity,
             // color: Colors.red,
-            height: 80,
+            height: 70,
 
             child: Card(
               color: Colors.lightBlue,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.circular(10),
+              ),
               elevation: 5,
               child: Text("Spinal Orthosis",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   )),
@@ -151,6 +154,7 @@ class FormName extends StatelessWidget {
           Navigator.of(context).popAndPushNamed(path, arguments: username);
         },
         child: Card(
+          color: HexColor('344955'),
           elevation: 5,
           shape: RoundedRectangleBorder(
               borderRadius:
@@ -164,11 +168,14 @@ class FormName extends StatelessWidget {
             // ),
             leading: Icon(
               Icons.arrow_forward,
-              color: Colors.blue,
+              color: HexColor('F9AA33'),
             ),
             title: Text(
               name,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
         ),

@@ -30,7 +30,13 @@ class _ProfileState extends State<Profile> {
     };
     return Scaffold(
         // backgroundColor: Colors.black,
-        drawer: AppDrawer(),
+        drawer: AppDrawer(
+          home: true,
+          aboutUs: true,
+          contactUs: true,
+          myPatient: true,
+          profile: false,
+        ),
         appBar: AppBar(
           title: Text("Profile"),
           actions: [

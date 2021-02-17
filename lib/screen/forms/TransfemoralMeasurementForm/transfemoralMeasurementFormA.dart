@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
@@ -226,7 +225,7 @@ class _SideOfAmputationState extends State<SideOfAmputation> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Side of Amputation ",
+          "Side of\nAmputation ",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Column(
@@ -447,7 +446,7 @@ class _StumpMuscleTypeState extends State<StumpMuscleType> {
                       });
                     }),
                 Text(
-                  "Bon",
+                  "Bony",
                   // textAlign: TextAlign.justify,
                 )
               ],

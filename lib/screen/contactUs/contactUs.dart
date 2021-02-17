@@ -4,6 +4,7 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/screen/homeScreen/app-drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ContactUs extends StatefulWidget {
   static const routeName = '/contactUs';
@@ -53,8 +54,14 @@ class _ContactUsState extends State<ContactUs> {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
-        backgroundColor: Colors.blue.shade100,
-        drawer: AppDrawer(),
+        backgroundColor: HexColor('4A6572'),
+        drawer: AppDrawer(
+          home: true,
+          aboutUs: true,
+          contactUs: false,
+          myPatient: true,
+          profile: true,
+        ),
         key: _scaffoldKey,
         appBar: AppBar(
           title: Text('Contact Us'),
@@ -70,7 +77,7 @@ class _ContactUsState extends State<ContactUs> {
           },
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
 
@@ -134,13 +141,11 @@ class _ContactUsState extends State<ContactUs> {
                                       "Mail Us",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 30,
+                                          fontSize: 20,
                                           color: Colors.blue),
                                     ),
                                   ),
-                                  Divider(
-                                    color: Colors.blue.shade100,
-                                  ),
+                                  Divider(),
                                   Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: TextField(

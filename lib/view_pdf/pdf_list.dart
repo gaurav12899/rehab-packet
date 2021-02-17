@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project/screen/homeScreen/app-drawer.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/view_pdf/select_form.dart';
@@ -111,14 +112,22 @@ class _PdfListState extends State<PdfList> {
       },
       child: Scaffold(
         key: _scaffoldKey,
+        drawer: AppDrawer(
+          home: true,
+          aboutUs: true,
+          contactUs: true,
+          myPatient: false,
+          profile: true,
+        ),
         appBar: AppBar(
           title: Text('Patient Names'),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, NewOrOldPatient.routeName, (route) => false);
-              }),
+          // leading: IconButton(
+          //     icon: Icon(Icons.arrow_back),
+          //     onPressed: () {
+          //       Navigator.of(context).pushAndRemoveUntil(
+          //           MaterialPageRoute(builder: (ctx) => NewOrOldPatient()),
+          //           ModalRoute.withName(NewOrOldPatient.routeName));
+          //     }),
         ),
         body: _isLoading
             ? buildSkeleton(context)
@@ -222,8 +231,10 @@ class _PdfListState extends State<PdfList> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 2, vertical: 2),
                                   child: Card(
+                                    elevation: 5,
                                     child: ExpansionTile(
                                       title: ListTile(
                                         // tileColor: Colors.blue.shade200,
@@ -481,8 +492,6 @@ class _PdfListState extends State<PdfList> {
                                     ),
                                   ),
                                 ),
-
-                                // Divider()
                               ],
                             ),
                           );

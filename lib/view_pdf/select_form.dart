@@ -1,15 +1,22 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/view_pdf/viewPdf.dart';
 
-class SelectForm extends StatelessWidget {
+class SelectForm extends StatefulWidget {
   static const routeName = '/selectForm';
   final String patientId;
   SelectForm(this.patientId);
 
+  @override
+  _SelectFormState createState() => _SelectFormState();
+}
+
+class _SelectFormState extends State<SelectForm> {
   @override
   Widget build(BuildContext context) {
     // final patientId = ModalRoute.of(context).settings.arguments;
@@ -29,8 +36,8 @@ class SelectForm extends StatelessWidget {
                 onPressed: () async {
                   // .get();
                   // print(username);
-                  Navigator.of(context)
-                      .pushNamed(HomeScreen.routeName, arguments: patientId);
+                  Navigator.of(context).pushNamed(HomeScreen.routeName,
+                      arguments: widget.patientId);
                 })
           ],
           title: Text('Patient Forms'),
@@ -42,13 +49,8 @@ class SelectForm extends StatelessWidget {
                   .collection("users")
                   .doc(FirebaseAuth.instance.currentUser.uid.toString())
                   .collection("username")
-                  .doc(patientId)
+                  .doc(widget.patientId)
                   .collection("formname")
-
-                  // .doc(patientId)
-                  // .collection()
-                  // .doc('0bZeDiEJVWiNYg7BkwEO')
-                  // .collection()
                   .snapshots(),
               initialData: null,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -64,14 +66,7 @@ class SelectForm extends StatelessWidget {
                         return GestureDetector(
                           onTap: () async {
                             // Navigator.of(context).pushNamed(routeName);
-                            print(forms[index].get('form').toString());
                             final url = forms[index]['form'].toString();
-                            // if (await canLaunch(url)) {
-                            //   await launch(
-                            //     url,
-                            //   );
-                            // }
-
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => PdfScreen(url),
@@ -79,10 +74,88 @@ class SelectForm extends StatelessWidget {
                             );
                           },
                           child: Container(
-                            height: 60,
+                            height: 70,
                             child: Card(
+                              color: HexColor('344955'),
                               child: ListTile(
                                 // tileColor: Colors.blue.shade200,
+                                trailing: IconButton(
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: HexColor('F9AA33'),
+                                  ),
+                                  onPressed: () {
+                                    return showDialog(
+                                        context: context,
+                                        builder: (BuildContext ctx) {
+                                          return AlertDialog(
+                                            title: Text('Are you sure?'),
+                                            content: SingleChildScrollView(
+                                              child: ListBody(
+                                                children: <Widget>[
+                                                  Text(
+                                                      '${forms[index].documentID} will be deleted Permanently'),
+                                                ],
+                                              ),
+                                            ),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: Text('cancel'),
+                                                onPressed: () {
+                                                  Navigator.of(ctx).pop();
+                                                },
+                                              ),
+                                              TextButton(
+                                                child: Text(
+                                                  'Delete',
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                ),
+                                                onPressed: () async {
+                                                  final formId =
+                                                      FirebaseFirestore.instance
+                                                          .collection("users")
+                                                          .doc(FirebaseAuth
+                                                              .instance
+                                                              .currentUser
+                                                              .uid
+                                                              .toString())
+                                                          .collection(
+                                                              "username")
+                                                          .doc(widget.patientId)
+                                                          .collection(
+                                                              'formname')
+                                                          .doc(forms[index]
+                                                              .documentID);
+                                                  final Reference
+                                                      docStoragepath =
+                                                      FirebaseStorage.instance
+                                                          .ref()
+                                                          .child(FirebaseAuth
+                                                              .instance
+                                                              .currentUser
+                                                              .uid)
+                                                          .child(
+                                                              widget.patientId)
+                                                          .child(
+                                                              "${forms[index].documentID}.pdf");
+                                                  docStoragepath.delete();
+                                                  print(docStoragepath);
+                                                  print(
+                                                      "${forms[index].documentID}.pdf");
+                                                  await formId.delete();
+                                                  print(formId);
+
+                                                  setState(() {
+                                                    Navigator.of(ctx).pop();
+                                                  });
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                ),
                                 leading: Container(
                                   child: SvgPicture.asset(
                                     'assets/images/file.svg',
@@ -94,7 +167,7 @@ class SelectForm extends StatelessWidget {
                                     "${index + 1}. ${forms[index].documentID}",
                                     style: TextStyle(
                                       fontSize: 20,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     )),
                               ),
                             ),

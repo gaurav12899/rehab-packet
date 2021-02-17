@@ -6,6 +6,7 @@ import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:project/view_pdf/pdf_list.dart';
+import 'package:project/widgets/loading_widget.dart';
 import '../../widgets/image_picker.dart';
 
 class DemographicForm extends StatefulWidget {
@@ -204,7 +205,7 @@ class _DemographicFormState extends State<DemographicForm> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text("Submitted!!"),
+                  title: Text("Patient Registered"),
                   actions: <Widget>[
                     TextButton(
                       child: Text('Patient List'),
@@ -253,1356 +254,1227 @@ class _DemographicFormState extends State<DemographicForm> {
                 }),
           ],
         ),
-        body: _loading
-            ? Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.blue,
-                ),
-              )
-            : GestureDetector(
-                onTap: () {
-                  FocusScopeNode currentscope = FocusScope.of(context);
-                  if (!currentscope.hasPrimaryFocus) {
-                    currentscope.unfocus();
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RepaintBoundary(
-                    key: _containerKey,
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Form(
-                            key: _formKey,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Name: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-                                          return null;
-                                        },
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onSaved: (val) {
-                                          form['name'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "Age: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.number,
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onSaved: (val) {
-                                          form['age'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Gender",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue: _gender,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _gender = val;
-                                                  form['gender'] = gender[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Male",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue: _gender,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _gender = val;
-                                                  form['gender'] = gender[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Female",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 2,
-                                              groupValue: _gender,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _gender = val;
-                                                  form['gender'] = gender[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Other",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Address: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-                                          return null;
-                                        },
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onSaved: (val) {
-                                          form['address'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "State: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['state'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "Pincode: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['pincode'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Contact: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration: InputDecoration(
-                                          isDense: true,
-                                        ),
-                                        keyboardType: TextInputType.number,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-                                          return null;
-                                        },
-                                        onChanged: (val) {
-                                          form['contact'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "E-mail: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['email'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(children: [
-                                    Text(
-                                      "Occupation: ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Expanded(
-                                        child: TextFormField(
-                                      decoration:
-                                          InputDecoration(isDense: true),
-                                      onChanged: (val) {
-                                        form['occupation'] = val;
-                                      },
-                                    )),
-                                  ]),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Height: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['height'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "Weight: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['weight'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Living Condition: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue: _livingCondition,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _livingCondition = val;
-                                                  form['livingCondition'] =
-                                                      livingCondition[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "\nAssistance",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        // crossAxisAlignment: CrossAxisAlignment.end,
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue: _livingCondition,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _livingCondition = val;
-                                                  form['livingCondition'] =
-                                                      livingCondition[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "No\nassistance",
-                                            textAlign: TextAlign.center,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Radio(
-                                              value: 2,
-                                              activeColor: Colors.green,
-                                              groupValue: _livingCondition,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _livingCondition = val;
-                                                  form['livingCondition'] =
-                                                      livingCondition[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "with\nFamily",
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "activityLevel: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        // crossAxisAlignment: CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue: _activityLevel,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _activityLevel = val;
-                                                  form['livingCondition'] =
-                                                      activityLevel[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "K1",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        // crossAxisAlignment: CrossAxisAlignment.end,
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue: _activityLevel,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _activityLevel = val;
-                                                  form['activityLevel'] =
-                                                      activityLevel[val];
-                                                });
-                                              }),
-                                          Text(
-                                            " K2",
-                                            textAlign: TextAlign.center,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Radio(
-                                              value: 2,
-                                              activeColor: Colors.green,
-                                              groupValue: _activityLevel,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _activityLevel = val;
-                                                  form['activityLevel'] =
-                                                      activityLevel[val];
-                                                });
-                                              }),
-                                          Text(
-                                            " K3",
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Radio(
-                                              value: 3,
-                                              activeColor: Colors.green,
-                                              groupValue: _activityLevel,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _activityLevel = val;
-                                                  form['activityLevel'] =
-                                                      activityLevel[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "K4",
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "User Status? ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue: _userStatus,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _userStatus = val;
-                                                  form['userStatus'] =
-                                                      userStatus[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Existing\n Patient",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue: _userStatus,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _userStatus = val;
-                                                  form['userStatus'] =
-                                                      userStatus[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "New\nPatient",
-                                            textAlign: TextAlign.center,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 2,
-                                              groupValue: _userStatus,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _userStatus = val;
-                                                  form['userStatus'] =
-                                                      userStatus[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Primary\nUser",
-                                            textAlign: TextAlign.center,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Diagnosis: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['diagnosis'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Presciption: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['prescription'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Description: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['description'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Past\nHistory: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration: InputDecoration(
-                                            isDense: true,
-                                            border: OutlineInputBorder()),
-                                        minLines: 3,
-                                        maxLines: 3,
-                                        onChanged: (val) {
-                                          form['pastHistory'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Occupation\nHistory: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration: InputDecoration(
-                                            isDense: true,
-                                            border: OutlineInputBorder()),
-                                        minLines: 3,
-                                        maxLines: 3,
-                                        onChanged: (val) {
-                                          form['occupationHistory'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Current\nSituation: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration: InputDecoration(
-                                            isDense: true,
-                                            border: OutlineInputBorder()),
-                                        minLines: 3,
-                                        maxLines: 3,
-                                        onChanged: (val) {
-                                          form['currentSituation'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                      "Have you had or do you have any of the following:",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("HEART PROBLEM"),
-                                      value: checkbox1,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox1 = newValue;
-                                        });
-                                        if (checkbox1) {
-                                          anyOtherProblem.add("HEART PROBLEM");
-                                        }
-                                        if (!checkbox1) {
-                                          anyOtherProblem
-                                              .remove("HEART PROBLEM");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("NEUROLOGICAL PROBLEM"),
-                                      value: checkbox3,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox3 = newValue;
-                                        });
-                                        if (checkbox3) {
-                                          anyOtherProblem
-                                              .add("NEUROLOGICAL PROBLEM");
-                                        }
-                                        if (!checkbox3) {
-                                          anyOtherProblem
-                                              .remove("NEUROLOGICAL PROBLEM");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("VASCULAR DISEASE"),
-                                      value: checkbox4,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox4 = newValue;
-                                        });
-                                        if (checkbox4) {
-                                          anyOtherProblem
-                                              .add("VASCULAR DISEASE");
-                                        }
-                                        if (!checkbox4) {
-                                          anyOtherProblem
-                                              .remove("VASCULAR DISEASE");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("ALCOHOLISM"),
-                                      value: checkbox5,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox5 = newValue;
-                                        });
-                                        if (checkbox5) {
-                                          anyOtherProblem.add("ALCOHOLISM");
-                                        }
-                                        if (!checkbox5) {
-                                          anyOtherProblem.remove("ALCOHOLISM");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("RHEUMATOID ARTHRITIS"),
-                                      value: checkbox6,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox6 = newValue;
-                                        });
-                                        if (checkbox6) {
-                                          anyOtherProblem
-                                              .add("RHEUMATOID ARTHRITIS");
-                                        }
-                                        if (!checkbox6) {
-                                          anyOtherProblem
-                                              .remove("RHEUMATOID ARTHRITIS");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("HYPERTENSION/ HIGH BP"),
-                                      value: checkbox7,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox7 = newValue;
-                                        });
-                                        if (checkbox7) {
-                                          anyOtherProblem
-                                              .add("HYPERTENSION/ HIGH BP");
-                                        }
-                                        if (!checkbox7) {
-                                          anyOtherProblem
-                                              .remove("HYPERTENSION/ HIGH BP");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("DIABETES (TYPE 1 & TYPE 2)"),
-                                      value: checkbox8,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox8 = newValue;
-                                        });
-                                        if (checkbox8) {
-                                          anyOtherProblem.add(
-                                              "DIABETES (TYPE 1 & TYPE 2)");
-                                        }
-                                        if (!checkbox8) {
-                                          anyOtherProblem.remove(
-                                              "DIABETES (TYPE 1 & TYPE 2)");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("OSTEOARTHRITIS"),
-                                      value: checkbox9,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox9 = newValue;
-                                        });
-                                        if (checkbox9) {
-                                          anyOtherProblem.add("OSTEOARTHRITIS");
-                                        }
-                                        if (!checkbox9) {
-                                          anyOtherProblem
-                                              .remove("OSTEOARTHRITIS");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("OSTEOPOROSIS"),
-                                      value: checkbox10,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox10 = newValue;
-                                        });
-                                        if (checkbox10) {
-                                          anyOtherProblem.add("OSTEOPOROSIS");
-                                        }
-                                        if (!checkbox10) {
-                                          anyOtherProblem
-                                              .remove("OSTEOPOROSIS");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("STROKE/TBI/CVA"),
-                                      value: checkbox11,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox11 = newValue;
-                                        });
-                                        if (checkbox11) {
-                                          anyOtherProblem.add("STROKE/TIA/CVA");
-                                        }
-                                        if (!checkbox11) {
-                                          anyOtherProblem
-                                              .remove("STROKE/TIA/CVA");
-                                        }
-                                      }),
-                                  CheckboxListTile(
-                                      activeColor: Colors.red,
-                                      title: Text("SKIN PROBLEM"),
-                                      value: checkbox12,
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          checkbox12 = newValue;
-                                        });
-                                        if (checkbox12) {
-                                          anyOtherProblem.add("SKIN PROBLEM");
-                                        }
-                                        if (!checkbox12) {
-                                          anyOtherProblem
-                                              .remove("SKIN PROBLEM");
-                                        }
-                                      }),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Any other condition that might affect your treatment ? ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Container(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        minLines: 1,
-                                        controller: otherProblemText,
-                                        maxLines: 3,
-                                        onSaved: (val) {
-                                          anyOtherProblem
-                                              .add(otherProblemText.text);
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  PickImage(imagePickFn1),
-                                  PickImage(imagePickFn2),
-                                  PickImage(imagePickFn3),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Currently\nTaking Medicines? ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue:
-                                                  _currentlyTakingMedicines,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _currentlyTakingMedicines =
-                                                      val;
-                                                  form['currentlyTakingMedicines'] =
-                                                      currentlyTakingMedicines[
-                                                          val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Yes",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        // crossAxisAlignment: CrossAxisAlignment.end,
-                                        // mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue:
-                                                  _currentlyTakingMedicines,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _currentlyTakingMedicines =
-                                                      val;
-                                                  form['currentlyTakingMedicines'] =
-                                                      currentlyTakingMedicines[
-                                                          val];
-                                                });
-                                              }),
-                                          Text(
-                                            "No",
-                                            textAlign: TextAlign.center,
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Living\nEnvironment ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 0,
-                                              groupValue: _livingEnv,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _livingEnv = val;
-                                                  form['livingEnv'] =
-                                                      livingEnv[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Hilly\narea",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Radio(
-                                              activeColor: Colors.green,
-                                              value: 1,
-                                              groupValue: _livingEnv,
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  _livingEnv = val;
-                                                  form['livingEnv'] =
-                                                      livingEnv[val];
-                                                });
-                                              }),
-                                          Text(
-                                            "Plain\narea",
-                                            textAlign: TextAlign.justify,
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: TextField(
-                                          decoration: InputDecoration(
-                                              hintText: "Others"),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    "Daily Physical Demand:",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Before: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['phyDemandBefore'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "After: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['phyDemandAfter'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "50% OR MORE STANDING :",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Before: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['standingPerBefore'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "After: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['standingPerAfter'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "LIFTING REUIREMENT OVER 10kg – 15kg ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Before: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['liftingBefore'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "After: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['liftingAfter'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "WALKING FOR 2KM – 3KM or MORE  ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Before: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['walkingBefore'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "After: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['walkingAfter'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "WALKING ON UNEVEN TRAINS : ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Before: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['walkingTrainsBefore'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "After: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['walkingTrainsAfter'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "GOALS FOR WHAT YOU WOULD LIKE TO BE ABLE TO DO WITH YOUR PROSTHESIS/ ORTHOSIS ?",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  TextField(
-                                    decoration: InputDecoration(
-                                        isDense: true,
-                                        border: OutlineInputBorder()),
-                                    maxLines: 3,
-                                    minLines: 3,
-                                    onChanged: (val) {
-                                      form['goals'] = val;
-                                    },
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "PRACTITIONER NAME : ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        keyboardType: TextInputType.name,
-                                        onChanged: (val) {
-                                          form['practitionerName'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "CONTACT: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        keyboardType: TextInputType.phone,
-                                        onChanged: (val) {
-                                          form['practitionerContact'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "COMPANY : ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['company'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "LOCATION: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['location'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "PHYSICIAN NAME : ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['physicianName'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "Dept: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['dept'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "CONTACT : ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        keyboardType: TextInputType.phone,
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['physicianContact'] = val;
-                                        },
-                                      )),
-                                      Text(
-                                        "HOSPITAL: ",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Expanded(
-                                          child: TextFormField(
-                                        decoration:
-                                            InputDecoration(isDense: true),
-                                        onChanged: (val) {
-                                          form['hospital'] = val;
-                                        },
-                                      )),
-                                    ],
-                                  ),
-                                ],
-                              ),
+        body: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentscope = FocusScope.of(context);
+            if (!currentscope.hasPrimaryFocus) {
+              currentscope.unfocus();
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RepaintBoundary(
+              key: _containerKey,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Form(
+                      key: _formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Name: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(isDense: true),
+                                  onSaved: (val) {
+                                    form['name'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "Age: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(isDense: true),
+                                  onSaved: (val) {
+                                    form['age'] = val;
+                                  },
+                                )),
+                              ],
                             ),
-                          ),
-                        )
-                      ],
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Gender",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _gender,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _gender = val;
+                                            form['gender'] = gender[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Male",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _gender,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _gender = val;
+                                            form['gender'] = gender[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Female",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 2,
+                                        groupValue: _gender,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _gender = val;
+                                            form['gender'] = gender[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Other",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Address: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(isDense: true),
+                                  onSaved: (val) {
+                                    form['address'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "State: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['state'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "Pincode: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['pincode'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Contact: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                  ),
+                                  keyboardType: TextInputType.number,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
+                                  onChanged: (val) {
+                                    form['contact'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "E-mail: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['email'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(children: [
+                              Text(
+                                "Occupation: ",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                  child: TextFormField(
+                                decoration: InputDecoration(isDense: true),
+                                onChanged: (val) {
+                                  form['occupation'] = val;
+                                },
+                              )),
+                            ]),
+                            Row(
+                              children: [
+                                Text(
+                                  "Height: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['height'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "Weight: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['weight'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Living Condition: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _livingCondition,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _livingCondition = val;
+                                            form['livingCondition'] =
+                                                livingCondition[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "\nAssistance",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _livingCondition,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _livingCondition = val;
+                                            form['livingCondition'] =
+                                                livingCondition[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "No\nassistance",
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Radio(
+                                        value: 2,
+                                        activeColor: Colors.green,
+                                        groupValue: _livingCondition,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _livingCondition = val;
+                                            form['livingCondition'] =
+                                                livingCondition[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "with\nFamily",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "activityLevel: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _activityLevel,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _activityLevel = val;
+                                            form['livingCondition'] =
+                                                activityLevel[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "K1",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _activityLevel,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _activityLevel = val;
+                                            form['activityLevel'] =
+                                                activityLevel[val];
+                                          });
+                                        }),
+                                    Text(
+                                      " K2",
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Radio(
+                                        value: 2,
+                                        activeColor: Colors.green,
+                                        groupValue: _activityLevel,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _activityLevel = val;
+                                            form['activityLevel'] =
+                                                activityLevel[val];
+                                          });
+                                        }),
+                                    Text(
+                                      " K3",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Radio(
+                                        value: 3,
+                                        activeColor: Colors.green,
+                                        groupValue: _activityLevel,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _activityLevel = val;
+                                            form['activityLevel'] =
+                                                activityLevel[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "K4",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "User Status? ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _userStatus,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _userStatus = val;
+                                            form['userStatus'] =
+                                                userStatus[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Existing\n Patient",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _userStatus,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _userStatus = val;
+                                            form['userStatus'] =
+                                                userStatus[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "New\nPatient",
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 2,
+                                        groupValue: _userStatus,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _userStatus = val;
+                                            form['userStatus'] =
+                                                userStatus[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Primary\nUser",
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Diagnosis: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['diagnosis'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Presciption: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['prescription'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Description: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['description'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Past\nHistory: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(
+                                      isDense: true,
+                                      border: OutlineInputBorder()),
+                                  minLines: 3,
+                                  maxLines: 3,
+                                  onChanged: (val) {
+                                    form['pastHistory'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Occupation\nHistory: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(
+                                      isDense: true,
+                                      border: OutlineInputBorder()),
+                                  minLines: 3,
+                                  maxLines: 3,
+                                  onChanged: (val) {
+                                    form['occupationHistory'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Current\nSituation: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(
+                                      isDense: true,
+                                      border: OutlineInputBorder()),
+                                  minLines: 3,
+                                  maxLines: 3,
+                                  onChanged: (val) {
+                                    form['currentSituation'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                                "Have you had or do you have any of the following:",
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("HEART PROBLEM"),
+                                value: checkbox1,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox1 = newValue;
+                                  });
+                                  if (checkbox1) {
+                                    anyOtherProblem.add("HEART PROBLEM");
+                                  }
+                                  if (!checkbox1) {
+                                    anyOtherProblem.remove("HEART PROBLEM");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("NEUROLOGICAL PROBLEM"),
+                                value: checkbox3,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox3 = newValue;
+                                  });
+                                  if (checkbox3) {
+                                    anyOtherProblem.add("NEUROLOGICAL PROBLEM");
+                                  }
+                                  if (!checkbox3) {
+                                    anyOtherProblem
+                                        .remove("NEUROLOGICAL PROBLEM");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("VASCULAR DISEASE"),
+                                value: checkbox4,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox4 = newValue;
+                                  });
+                                  if (checkbox4) {
+                                    anyOtherProblem.add("VASCULAR DISEASE");
+                                  }
+                                  if (!checkbox4) {
+                                    anyOtherProblem.remove("VASCULAR DISEASE");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("ALCOHOLISM"),
+                                value: checkbox5,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox5 = newValue;
+                                  });
+                                  if (checkbox5) {
+                                    anyOtherProblem.add("ALCOHOLISM");
+                                  }
+                                  if (!checkbox5) {
+                                    anyOtherProblem.remove("ALCOHOLISM");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("RHEUMATOID ARTHRITIS"),
+                                value: checkbox6,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox6 = newValue;
+                                  });
+                                  if (checkbox6) {
+                                    anyOtherProblem.add("RHEUMATOID ARTHRITIS");
+                                  }
+                                  if (!checkbox6) {
+                                    anyOtherProblem
+                                        .remove("RHEUMATOID ARTHRITIS");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("HYPERTENSION/ HIGH BP"),
+                                value: checkbox7,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox7 = newValue;
+                                  });
+                                  if (checkbox7) {
+                                    anyOtherProblem
+                                        .add("HYPERTENSION/ HIGH BP");
+                                  }
+                                  if (!checkbox7) {
+                                    anyOtherProblem
+                                        .remove("HYPERTENSION/ HIGH BP");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("DIABETES (TYPE 1 & TYPE 2)"),
+                                value: checkbox8,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox8 = newValue;
+                                  });
+                                  if (checkbox8) {
+                                    anyOtherProblem
+                                        .add("DIABETES (TYPE 1 & TYPE 2)");
+                                  }
+                                  if (!checkbox8) {
+                                    anyOtherProblem
+                                        .remove("DIABETES (TYPE 1 & TYPE 2)");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("OSTEOARTHRITIS"),
+                                value: checkbox9,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox9 = newValue;
+                                  });
+                                  if (checkbox9) {
+                                    anyOtherProblem.add("OSTEOARTHRITIS");
+                                  }
+                                  if (!checkbox9) {
+                                    anyOtherProblem.remove("OSTEOARTHRITIS");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("OSTEOPOROSIS"),
+                                value: checkbox10,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox10 = newValue;
+                                  });
+                                  if (checkbox10) {
+                                    anyOtherProblem.add("OSTEOPOROSIS");
+                                  }
+                                  if (!checkbox10) {
+                                    anyOtherProblem.remove("OSTEOPOROSIS");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("STROKE/TBI/CVA"),
+                                value: checkbox11,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox11 = newValue;
+                                  });
+                                  if (checkbox11) {
+                                    anyOtherProblem.add("STROKE/TIA/CVA");
+                                  }
+                                  if (!checkbox11) {
+                                    anyOtherProblem.remove("STROKE/TIA/CVA");
+                                  }
+                                }),
+                            CheckboxListTile(
+                                activeColor: Colors.red,
+                                title: Text("SKIN PROBLEM"),
+                                value: checkbox12,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkbox12 = newValue;
+                                  });
+                                  if (checkbox12) {
+                                    anyOtherProblem.add("SKIN PROBLEM");
+                                  }
+                                  if (!checkbox12) {
+                                    anyOtherProblem.remove("SKIN PROBLEM");
+                                  }
+                                }),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Any other condition that might affect your treatment ? ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  minLines: 1,
+                                  controller: otherProblemText,
+                                  maxLines: 3,
+                                  onSaved: (val) {
+                                    anyOtherProblem.add(otherProblemText.text);
+                                  },
+                                )),
+                              ],
+                            ),
+                            PickImage(imagePickFn1),
+                            PickImage(imagePickFn2),
+                            PickImage(imagePickFn3),
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Currently\nTaking Medicines? ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _currentlyTakingMedicines,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _currentlyTakingMedicines = val;
+                                            form['currentlyTakingMedicines'] =
+                                                currentlyTakingMedicines[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Yes",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  // crossAxisAlignment: CrossAxisAlignment.end,
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _currentlyTakingMedicines,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _currentlyTakingMedicines = val;
+                                            form['currentlyTakingMedicines'] =
+                                                currentlyTakingMedicines[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "No",
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Living\nEnvironment ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 0,
+                                        groupValue: _livingEnv,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _livingEnv = val;
+                                            form['livingEnv'] = livingEnv[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Hilly\narea",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Radio(
+                                        activeColor: Colors.green,
+                                        value: 1,
+                                        groupValue: _livingEnv,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            _livingEnv = val;
+                                            form['livingEnv'] = livingEnv[val];
+                                          });
+                                        }),
+                                    Text(
+                                      "Plain\narea",
+                                      textAlign: TextAlign.justify,
+                                    )
+                                  ],
+                                ),
+                                SizedBox(width: 10),
+                                Expanded(
+                                  child: TextField(
+                                    decoration:
+                                        InputDecoration(hintText: "Others"),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Text(
+                              "Daily Physical Demand:",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Before: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['phyDemandBefore'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "After: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['phyDemandAfter'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "50% OR MORE STANDING :",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Before: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['standingPerBefore'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "After: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['standingPerAfter'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "LIFTING REUIREMENT OVER 10kg – 15kg ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Before: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['liftingBefore'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "After: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['liftingAfter'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "WALKING FOR 2KM – 3KM or MORE  ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Before: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['walkingBefore'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "After: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['walkingAfter'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "WALKING ON UNEVEN TRAINS : ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Before: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['walkingTrainsBefore'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "After: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['walkingTrainsAfter'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "GOALS FOR WHAT YOU WOULD LIKE TO BE ABLE TO DO WITH YOUR PROSTHESIS/ ORTHOSIS ?",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  isDense: true, border: OutlineInputBorder()),
+                              maxLines: 3,
+                              minLines: 3,
+                              onChanged: (val) {
+                                form['goals'] = val;
+                              },
+                            ),
+                            Divider(),
+                            Row(
+                              children: [
+                                Text(
+                                  "PRACTITIONER NAME : ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  keyboardType: TextInputType.name,
+                                  onChanged: (val) {
+                                    form['practitionerName'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "CONTACT: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  keyboardType: TextInputType.phone,
+                                  onChanged: (val) {
+                                    form['practitionerContact'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "COMPANY : ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['company'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "LOCATION: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['location'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "PHYSICIAN NAME : ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['physicianName'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "Dept: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['dept'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "CONTACT : ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['physicianContact'] = val;
+                                  },
+                                )),
+                                Text(
+                                  "HOSPITAL: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Expanded(
+                                    child: TextFormField(
+                                  decoration: InputDecoration(isDense: true),
+                                  onChanged: (val) {
+                                    form['hospital'] = val;
+                                  },
+                                )),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ));
+                  )
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

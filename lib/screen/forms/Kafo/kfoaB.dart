@@ -141,7 +141,7 @@ class _KafoBState extends State<KafoB> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Knee Position:",
+                          "Knee\nPosition:",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Column(
@@ -191,7 +191,7 @@ class _KafoBState extends State<KafoB> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Ankle Position:",
+                          "Ankle\nPosition:",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Column(
@@ -204,7 +204,7 @@ class _KafoBState extends State<KafoB> {
                                     dorsi = value;
                                   });
                                 }),
-                            Text("Dorsi-flexion")
+                            Text("Dorsi\nflexion")
                           ],
                         ),
                         Column(
@@ -217,7 +217,7 @@ class _KafoBState extends State<KafoB> {
                                     planter = value;
                                   });
                                 }),
-                            Text("Planter-flexion")
+                            Text("Planter\nflexion")
                           ],
                         ),
                         Expanded(
@@ -240,7 +240,7 @@ class _KafoBState extends State<KafoB> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Heel Position:",
+                          "Heel\nPosition:",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Column(

@@ -180,8 +180,9 @@ class _ElbowOrthosisCState extends State<ElbowOrthosisC> {
 
     final ref = FirebaseStorage.instance
         .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
         .child(widget.username)
-        .child("ElbowOrthosis.pdf");
+        .child("Elbow Orthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));

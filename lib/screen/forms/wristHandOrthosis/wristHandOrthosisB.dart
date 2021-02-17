@@ -182,8 +182,9 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
 
     final ref = FirebaseStorage.instance
         .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
         .child(widget.username)
-        .child("wristHandOrthosis.pdf");
+        .child("Wrist Hand Orthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));
@@ -218,7 +219,7 @@ class _WristHandOrthosisBState extends State<WristHandOrthosisB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wrist Hand Orthosis"),
+        title: Text("Above Elbow Prosthesis"),
       ),
       body: Container(
         child: SingleChildScrollView(

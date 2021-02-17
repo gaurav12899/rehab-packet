@@ -17,6 +17,7 @@ class TransfemoralMeasurementB extends StatefulWidget {
 
   var bytelist;
   var username;
+
   TransfemoralMeasurementB({@required this.bytelist, @required this.username});
   @override
   _TransfemoralMeasurementBState createState() =>
@@ -25,9 +26,6 @@ class TransfemoralMeasurementB extends StatefulWidget {
 
 class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
   GlobalKey _containerKey = GlobalKey();
-
-  var _socketMaterial;
-  var _suspensionType;
 
   final doc = pw.Document();
 
@@ -91,7 +89,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
                 child: pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: <pw.Widget>[
-                      pw.Text('KAFO Form', textScaleFactor: 1),
+                      pw.Text('Transfemoral Form', textScaleFactor: 1),
                       pw.Image(logo, width: 60, height: 60)
                     ]),
               ),
@@ -164,7 +162,7 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
                   child: pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       children: <pw.Widget>[
-                        pw.Text('K Form', textScaleFactor: 1),
+                        pw.Text('Transfemoral Form', textScaleFactor: 1),
                         pw.Image(logo, width: 60, height: 60)
                       ]),
                 ),
@@ -184,8 +182,9 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
 
     final ref = FirebaseStorage.instance
         .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
         .child(widget.username)
-        .child("Transfemoral.pdf");
+        .child("Transfemoral Measurement.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));
@@ -237,9 +236,9 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SocketMaterial(socketMaterial2: _socketMaterial),
+                      SocketMaterial(),
                       Divider(),
-                      SuspensionType(suspensionType2: _suspensionType),
+                      SuspensionType(),
                       Divider(),
                       Text("NOTE",
                           style: TextStyle(
@@ -293,20 +292,14 @@ class _TransfemoralMeasurementBState extends State<TransfemoralMeasurementB> {
 }
 
 class SuspensionType extends StatefulWidget {
-  SuspensionType({
-    Key key,
-    @required suspensionType2,
-  })  : _suspensionType = suspensionType2,
-        super(key: key);
-
-  var _suspensionType;
-
   @override
   _SuspensionTypeState createState() => _SuspensionTypeState();
 }
 
 class _SuspensionTypeState extends State<SuspensionType> {
   @override
+  var _suspensionType;
+
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -326,10 +319,10 @@ class _SuspensionTypeState extends State<SuspensionType> {
                     Radio(
                         activeColor: Colors.green,
                         value: 0,
-                        groupValue: widget._suspensionType,
+                        groupValue: _suspensionType,
                         onChanged: (val) {
                           setState(() {
-                            widget._suspensionType = val;
+                            _suspensionType = val;
                           });
                         }),
                     Text(
@@ -343,10 +336,10 @@ class _SuspensionTypeState extends State<SuspensionType> {
                     Radio(
                         activeColor: Colors.green,
                         value: 1,
-                        groupValue: widget._suspensionType,
+                        groupValue: _suspensionType,
                         onChanged: (val) {
                           setState(() {
-                            widget._suspensionType = val;
+                            _suspensionType = val;
                           });
                         }),
                     Text(
@@ -365,10 +358,10 @@ class _SuspensionTypeState extends State<SuspensionType> {
                     Radio(
                         activeColor: Colors.green,
                         value: 2,
-                        groupValue: widget._suspensionType,
+                        groupValue: _suspensionType,
                         onChanged: (val) {
                           setState(() {
-                            widget._suspensionType = val;
+                            _suspensionType = val;
                           });
                         }),
                     Text(
@@ -382,10 +375,10 @@ class _SuspensionTypeState extends State<SuspensionType> {
                     Radio(
                         activeColor: Colors.green,
                         value: 3,
-                        groupValue: widget._suspensionType,
+                        groupValue: _suspensionType,
                         onChanged: (val) {
                           setState(() {
-                            widget._suspensionType = val;
+                            _suspensionType = val;
                           });
                         }),
                     Text(
@@ -410,19 +403,13 @@ class _SuspensionTypeState extends State<SuspensionType> {
 }
 
 class SocketMaterial extends StatefulWidget {
-  SocketMaterial({
-    Key key,
-    @required socketMaterial2,
-  })  : _socketMaterial = socketMaterial2,
-        super(key: key);
-
-  var _socketMaterial;
-
   @override
   _SocketMaterialState createState() => _SocketMaterialState();
 }
 
 class _SocketMaterialState extends State<SocketMaterial> {
+  var _socketMaterial;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -445,10 +432,10 @@ class _SocketMaterialState extends State<SocketMaterial> {
                     Radio(
                         activeColor: Colors.green,
                         value: 0,
-                        groupValue: widget._socketMaterial,
+                        groupValue: _socketMaterial,
                         onChanged: (val) {
                           setState(() {
-                            widget._socketMaterial = val;
+                            _socketMaterial = val;
                           });
                         }),
                     Text(
@@ -462,10 +449,10 @@ class _SocketMaterialState extends State<SocketMaterial> {
                         Radio(
                             activeColor: Colors.green,
                             value: 2,
-                            groupValue: widget._socketMaterial,
+                            groupValue: _socketMaterial,
                             onChanged: (val) {
                               setState(() {
-                                widget._socketMaterial = val;
+                                _socketMaterial = val;
                               });
                             }),
                         Text(

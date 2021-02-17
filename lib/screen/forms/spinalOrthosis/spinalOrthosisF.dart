@@ -176,8 +176,9 @@ class _SpinalOrthosisFState extends State<SpinalOrthosisF> {
 
     final ref = FirebaseStorage.instance
         .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
         .child(widget.username)
-        .child("SpinalOrthosis.pdf");
+        .child("Spinal Orthosis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));

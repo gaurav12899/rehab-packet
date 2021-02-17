@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/forms/Afo/afoA.dart';
+import 'package:project/screen/forms/CosmeticRestorationHand/cosmeticRestorationHandA.dart';
+import 'package:project/screen/forms/cosmeticRestorationFingers/cosmeticRestFingersA.dart';
+import 'package:project/screen/forms/cosmeticRestorationFingers/cosmeticRestFingersB.dart';
 
 class Cosmetic extends StatelessWidget {
   static const routeName = '/cosmetic';
@@ -15,7 +19,7 @@ class Cosmetic extends StatelessWidget {
         child: Column(children: [
           FormName(
               name: "Partial Hand Prosthesis",
-              path: AfoA.routeName,
+              path: CosmeticRestorationHandA.routeName,
               username: username),
           FormName(
               name: "Partial Foot Prosthesis",
@@ -23,7 +27,7 @@ class Cosmetic extends StatelessWidget {
               username: username),
           FormName(
               name: "Silicon Fingers",
-              path: AfoA.routeName,
+              path: CosmeticRestorationFingersA.routeName,
               username: username),
         ]),
       ),
@@ -58,6 +62,7 @@ class FormName extends StatelessWidget {
         },
         child: Card(
           elevation: 5,
+          color: HexColor('344955'),
           shape: RoundedRectangleBorder(
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(80))),
@@ -70,11 +75,14 @@ class FormName extends StatelessWidget {
             // ),
             leading: Icon(
               Icons.arrow_forward,
-              color: Colors.blue,
+              color: HexColor('F9AA33'),
             ),
             title: Text(
               name,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
         ),

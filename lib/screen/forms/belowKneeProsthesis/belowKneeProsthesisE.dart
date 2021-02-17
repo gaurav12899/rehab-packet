@@ -180,8 +180,9 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
 
     final ref = FirebaseStorage.instance
         .ref()
+        .child(FirebaseAuth.instance.currentUser.uid)
         .child(widget.username)
-        .child("Below knee Pros.pdf");
+        .child("Below Knee Prosthesis.pdf");
     await ref.putFile(file).whenComplete(() => this.setState(() {
           loading = false;
         }));
@@ -193,7 +194,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
           .collection("username")
           .doc(widget.username)
           .collection("formname")
-          .doc("Below Knee Pros")
+          .doc("Below Knee Prosthesis")
           .set({"form": url});
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Colors.green,

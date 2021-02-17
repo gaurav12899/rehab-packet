@@ -96,6 +96,13 @@ class _AutomatedAnimatorState extends State<AutomatedAnimator>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return widget.buildWidget(controller.value);
   }

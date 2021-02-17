@@ -19,7 +19,7 @@ class _PickImageState extends State<PickImage> {
   Future _imgFromCamera() async {
     final _pickedFile = await _imagePicker.getImage(
       source: ImageSource.camera,
-      imageQuality: 80,
+      imageQuality: 50,
     );
     setState(() {
       if (_pickedFile != null) {
