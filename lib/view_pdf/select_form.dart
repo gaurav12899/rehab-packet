@@ -21,167 +21,163 @@ class _SelectFormState extends State<SelectForm> {
   Widget build(BuildContext context) {
     // final patientId = ModalRoute.of(context).settings.arguments;
 
-    return MaterialApp(
-      title: 'Patient Forms',
-      home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.add_circle_rounded),
-                onPressed: () async {
-                  // .get();
-                  // print(username);
-                  Navigator.of(context).pushNamed(HomeScreen.routeName,
-                      arguments: widget.patientId);
-                })
-          ],
-          title: Text('Patient Forms'),
-        ),
-        body: Center(
-          child: Container(
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("users")
-                  .doc(FirebaseAuth.instance.currentUser.uid.toString())
-                  .collection("username")
-                  .doc(widget.patientId)
-                  .collection("formname")
-                  .snapshots(),
-              initialData: null,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  final forms = snapshot.data.documents;
-                  return Container(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () async {
-                            // Navigator.of(context).pushNamed(routeName);
-                            final url = forms[index]['form'].toString();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => PdfScreen(url),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 70,
-                            child: Card(
-                              color: HexColor('344955'),
-                              child: ListTile(
-                                // tileColor: Colors.blue.shade200,
-                                trailing: IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: HexColor('F9AA33'),
-                                  ),
-                                  onPressed: () {
-                                    return showDialog(
-                                        context: context,
-                                        builder: (BuildContext ctx) {
-                                          return AlertDialog(
-                                            title: Text('Are you sure?'),
-                                            content: SingleChildScrollView(
-                                              child: ListBody(
-                                                children: <Widget>[
-                                                  Text(
-                                                      '${forms[index].documentID} will be deleted Permanently'),
-                                                ],
-                                              ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: Text('Patient Forms'),
+      ),
+      body: Center(
+        child: Container(
+          child: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("users")
+                .doc(FirebaseAuth.instance.currentUser.uid.toString())
+                .collection("username")
+                .doc(widget.patientId)
+                .collection("formname")
+                .snapshots(),
+            initialData: null,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                final forms = snapshot.data.documents;
+                return Container(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () async {
+                          // Navigator.of(context).pushNamed(routeName);
+                          final url = forms[index]['form'].toString();
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PdfScreen(url),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 70,
+                          child: Card(
+                            color: HexColor('4A6572'),
+                            child: ListTile(
+                              // tileColor: Colors.blue.shade200,
+                              trailing: IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: HexColor('F9AA33'),
+                                  // color: Colors.white,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  return showDialog(
+                                      context: context,
+                                      builder: (BuildContext ctx) {
+                                        return AlertDialog(
+                                          title: Text('Are you sure?'),
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: <Widget>[
+                                                Text(
+                                                    '${forms[index].documentID} will be deleted Permanently'),
+                                              ],
                                             ),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                child: Text('cancel'),
-                                                onPressed: () {
-                                                  Navigator.of(ctx).pop();
-                                                },
+                                          ),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: Text('cancel'),
+                                              onPressed: () {
+                                                Navigator.of(ctx).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text(
+                                                'Delete',
+                                                style: TextStyle(
+                                                    color: Colors.red),
                                               ),
-                                              TextButton(
-                                                child: Text(
-                                                  'Delete',
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                ),
-                                                onPressed: () async {
-                                                  final formId =
-                                                      FirebaseFirestore.instance
-                                                          .collection("users")
-                                                          .doc(FirebaseAuth
-                                                              .instance
-                                                              .currentUser
-                                                              .uid
-                                                              .toString())
-                                                          .collection(
-                                                              "username")
-                                                          .doc(widget.patientId)
-                                                          .collection(
-                                                              'formname')
-                                                          .doc(forms[index]
-                                                              .documentID);
-                                                  final Reference
-                                                      docStoragepath =
-                                                      FirebaseStorage.instance
-                                                          .ref()
-                                                          .child(FirebaseAuth
-                                                              .instance
-                                                              .currentUser
-                                                              .uid)
-                                                          .child(
-                                                              widget.patientId)
-                                                          .child(
-                                                              "${forms[index].documentID}.pdf");
-                                                  docStoragepath.delete();
-                                                  print(docStoragepath);
-                                                  print(
-                                                      "${forms[index].documentID}.pdf");
-                                                  await formId.delete();
-                                                  print(formId);
+                                              onPressed: () async {
+                                                final formId = FirebaseFirestore
+                                                    .instance
+                                                    .collection("users")
+                                                    .doc(FirebaseAuth.instance
+                                                        .currentUser.uid
+                                                        .toString())
+                                                    .collection("username")
+                                                    .doc(widget.patientId)
+                                                    .collection('formname')
+                                                    .doc(forms[index]
+                                                        .documentID);
+                                                final Reference docStoragepath =
+                                                    FirebaseStorage.instance
+                                                        .ref()
+                                                        .child(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            .uid)
+                                                        .child(widget.patientId)
+                                                        .child(
+                                                            "${forms[index].documentID}.pdf");
+                                                docStoragepath.delete();
 
-                                                  setState(() {
-                                                    Navigator.of(ctx).pop();
-                                                  });
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        });
-                                  },
-                                ),
-                                leading: Container(
-                                  child: SvgPicture.asset(
-                                    'assets/images/file.svg',
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                                title: Text(
-                                    "${index + 1}. ${forms[index].documentID}",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                    )),
+                                                await formId.delete();
+
+                                                setState(() {
+                                                  Navigator.of(ctx).pop();
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                },
                               ),
+                              leading: Container(
+                                child: SvgPicture.asset(
+                                  'assets/images/file.svg',
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                              title: Text(" ${forms[index].documentID}",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                  )),
                             ),
                           ),
-                        );
-                      },
-                      itemCount: forms.length,
-                    ),
-                  );
-                }
-              },
-            ),
+                        ),
+                      );
+                    },
+                    itemCount: forms.length,
+                  ),
+                );
+              }
+            },
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => HomeScreen(
+              uid: widget.patientId,
+            ),
+          ));
+
+          // (HomeScreen.routeName, arguments: widget.patientId);
+        },
+        child: Icon(
+          Icons.add_circle_outlined,
+          color: Colors.white,
+        ),
+        elevation: 20,
+        backgroundColor: Colors.blue,
       ),
     );
   }

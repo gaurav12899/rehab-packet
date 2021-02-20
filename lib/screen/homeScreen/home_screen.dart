@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project/screen/forms/cosmetic.dart';
-
-import 'package:project/screen/forms/orthotic.dart';
-import 'package:project/screen/forms/prosthetic.dart';
+import 'package:project/screen/forms/FormType/cosmetic.dart';
+import 'package:project/screen/forms/FormType/orthotic.dart';
+import 'package:project/screen/forms/FormType/prosthetic.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,16 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final String username = ModalRoute.of(context).settings.arguments;
 
-    print("From demo to home$username");
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                NewOrOldPatient.routeName, (route) => false);
+            Navigator.pop(context);
           },
         ),
         title: Text("Form Type"),
@@ -120,13 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
                                 .collection('username')
-                                .doc(username)
+                                .doc(widget.uid)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context).pushNamed(
-                                      Prosthetic.routeName,
-                                      arguments: username)
+                                  ? Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              Prosthetic(widget.uid)))
                                   : showDialog(
                                       context: context,
                                       builder: (context) {
@@ -223,13 +220,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
                                 .collection('username')
-                                .doc(username)
+                                .doc(widget.uid)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context).pushNamed(
-                                      Orthotic.routeName,
-                                      arguments: username)
+                                  ? Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              Prosthetic(widget.uid)))
                                   : showDialog(
                                       context: context,
                                       builder: (context) {
@@ -315,13 +313,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .collection('users')
                                 .doc(FirebaseAuth.instance.currentUser.uid)
                                 .collection('username')
-                                .doc(username)
+                                .doc(widget.uid)
                                 .get()
                                 .then((value) {
                               value.exists
-                                  ? Navigator.of(context).pushNamed(
-                                      Cosmetic.routeName,
-                                      arguments: username)
+                                  ? Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (ctx) =>
+                                              Cosmetic(widget.uid)))
                                   : showDialog(
                                       context: context,
                                       builder: (context) {

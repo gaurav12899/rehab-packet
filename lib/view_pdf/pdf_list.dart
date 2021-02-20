@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/screen/homeScreen/app-drawer.dart';
-import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/view_pdf/select_form.dart';
 import 'package:project/widgets/skeletonContainer.dart';
@@ -34,7 +33,6 @@ class _PdfListState extends State<PdfList> {
 
   _onSearchChanged() {
     generateSearchResultList();
-    print(_searchController.text);
   }
 
   getUsers() async {
@@ -120,7 +118,7 @@ class _PdfListState extends State<PdfList> {
           profile: true,
         ),
         appBar: AppBar(
-          title: Text('Patient Names'),
+          title: Text('Patient Details'),
           // leading: IconButton(
           //     icon: Icon(Icons.arrow_back),
           //     onPressed: () {
@@ -137,7 +135,7 @@ class _PdfListState extends State<PdfList> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       child: Container(
                         color: Colors.white,
                         child: TextField(
@@ -246,14 +244,14 @@ class _PdfListState extends State<PdfList> {
                                           ),
                                         ),
                                         title: Text(
-                                            "${index + 1}. ${_searchResultList[index]["name"].toUpperCase()}",
+                                            "${index + 1}. ${_searchResultList[index]["name"][0].toUpperCase() + _searchResultList[index]["name"].substring(1)}",
                                             style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
                                             )),
                                         subtitle: Text(
-                                            "Age:${_searchResultList[index]["age"].toUpperCase()}"),
+                                            "Age:${_searchResultList[index]["age"]}"),
                                       ),
                                       expandedCrossAxisAlignment:
                                           CrossAxisAlignment.stretch,

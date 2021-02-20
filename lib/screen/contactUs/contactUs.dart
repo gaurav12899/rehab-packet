@@ -84,46 +84,66 @@ class _ContactUsState extends State<ContactUs> {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image(
-                    image: AssetImage("assets/images/Rehab-without-bg.png"),
-                    width: 150,
-                    height: 150,
-                  ),
+                  // Container(
+                  //   color: Colors.white,
+                  //   child: Image(
+                  //     image: AssetImage("assets/images/Rehab-without-bg.png"),
+                  //     // width: 150,
+                  //     height: 150,
+                  //   ),
+                  // ),
                   Card(
-                    color: Colors.black,
+                    color: Colors.white,
                     elevation: 10,
                     child: ListTile(
-                      title: Text(
-                        "Call Us",
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "9315414056",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                      trailing: IconButton(
-                        color: Colors.green,
-                        icon: Icon(
-                          Icons.call,
-                          // color: Colors.blue,
+                      title: Align(
+                        alignment: Alignment.topLeft,
+                        child: Chip(
+                          backgroundColor: Colors.blue.shade100,
+                          label: Text(
+                            "+91 9315414056",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        onPressed: () async {
-                          const url = 'tel:+919315414056';
-                          if (await canLaunch(url)) {
-                            await launch(url);
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        },
+                      ),
+                      leading: Text(
+                        "Call us",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            fontSize: 20),
+                      ),
+                      trailing: Container(
+                        child: Card(
+                          elevation: 20,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(400)),
+                          color: Colors.blue,
+                          child: IconButton(
+                            color: Colors.white,
+                            icon: Icon(
+                              Icons.call,
+                              // color: Colors.blue,
+                            ),
+                            onPressed: () async {
+                              const url = 'tel:+919315414056';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * .6,
+                    height: MediaQuery.of(context).size.height * .9,
                     child: Card(
-                      color: Colors.black,
+                      color: Colors.white,
                       child: LayoutBuilder(builder: (context, constraint) {
                         return SingleChildScrollView(
                           child: ConstrainedBox(
@@ -138,37 +158,36 @@ class _ContactUsState extends State<ContactUs> {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                     child: Text(
-                                      "Mail Us",
+                                      "Mail us",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          color: Colors.blue),
+                                          color: Colors.blue,
+                                          fontSize: 20),
                                     ),
                                   ),
-                                  Divider(),
                                   Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: TextField(
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(color: Colors.black),
                                       controller: _subjectController,
                                       decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(4)),
                                             borderSide: BorderSide(
-                                                width: 1, color: Colors.white),
+                                                width: 1, color: Colors.blue),
                                           ),
                                           border: OutlineInputBorder(),
                                           labelText: 'Subject',
                                           labelStyle:
-                                              TextStyle(color: Colors.white)),
+                                              TextStyle(color: Colors.black)),
                                     ),
                                   ),
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: TextField(
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(color: Colors.black),
                                         controller: _bodyController,
                                         maxLines: null,
                                         expands: true,
@@ -179,13 +198,12 @@ class _ContactUsState extends State<ContactUs> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(4)),
                                               borderSide: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.white),
+                                                  width: 1, color: Colors.blue),
                                             ),
                                             border: OutlineInputBorder(),
                                             labelText: 'Emaill',
                                             labelStyle:
-                                                TextStyle(color: Colors.white)),
+                                                TextStyle(color: Colors.black)),
                                       ),
                                     ),
                                   ),
@@ -211,7 +229,7 @@ class _ContactUsState extends State<ContactUs> {
                                                 IconButton(
                                                   icon: Icon(
                                                     Icons.remove_circle,
-                                                    color: Colors.white,
+                                                    color: Colors.red,
                                                   ),
                                                   onPressed: () =>
                                                       {_removeAttachment(i)},
@@ -219,7 +237,7 @@ class _ContactUsState extends State<ContactUs> {
                                               ],
                                             ),
                                           Align(
-                                            alignment: Alignment.centerRight,
+                                            alignment: Alignment.centerLeft,
                                             child: Container(
                                               margin: EdgeInsets.all(10),
                                               padding: EdgeInsets.symmetric(
@@ -227,39 +245,26 @@ class _ContactUsState extends State<ContactUs> {
                                               width: 160,
                                               decoration: BoxDecoration(
                                                   border: Border.all(
-                                                      color: Colors.white)),
+                                                      color: Colors.blue)),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     "Attach Files",
                                                     style: TextStyle(
-                                                        color: Colors.white),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.blue),
                                                   ),
                                                   IconButton(
                                                     icon:
                                                         Icon(Icons.attach_file),
                                                     onPressed: _openImagePicker,
-                                                    color: Colors.white,
+                                                    color: Colors.red,
                                                   ),
                                                 ],
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                color: Colors.blue,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            child: TextButton(
-                                                onPressed: () => send(),
-                                                child: Text(
-                                                  "Send",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                )),
-                                          )
                                         ],
                                       ),
                                     ),
@@ -276,6 +281,14 @@ class _ContactUsState extends State<ContactUs> {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => send(),
+          label: Text(
+            'Submit',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Colors.blue,
         ),
       ),
     );

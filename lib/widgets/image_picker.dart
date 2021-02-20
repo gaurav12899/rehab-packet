@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PickImage extends StatefulWidget {
+  final int imageQuality;
   final void Function(
     File _pickedImage,
   ) imagePickFn;
-  PickImage(this.imagePickFn);
+  PickImage(this.imagePickFn, this.imageQuality);
   @override
   _PickImageState createState() => _PickImageState();
 }
@@ -19,12 +20,14 @@ class _PickImageState extends State<PickImage> {
   Future _imgFromCamera() async {
     final _pickedFile = await _imagePicker.getImage(
       source: ImageSource.camera,
-      imageQuality: 50,
+      imageQuality: widget.imageQuality,
     );
     setState(() {
       if (_pickedFile != null) {
         _image = File(_pickedFile.path);
-        widget.imagePickFn(_image);
+        widget.imagePickFn(
+          _image,
+        );
       } else {
         print("no image selected");
       }
@@ -33,7 +36,7 @@ class _PickImageState extends State<PickImage> {
 
   Future _imgFromGallery() async {
     final _pickedFile = await _imagePicker.getImage(
-        source: ImageSource.gallery, imageQuality: 80);
+        source: ImageSource.gallery, imageQuality: widget.imageQuality);
     setState(() {
       if (_pickedFile != null) {
         _image = File(_pickedFile.path);
@@ -65,13 +68,18 @@ class _PickImageState extends State<PickImage> {
                       "Select an Image",
                       textAlign: TextAlign.center,
                     )
-                  : Image.file(_image),
+                  : Image.file(
+                      _image,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
             ),
             DropdownButton(
               hint: Text(
                 "Add image",
               ),
-              dropdownColor: Colors.lightGreen,
+              dropdownColor: Colors.blue,
               items: [
                 DropdownMenuItem(
                   child: Row(

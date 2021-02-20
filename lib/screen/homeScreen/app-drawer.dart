@@ -130,7 +130,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     onTap: !widget.aboutUs
                         ? null
                         : () {
-                            Navigator.push(context,
+                            Navigator.pushReplacement(context,
                                 new MaterialPageRoute(builder: (context) {
                               return AboutUs();
                             }));
@@ -141,7 +141,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   ListTile(
                     tileColor: widget.contactUs ? null : HexColor('F9AA33'),
                     leading: Icon(
-                      Icons.contact_support_rounded,
+                      Icons.call,
                       color: Colors.white,
                     ),
                     title: Text(

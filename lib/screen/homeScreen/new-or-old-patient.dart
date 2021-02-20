@@ -80,8 +80,9 @@ class _NewOrOldPatientState extends State<NewOrOldPatient> {
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed(
-                            DemographicForm.routeName,
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (ctx) => DemographicForm()),
                           );
                         }),
                   ),

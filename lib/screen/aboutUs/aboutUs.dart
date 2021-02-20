@@ -10,7 +10,8 @@ class AboutUs extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: HexColor('4A6572'),
+      // backgroundColor: HexColor('4A6572'),
+
       appBar: AppBar(
         title: Text("About Us"),
       ),
@@ -32,7 +33,7 @@ class AboutUs extends StatelessWidget {
             Container(
               // padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Card(
-                color: Colors.black,
+                color: HexColor('4A6572'),
                 elevation: 20,
                 child: Padding(
                   padding: EdgeInsets.all(10),
@@ -41,17 +42,20 @@ class AboutUs extends StatelessWidget {
                       Text(
                         "Access your patient data anytime, from anywhere!!",
                         style: GoogleFonts.lato(
-                            color: HexColor('F9AA33'),
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic),
+                          color: HexColor('F9AA33'),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          // fontStyle: FontStyle.italic
+                        ),
                       ),
                       Text(
                         "\nPocket Rehab has been created with the aim of helping clinicians access their patient data and measurements from anywhere in the world. It will help you save time, energy and storage space. By saving your patient’s information on this app, you can be assured that the data is safe and completely confidential and will continue to be available to you as long as you would want to. With the ‘share’ feature, it is now even simpler to discuss your cases with experts, just by a single tap. ",
                         style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontStyle: FontStyle.italic),
+                          color: Colors.white,
+                          fontSize: 17,
+                          // fontStyle: FontStyle.italic
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -59,7 +63,8 @@ class AboutUs extends StatelessWidget {
               ),
             ),
             Card(
-              color: Colors.black,
+              elevation: 10,
+              color: HexColor('4A6572'),
               child: ListTile(
                 leading: Icon(
                   Icons.call,
@@ -67,28 +72,43 @@ class AboutUs extends StatelessWidget {
                 ),
                 title: Text(
                   "Phone:",
-                  style: TextStyle(color: Colors.yellow),
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 subtitle: Text(
-                  "9315414056",
-                  style: TextStyle(color: Colors.white),
+                  "+91 9315414056",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
             Card(
-              color: Colors.black,
+              elevation: 10,
+              color: HexColor('4A6572'),
               child: ListTile(
                 leading: Icon(
                   Icons.mail,
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
                 title: Text(
                   "Email:",
-                  style: TextStyle(color: Colors.yellow),
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 subtitle: Text(
                   "tarunsaini510@gmail.com",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             )
