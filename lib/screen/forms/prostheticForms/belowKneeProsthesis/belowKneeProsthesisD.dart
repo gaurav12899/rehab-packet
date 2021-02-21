@@ -9,7 +9,6 @@ import 'package:project/screen/forms/prostheticForms/belowKneeProsthesis/belowKn
 import 'package:zoom_widget/zoom_widget.dart';
 
 class BelowKneeProsthesisD extends StatefulWidget {
-  static const routeName = '/belowKneeProsthesisD';
   var bytelist;
   var username;
   BelowKneeProsthesisD({@required this.bytelist, @required this.username});
@@ -30,7 +29,7 @@ class _BelowKneeProsthesisDState extends State<BelowKneeProsthesisD> {
     ui.Image image;
     bool catched = false;
     try {
-      image = await boundary.toImage(pixelRatio: 3.0);
+      image = await boundary.toImage(pixelRatio: 1.0);
       catched = true;
     } catch (exception) {
       catched = false;

@@ -58,7 +58,6 @@ class _CosmeticRestorationFingersBState
       widget.bytelist.removeLast();
     }
     await widget.bytelist.add(pngBytes);
-    print(widget.bytelist);
 
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => CosmeticRestorationFingersC(
@@ -87,7 +86,7 @@ class _CosmeticRestorationFingersBState
                       Row(
                         children: [
                           Text(
-                            "Linear Measurements  :",
+                            "Linear Measurements:",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Expanded(

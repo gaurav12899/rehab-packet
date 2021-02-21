@@ -328,115 +328,129 @@ class _PdfListState extends State<PdfList> {
                                             'occupationHistory'),
                                         formDetail(index, "Current Situation",
                                             'currentSituation'),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            if (_searchResultList[index]
-                                                    ["imgUrl1"] !=
-                                                null)
-                                              GestureDetector(
-                                                onTap: () => Navigator.push(
-                                                    context, MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return ShowImage(
-                                                      _searchResultList[index]
-                                                          ["imgUrl1"]);
-                                                })),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      border:
-                                                          Border.all(width: 2)),
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .27,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      .2,
-                                                  child: Hero(
-                                                    tag: "img1",
-                                                    child: Image.network(
-                                                      _searchResultList[index]
-                                                          ["imgUrl1"],
-                                                      fit: BoxFit.cover,
+                                        Container(
+                                          color: Colors.blue,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              if (_searchResultList[index]
+                                                      ["imgUrl1"] !=
+                                                  null)
+                                                GestureDetector(
+                                                  onTap: () => Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                    return ShowImage(
+                                                        _searchResultList[index]
+                                                            ["imgUrl1"]);
+                                                  })),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 2)),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .27,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .2,
+                                                    child: Hero(
+                                                      tag: "img1",
+                                                      child: Image.network(
+                                                        _searchResultList[index]
+                                                            ["imgUrl1"],
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            if (_searchResultList[index]
-                                                    ["imgUrl2"] !=
-                                                null)
-                                              GestureDetector(
-                                                onTap: () => Navigator.push(
-                                                    context, MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return ShowImage(
-                                                      _searchResultList[index]
-                                                          ["imgUrl2"]);
-                                                })),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      border:
-                                                          Border.all(width: 2)),
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .27,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      .2,
-                                                  child: Hero(
-                                                    tag: "img2",
-                                                    child: Image.network(
-                                                      _searchResultList[index]
-                                                          ["imgUrl2"],
-                                                      fit: BoxFit.cover,
+                                              if (_searchResultList[index]
+                                                      ["imgUrl2"] !=
+                                                  null)
+                                                GestureDetector(
+                                                  onTap: () => Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                    return ShowImage(
+                                                        _searchResultList[index]
+                                                            ["imgUrl2"]);
+                                                  })),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 2)),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .27,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .2,
+                                                    child: Hero(
+                                                      tag: "img2",
+                                                      child: Image.network(
+                                                        _searchResultList[index]
+                                                            ["imgUrl2"],
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            if (_searchResultList[index]
-                                                    ["imgUrl3"] !=
-                                                null)
-                                              GestureDetector(
-                                                onTap: () => Navigator.push(
-                                                    context, MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return ShowImage(
-                                                      _searchResultList[index]
-                                                          ["imgUrl3"]);
-                                                })),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      border:
-                                                          Border.all(width: 2)),
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .27,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      .2,
-                                                  child: Hero(
-                                                    tag: "img3",
-                                                    child: Image.network(
-                                                      _searchResultList[index]
-                                                          ["imgUrl3"],
-                                                      fit: BoxFit.cover,
+                                              if (_searchResultList[index]
+                                                      ["imgUrl3"] !=
+                                                  null)
+                                                GestureDetector(
+                                                  onTap: () => Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                    return ShowImage(
+                                                        _searchResultList[index]
+                                                            ["imgUrl3"]);
+                                                  })),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 2)),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .27,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .2,
+                                                    child: Hero(
+                                                      tag: "img3",
+                                                      child: Image.network(
+                                                        _searchResultList[index]
+                                                            ["imgUrl3"],
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         formDetail(index, "Any Other Problem",
                                             'anyOtherProblem'),
                                         formDetail(index, 'Goals', 'goals'),
-                                        formDetail(index, "Practitione Name",
+                                        formDetail(index, 'Living Environment',
+                                            'livingEnv'),
+                                        formDetail(index, "Practitioner Name",
                                             'practitionerName'),
                                         formDetail(
                                             index,

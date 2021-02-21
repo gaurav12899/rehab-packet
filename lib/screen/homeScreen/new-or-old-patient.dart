@@ -4,15 +4,52 @@ import 'package:project/screen/forms/demographic_form.dart';
 import 'package:project/view_pdf/pdf_list.dart';
 import './app-drawer.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:connectivity/connectivity.dart';
 
 class NewOrOldPatient extends StatefulWidget {
   static const routeName = "/new-or-old";
+
+  final result;
+  NewOrOldPatient({this.result: null});
 
   @override
   _NewOrOldPatientState createState() => _NewOrOldPatientState();
 }
 
 class _NewOrOldPatientState extends State<NewOrOldPatient> {
+  ScaffoldState scaffold;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.result == true)
+      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarTrue());
+    if (widget.result == false)
+      WidgetsBinding.instance.addPostFrameCallback((_) => showSnackBarFalse());
+  }
+
+  void showSnackBarTrue() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Colors.green,
+      content: Text(
+        "Form Submitted!!",
+        style: TextStyle(color: Colors.white),
+      ),
+      duration: Duration(seconds: 3),
+    ));
+  }
+
+  void showSnackBarFalse() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Colors.red,
+      content: Text(
+        "Something wrong, Please try again!!",
+        style: TextStyle(color: Colors.white),
+      ),
+      duration: Duration(seconds: 3),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

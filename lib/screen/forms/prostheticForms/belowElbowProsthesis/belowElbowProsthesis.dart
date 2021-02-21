@@ -32,7 +32,7 @@ class _BelowElbowProsthesisState extends State<BelowElbowProsthesis> {
     ui.Image image;
     bool catched = false;
     try {
-      image = await boundary.toImage(pixelRatio: 3.0);
+      image = await boundary.toImage(pixelRatio: 1.0);
       catched = true;
     } catch (exception) {
       catched = false;
@@ -72,8 +72,7 @@ class _BelowElbowProsthesisState extends State<BelowElbowProsthesis> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => Prosthetic(widget.username)));
+            Navigator.of(context).pop();
           },
         ),
       ),

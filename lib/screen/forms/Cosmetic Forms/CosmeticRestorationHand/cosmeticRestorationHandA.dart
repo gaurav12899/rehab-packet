@@ -51,7 +51,6 @@ class _CosmeticRestorationHandAState extends State<CosmeticRestorationHandA> {
       bytList.removeLast();
     }
     bytList.add(pngBytes);
-    print(bytList);
     Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) =>
             CosmeticRestorationHandB(bytelist: bytList, username: username)));
@@ -69,8 +68,7 @@ class _CosmeticRestorationHandAState extends State<CosmeticRestorationHandA> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => Cosmetic(widget.username)));
+            Navigator.of(context).pop();
           },
         ),
       ),

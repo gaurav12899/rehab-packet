@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
+import 'package:project/main.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 import 'package:zoom_widget/zoom_widget.dart';
 import 'dart:ui' as ui;
@@ -36,7 +37,7 @@ class _HKAFOBState extends State<HKAFOB> {
     ui.Image image;
     bool catched = false;
     try {
-      image = await boundary.toImage(pixelRatio: 3.0);
+      image = await boundary.toImage(pixelRatio: 1.0);
 
       catched = true;
     } catch (exception) {
@@ -74,12 +75,24 @@ class _HKAFOBState extends State<HKAFOB> {
       widget.bytelist.removeLast();
     }
     await widget.bytelist.add(pngBytes);
+    final fontbold = await rootBundle.load("assets/fonts/Helvetica-Bold.ttf");
+    final font = await rootBundle.load("assets/fonts/Helvetica.ttf");
+    final fontOblique =
+        await rootBundle.load("assets/fonts/Helvetica-Oblique.ttf");
+
+    final ttfBold = pw.Font.ttf(fontbold);
+    final ttf = pw.Font.ttf(font);
+    final ttfOblique = pw.Font.ttf(fontOblique);
+
+    final pw.ThemeData theme =
+        pw.ThemeData.withFont(bold: ttfBold, base: ttf, italic: ttfOblique);
 
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
 
     doc.addPage(pw.MultiPage(
+        theme: theme,
         margin: pw.EdgeInsets.all(10),
         build: (pw.Context context) => [
               pw.Header(
@@ -153,6 +166,7 @@ class _HKAFOBState extends State<HKAFOB> {
       );
 
       doc.addPage(pw.MultiPage(
+          theme: theme,
           margin: pw.EdgeInsets.all(10),
           build: (pw.Context context) => [
                 pw.Header(
@@ -195,21 +209,20 @@ class _HKAFOBState extends State<HKAFOB> {
           .collection("formname")
           .doc("HKAFO")
           .set({"form": url});
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.green,
-        content: Text("Form Submitted!!"),
-        duration: Duration(seconds: 3),
-      ));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => NewOrOldPatient(
+                    result: true,
+                  )),
+          (Route<dynamic> route) => false);
     } on Exception catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          content: Text("Something went wrong!!"),
-        ),
-      );
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => NewOrOldPatient(
+                    result: false,
+                  )),
+          (Route<dynamic> route) => false);
     }
-    await Navigator.of(context)
-        .pushNamedAndRemoveUntil(NewOrOldPatient.routeName, (route) => false);
   }
 
   @override
@@ -411,27 +424,31 @@ class _HKAFOBState extends State<HKAFOB> {
                 Container(
                   padding: EdgeInsets.all(20),
                   width: MediaQuery.of(context).size.width * .8,
-                  child: ElevatedButton(
-                    child: loading
-                        ? Row(
-                            children: [
-                              Text("Generating Doc",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 10)),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              CircularProgressIndicator(),
-                            ],
-                          )
-                        : Text("Submit",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                    onPressed: loading
-                        ? null
-                        : () {
-                            _printPngBytes();
-                          },
+                  child: SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      child: loading
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Generating Doc",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 10)),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                CircularProgressIndicator(),
+                              ],
+                            )
+                          : Text("Submit",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20)),
+                      onPressed: loading
+                          ? null
+                          : () {
+                              _printPngBytes();
+                            },
+                    ),
                   ),
                 )
               ],

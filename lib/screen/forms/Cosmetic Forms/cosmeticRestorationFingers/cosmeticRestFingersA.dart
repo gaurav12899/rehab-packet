@@ -70,8 +70,9 @@ class _CosmeticRestorationFingersAState
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => Cosmetic(widget.username)));
+            Navigator.of(context).pop();
+            // (
+            //     MaterialPageRoute(builder: (_) => Cosmetic(widget.username)));
           },
         ),
         title: Text("Cosmetic Restoration-Fingers"),

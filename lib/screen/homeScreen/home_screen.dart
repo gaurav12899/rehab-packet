@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               "Prosthetic Forms",
                               style: TextStyle(
-                                  fontSize: 50,
+                                  fontSize: 35,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -143,9 +143,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     );
                             });
                           },
-                          child: Text(
-                            "Select Form",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              "Select Form",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
                           ),
                         ),
                       ),
@@ -185,24 +189,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 20),
                             child: Text(
-                              "Orthotic\nForms",
+                              "Orthotic Forms",
                               style: TextStyle(
-                                  fontSize: 50,
+                                  fontSize: 35,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          // Container(
-                          //   color: Colors.black26,
-                          //   margin: EdgeInsets.symmetric(horizontal: 10),
-                          //   child: Text(
-                          //     "Knee pain can have causes that aren't due to underlying disease. Examples include heavy physical activity, lack of use, injuries",
-                          //     style: TextStyle(
-                          //       color: Colors.white,
-                          //       fontSize: 15,
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
@@ -226,8 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               value.exists
                                   ? Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (_) =>
-                                              Prosthetic(widget.uid)))
+                                          builder: (_) => Orthotic(widget.uid)))
                                   : showDialog(
                                       context: context,
                                       builder: (context) {
@@ -247,9 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     );
                             });
                           },
-                          child: Text(
-                            "Select Form",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              "Select Form",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
                           ),
                         ),
                       ),
@@ -289,9 +285,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 20),
                             child: Text(
-                              "Cosmetic\nRestoration",
+                              "Cosmetic\nRestoration Forms",
                               style: TextStyle(
-                                  fontSize: 50,
+                                  fontSize: 35,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -341,9 +337,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     );
                             });
                           },
-                          child: Text(
-                            "Select Form",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              "Select Form",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
                           ),
                         ),
                       ),

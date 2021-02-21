@@ -38,7 +38,7 @@ class _ElbowOrthosisBState extends State<ElbowOrthosisB> {
     ui.Image image;
     bool catched = false;
     try {
-      image = await boundary.toImage(pixelRatio: 3.0);
+      image = await boundary.toImage(pixelRatio: 1.0);
       catched = true;
     } catch (exception) {
       catched = false;

@@ -10,6 +10,7 @@ import 'dart:ui' as ui;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
+import 'package:project/main.dart';
 import 'package:project/screen/homeScreen/new-or-old-patient.dart';
 
 class BelowKneeProsthesisE extends StatefulWidget {
@@ -36,7 +37,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
     ui.Image image;
     bool catched = false;
     try {
-      image = await boundary.toImage(pixelRatio: 3.0);
+      image = await boundary.toImage(pixelRatio: 1.0);
       catched = true;
     } catch (exception) {
       catched = false;
@@ -69,18 +70,30 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
         .get();
 
     var pngBytes = await _capturePng();
-    print(pngBytes);
 
     if (widget.bytelist.length > 4) {
       widget.bytelist.removeLast();
     }
+
     await widget.bytelist.add(pngBytes);
+    final fontbold = await rootBundle.load("assets/fonts/Helvetica-Bold.ttf");
+    final font = await rootBundle.load("assets/fonts/Helvetica.ttf");
+    final fontOblique =
+        await rootBundle.load("assets/fonts/Helvetica-Oblique.ttf");
+
+    final ttfBold = pw.Font.ttf(fontbold);
+    final ttf = pw.Font.ttf(font);
+    final ttfOblique = pw.Font.ttf(fontOblique);
+
+    final pw.ThemeData theme =
+        pw.ThemeData.withFont(bold: ttfBold, base: ttf, italic: ttfOblique);
 
     final ByteData bytes = await rootBundle.load('assets/images/REHAB.jpg');
     final Uint8List list = bytes.buffer.asUint8List();
     final logo = PdfImage.file(doc.document, bytes: list);
 
     doc.addPage(pw.MultiPage(
+        theme: theme,
         margin: pw.EdgeInsets.all(10),
         build: (pw.Context context) => [
               pw.Header(
@@ -154,6 +167,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
       );
 
       doc.addPage(pw.MultiPage(
+          theme: theme,
           margin: pw.EdgeInsets.all(10),
           build: (pw.Context context) => [
                 pw.Header(
@@ -161,7 +175,7 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
                   child: pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       children: <pw.Widget>[
-                        pw.Text('AFO Form', textScaleFactor: 1),
+                        pw.Text('Below Knee Prosthesis', textScaleFactor: 1),
                         pw.Image(logo, width: 60, height: 60)
                       ]),
                 ),
@@ -196,21 +210,20 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
           .collection("formname")
           .doc("Below Knee Prosthesis")
           .set({"form": url});
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.green,
-        content: Text("Form Submitted!!"),
-        duration: Duration(seconds: 3),
-      ));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => NewOrOldPatient(
+                    result: true,
+                  )),
+          (Route<dynamic> route) => false);
     } on Exception catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          content: Text("Something went wrong!!"),
-        ),
-      );
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => NewOrOldPatient(
+                    result: false,
+                  )),
+          (Route<dynamic> route) => false);
     }
-    await Navigator.of(context)
-        .pushNamedAndRemoveUntil(NewOrOldPatient.routeName, (route) => false);
   }
 
   @override
@@ -294,27 +307,31 @@ class _BelowKneeProsthesisEState extends State<BelowKneeProsthesisE> {
                 Container(
                   padding: EdgeInsets.all(20),
                   width: MediaQuery.of(context).size.width * .8,
-                  child: ElevatedButton(
-                    child: loading
-                        ? Row(
-                            children: [
-                              Text("Generating Doc",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 10)),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              CircularProgressIndicator(),
-                            ],
-                          )
-                        : Text("Submit",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                    onPressed: loading
-                        ? null
-                        : () {
-                            _printPngBytes();
-                          },
+                  child: SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      child: loading
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Generating Doc",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 10)),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                CircularProgressIndicator(),
+                              ],
+                            )
+                          : Text("Submit",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20)),
+                      onPressed: loading
+                          ? null
+                          : () {
+                              _printPngBytes();
+                            },
+                    ),
                   ),
                 )
               ],

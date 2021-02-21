@@ -107,7 +107,9 @@ class _DemographicFormState extends State<DemographicForm> {
     'currentSituation': '',
     'currentlyTakingMedicines': '',
     'userStatus': '',
-    'gender': ''
+    'gender': '',
+    'activityLevel': '',
+    'livingEnv': ''
   };
 
   GlobalKey _containerKey = GlobalKey();
@@ -189,6 +191,7 @@ class _DemographicFormState extends State<DemographicForm> {
         'physicianContact': form['physicianContact'],
         'dept': form['dept'],
         'hospital': form['hospital'],
+        'livingEnv': form['livingEnv'],
         'currentlyTakingMedicines': form['currentlyTakingMedicines'],
         'userStatus': form['userStatus'],
         'phyDemandBefore': form['phyDemandBefore'],
@@ -219,13 +222,14 @@ class _DemographicFormState extends State<DemographicForm> {
                       style: TextStyle(color: Colors.cyan),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(PdfList.routeName);
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => PdfList()));
                     },
                   ),
                   TextButton(
                     child: Text('Next'),
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (ctx) => HomeScreen(
                                 uid: docId,
                               )));
@@ -1153,8 +1157,11 @@ class _DemographicFormState extends State<DemographicForm> {
                             Container(
                                 width: 80,
                                 child: TextField(
-                                  onTap: () {
-                                    setState(() {});
+                                  onChanged: (val) {
+                                    setState(() {
+                                      form['livingEnv'] = val;
+                                      print(val);
+                                    });
                                   },
                                   decoration:
                                       InputDecoration(hintText: "Others"),

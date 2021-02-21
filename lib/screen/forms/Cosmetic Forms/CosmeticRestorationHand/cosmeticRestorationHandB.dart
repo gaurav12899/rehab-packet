@@ -56,7 +56,7 @@ class _CosmeticRestorationHandBState extends State<CosmeticRestorationHandB> {
       widget.bytelist.removeLast();
     }
     await widget.bytelist.add(pngBytes);
-    print(widget.bytelist);
+    // print(widget.bytelist);
 
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (ctx) => CosmeticRestorationHandC(
