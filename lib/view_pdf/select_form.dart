@@ -2,7 +2,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/homeScreen/home_screen.dart';
 import 'package:project/view_pdf/viewPdf.dart';
@@ -138,8 +137,8 @@ class _SelectFormState extends State<SelectForm> {
                                 },
                               ),
                               leading: Container(
-                                child: SvgPicture.asset(
-                                  'assets/images/file.svg',
+                                child: Image.asset(
+                                  'assets/images/document.png',
                                   width: 30,
                                   height: 30,
                                 ),

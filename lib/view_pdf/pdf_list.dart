@@ -2,7 +2,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/screen/homeScreen/app-drawer.dart';
 import 'package:project/screen/showImage/show-image.dart';
 import 'package:project/view_pdf/select_form.dart';
@@ -237,8 +236,8 @@ class _PdfListState extends State<PdfList> {
                                       title: ListTile(
                                         // tileColor: Colors.blue.shade200,
                                         leading: Container(
-                                          child: SvgPicture.asset(
-                                            'assets/images/patient.svg',
+                                          child: Image.asset(
+                                            'assets/images/patient.png',
                                             width: 30,
                                             height: 30,
                                           ),

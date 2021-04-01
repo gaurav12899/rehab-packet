@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screen/forms/orthotic%20Forms/Afo/afoA.dart';
+import 'package:project/screen/forms/orthotic%20Forms/FootOrthosisForm/footOrthosisA.dart';
 import 'package:project/screen/forms/orthotic%20Forms/HKAFO/hkafoA.dart';
 import 'package:project/screen/forms/orthotic%20Forms/Kafo/kafoA.dart';
 import 'package:project/screen/forms/orthotic%20Forms/elbowOrthosis/elbowOrthosis.dart';
+import 'package:project/screen/forms/orthotic%20Forms/kneeOrthosis/kneeOrthosisA.dart';
 import 'package:project/screen/forms/orthotic%20Forms/spinalOrthosis/spinalOrthosisA.dart';
 import 'package:project/screen/forms/orthotic%20Forms/wristHandOrthosis/wristHandOrthosisA.dart';
 
@@ -80,6 +82,14 @@ class Orthotic extends StatelessWidget {
           FormName(
             name: "Knee Ankle Foot Orthosis",
             path: KafoA(uid),
+          ),
+          FormName(
+            name: "Foot Orthosis",
+            path: FootOrthosisA(uid),
+          ),
+          FormName(
+            name: "Knee Orthosis",
+            path: KneeOrthosisA(uid),
           ),
           // FormName(
           //   name: "Knee Orthosis",

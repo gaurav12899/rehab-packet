@@ -29,11 +29,11 @@ class _PdfScreenState extends State<PdfScreen> {
   loadDocument() async {
     document = await PDFDocument.fromAsset('assets/sample.pdf');
 
-    setState(() => _isLoading = false);
+    if (mounted) setState(() => _isLoading = false);
   }
 
   changePDF(url) async {
-    setState(() => _isLoading = true);
+    if (mounted) setState(() => _isLoading = true);
 
     document = await PDFDocument.fromURL(
       url,
@@ -46,7 +46,7 @@ class _PdfScreenState extends State<PdfScreen> {
       ),
     );
 
-    setState(() => _isLoading = false);
+    if (mounted) setState(() => _isLoading = false);
   }
 
   @override

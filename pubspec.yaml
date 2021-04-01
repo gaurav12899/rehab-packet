@@ -51,7 +51,7 @@ dependencies:
   # flutter_svg: any
   # flutter_plugin_pdf_viewer: 1.0.7
   # advance_pdf_viewer: ^1.2.1+2
-  flutter_svg: ^0.19.2+1
+  # flutter_svg: ^0.19.2+
   share: ^0.6.5+4
   flutter_spinkit: ^3.1.0
   flutter_email_sender: ^4.0.0

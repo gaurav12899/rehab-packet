@@ -138,7 +138,7 @@
 88            android:name="com.google.firebase.components.ComponentDiscoveryService"
 88-->[:cloud_firestore] D:\MyFlutterApps\RehabPocket\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
 89            android:directBootAware="true"
-89-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:35:13-43
+89-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:35:13-43
 90            android:exported="false" >
 90-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:35:13-37
 91            <meta-data
@@ -178,23 +178,23 @@
 108                android:value="com.google.firebase.components.ComponentRegistrar" />
 108-->[com.google.firebase:firebase-auth:19.4.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\abba2042bd3143f77d0e39fd1bf924cc\firebase-auth-19.4.0\AndroidManifest.xml:38:17-82
 109            <meta-data
-109-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:20:13-22:85
-110                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-110-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:21:17-111
+109-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:33:13-35:85
+110                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+110-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:34:17-107
 111                android:value="com.google.firebase.components.ComponentRegistrar" />
-111-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\39f6c409c4deb959a74baeb5d2e03ce3\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:22:17-82
+111-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:35:17-82
 112            <meta-data
-112-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:32:13-34:85
-113                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-113-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:33:17-109
+112-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e04aebb31417c418656ae840ad08e76c\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:20:13-22:85
+113                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+113-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e04aebb31417c418656ae840ad08e76c\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:21:17-111
 114                android:value="com.google.firebase.components.ComponentRegistrar" />
-114-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:34:17-82
+114-->[com.google.firebase:firebase-firestore:21.7.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e04aebb31417c418656ae840ad08e76c\jetified-firebase-firestore-21.7.1\AndroidManifest.xml:22:17-82
 115            <meta-data
-115-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:33:13-35:85
-116                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-116-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:34:17-107
+115-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:32:13-34:85
+116                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+116-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:33:17-109
 117                android:value="com.google.firebase.components.ComponentRegistrar" />
-117-->[com.google.firebase:firebase-storage:19.2.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\be3d6b0e07a885b9698a2004e3c67b29\firebase-storage-19.2.0\AndroidManifest.xml:35:17-82
+117-->[com.google.firebase:firebase-database:19.5.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\18aa7add147e953503870bd436590810\firebase-database-19.5.0\AndroidManifest.xml:34:17-82
 118            <meta-data
 118-->[com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\87892edabe3940311c57274d2e3f6cb3\play-services-measurement-api-17.6.0\AndroidManifest.xml:30:13-32:85
 119                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
@@ -318,17 +318,17 @@
 183-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\12b2a981af48a4d34665a895e1a50203\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
 184
 185        <provider
-185-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:26:9-31:39
+185-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:26:9-31:39
 186            android:name="com.google.firebase.provider.FirebaseInitProvider"
-186-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:27:13-77
+186-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:27:13-77
 187            android:authorities="com.example.project.firebaseinitprovider"
-187-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:28:13-72
+187-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:28:13-72
 188            android:directBootAware="true"
-188-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:29:13-43
+188-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:29:13-43
 189            android:exported="false"
-189-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:30:13-37
+189-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:30:13-37
 190            android:initOrder="100" />
-190-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\e16cf778901b8f3d12457c71dab19ad2\jetified-firebase-common-19.3.1\AndroidManifest.xml:31:13-36
+190-->[com.google.firebase:firebase-common:19.3.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\f3c632f3f09184621bb5663a5c5028bb\jetified-firebase-common-19.3.1\AndroidManifest.xml:31:13-36
 191
 192        <receiver
 192-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:29:9-33:20
@@ -360,11 +360,11 @@
 206-->[com.google.android.gms:play-services-measurement:17.6.0] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\4445fb88bd03a7850a9d8e067866e333\play-services-measurement-17.6.0\AndroidManifest.xml:43:13-69
 207
 208        <meta-data
-208-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:23:9-25:69
+208-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\271e50e62aa889e6d8519e3183279aaa\jetified-play-services-basement-17.1.1\AndroidManifest.xml:23:9-25:69
 209            android:name="com.google.android.gms.version"
-209-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:24:13-58
+209-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\271e50e62aa889e6d8519e3183279aaa\jetified-play-services-basement-17.1.1\AndroidManifest.xml:24:13-58
 210            android:value="@integer/google_play_services_version" />
-210-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\d680d83707dc4b02a78db38fccee9058\jetified-play-services-basement-17.1.1\AndroidManifest.xml:25:13-66
+210-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\gaura\.gradle\caches\transforms-2\files-2.1\271e50e62aa889e6d8519e3183279aaa\jetified-play-services-basement-17.1.1\AndroidManifest.xml:25:13-66
 211    </application>
 212
 213</manifest>
